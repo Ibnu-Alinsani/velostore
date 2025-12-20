@@ -123,6 +123,11 @@ onMounted(() => {
 
       </div>
     </div>
+
+    <!-- Background Gradient -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-500/5 rounded-full blur-[120px]"></div>
+    </div>
   </section>
 </template>
 

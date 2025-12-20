@@ -206,9 +206,23 @@ const radius = 350
         <div class="absolute bottom-[7%] right-[-5rem] md:bottom-[15%] md:right-[-10%] scale-[0.55] md:scale-[0.7] lg:top-0 lg:right-0 lg:bottom-auto lg:translate-x-[50%] lg:-translate-y-[6%] lg:scale-100 lg:h-screen lg:flex lg:items-center lg:justify-center pointer-events-none z-10 transition-all duration-500">
            <!-- Wrapper -->
            <div class="relative flex items-center justify-center">
-          <!-- Decor Circle -->
-          <div class="absolute w-[800px] h-[800px] border border-zinc-800 rounded-full"></div>
-          <div class="absolute w-[600px] h-[600px] border border-zinc-800/50 rounded-full"></div>
+           <!-- Dynamic Decor Circles with Gradients & Glow -->
+           <!-- Outer Ring: Animated Gradient Border -->
+           <div class="absolute w-[800px] h-[800px] rounded-full overflow-hidden">
+             <div class="absolute inset-0 rounded-full border-2 border-transparent bg-gradient-to-r from-blue-600/30 via-cyan-500/20 to-blue-600/30 bg-clip-border animate-[spin_20s_linear_infinite]" style="background-size: 200% 200%;"></div>
+             <div class="absolute inset-[2px] rounded-full bg-zinc-950"></div>
+             <!-- Glow Effect -->
+             <div class="absolute inset-0 rounded-full shadow-[0_0_40px_rgba(59,130,246,0.15)]"></div>
+           </div>
+           
+           <!-- Middle Ring: Pulsing Dashed Border -->
+           <div class="absolute w-[600px] h-[600px] rounded-full border border-dashed border-zinc-700/40 animate-[spin_30s_linear_infinite_reverse]">
+             <!-- Orbital Markers -->
+             <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_12px_rgba(59,130,246,0.8)]"></div>
+             <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-cyan-400 rounded-full shadow-[0_0_12px_rgba(34,211,238,0.8)]"></div>
+             <div class="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-blue-400 rounded-full shadow-[0_0_8px_rgba(96,165,250,0.6)]"></div>
+             <div class="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-cyan-300 rounded-full shadow-[0_0_8px_rgba(103,232,249,0.6)]"></div>
+           </div>
           
           <!-- Rotating Container -->
           <div 

@@ -1,22 +1,38 @@
 <script setup lang="ts">
 import LandingIntro from '~/components/organisms/LandingIntro.vue'
-import HeroCircular from '~/components/organisms/HeroCircular.vue'
+import BrandIntro from '~/components/organisms/BrandIntro.vue'
+import WhyVeloStore from '~/components/organisms/WhyVeloStore.vue'
 import BrandElevator from '~/components/organisms/BrandElevator.vue'
 import InnovationGrid from '~/components/organisms/InnovationGrid.vue'
+import TheExperience from '~/components/organisms/TheExperience.vue'
+import ProductTeaser from '~/components/organisms/ProductTeaser.vue'
+import HeroCircular from '~/components/organisms/HeroCircular.vue'
 </script>
 
 <template>
   <div class="bg-zinc-950">
-    <!-- Atmospheric Intro -->
+    <!-- 1. Atmospheric Opening -->
     <LandingIntro />
 
-    <!-- Main Feature: Circular Hero -->
-    <HeroCircular />
+    <!-- 2. Brand Introduction -->
+    <BrandIntro />
 
-    <!-- Brand Performance & Stats -->
+    <!-- 3. Value Proposition -->
+    <WhyVeloStore />
+
+    <!-- 4. Performance Stats & DNA -->
     <BrandElevator />
 
-    <!-- Technology & Innovation Showcase -->
+    <!-- 5. Technology Deep Dive -->
     <InnovationGrid />
+
+    <!-- 6. Emotional Experience -->
+    <TheExperience />
+
+    <!-- 7. Psychological Bridge -->
+    <ProductTeaser />
+
+    <!-- 8. Interactive Product Showcase -->
+    <HeroCircular />
   </div>
 </template>
