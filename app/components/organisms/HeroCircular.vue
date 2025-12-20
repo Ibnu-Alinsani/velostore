@@ -14,7 +14,7 @@ const activeIndex = ref(0)
 const rotation = ref(180) // Start at 180 to align first item left
 const targetRotation = ref(180)
 let animationFrameId: number | null = null
-let autoRotateInterval: NodeJS.Timeout | null = null
+let autoRotateInterval: any = null
 const isScrollDriven = ref(true)
 
 const activeItem = computed(() => items.value[activeIndex.value])
@@ -122,7 +122,7 @@ const radius = 350
     During that time, the inner div is sticky, effectively "pausing" the vertical movement 
     visuals but using the scroll to drive the animation.
   -->
-  <div ref="containerRef" class="relative h-[400vh]">
+  <div ref="containerRef" class="relative h-[250vh]">
     <!-- Added pt-24 (96px) to clear the h-20 (80px) fixed navbar and provide breathing room -->
     <div class="sticky top-0 h-screen flex items-center text-white pt-24 pb-12">
       <!-- Background Texture -->

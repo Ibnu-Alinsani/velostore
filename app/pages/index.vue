@@ -1,14 +1,22 @@
 <script setup lang="ts">
+import LandingIntro from '~/components/organisms/LandingIntro.vue'
 import HeroCircular from '~/components/organisms/HeroCircular.vue'
-import FeaturedSection from '~/components/organisms/FeaturedSection.vue'
+import BrandElevator from '~/components/organisms/BrandElevator.vue'
+import InnovationGrid from '~/components/organisms/InnovationGrid.vue'
 </script>
 
 <template>
-  <div>
-    <!-- Advanced Circular Hero -->
-    <HeroCircular class="mb-10" />
+  <div class="bg-zinc-950">
+    <!-- Atmospheric Intro -->
+    <LandingIntro />
 
-    <!-- Featured Section -->
-    <FeaturedSection />
+    <!-- Main Feature: Circular Hero -->
+    <HeroCircular />
+
+    <!-- Brand Performance & Stats -->
+    <BrandElevator />
+
+    <!-- Technology & Innovation Showcase -->
+    <InnovationGrid />
   </div>
 </template>
