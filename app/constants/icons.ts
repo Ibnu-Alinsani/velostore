@@ -12,6 +12,8 @@ export const ICON_MAP = {
     // UI Elements
     search: 'heroicons:magnifying-glass',
     close: 'heroicons:x-mark',
+    plus: 'heroicons:plus',
+    camera: 'heroicons:camera',
     menu: 'heroicons:bars-3',
     cart: 'heroicons:shopping-bag',
     check: 'heroicons:check',

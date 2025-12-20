@@ -100,7 +100,6 @@ const quickAdd = () => {
             ></div>
           </div>
         </div>
-
         <!-- CTA Section -->
         <div class="flex items-center justify-between pt-4 border-t border-white/5">
           <div class="flex items-center gap-2">
@@ -116,12 +115,12 @@ const quickAdd = () => {
               class="w-8 h-8 rounded-full bg-white/5 hover:bg-blue-500 flex items-center justify-center transition-all duration-300 group/cart"
               title="Add to cart"
             >
-              <BaseIcon name="cart" size="xs" class="text-zinc-400 group-hover/cart:text-white transition-colors" />
+              <BaseIcon name="cart" size="sm" class="text-zinc-400 group-hover/cart:text-white transition-colors" />
             </button>
 
             <!-- Details Arrow -->
             <div class="w-8 h-8 rounded-full bg-blue-500/10 group-hover:bg-blue-500 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-              <BaseIcon name="arrowRight" size="xs" class="text-blue-400 group-hover:text-white transition-colors group-hover:translate-x-0.5" />
+              <BaseIcon name="arrowRight" size="sm" class="text-blue-400 group-hover:text-white transition-colors group-hover:translate-x-0.5" />
             </div>
           </div>
         </div>

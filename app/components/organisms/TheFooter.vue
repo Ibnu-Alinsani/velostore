@@ -93,7 +93,7 @@ const currentYear = new Date().getFullYear()
               <span class="w-0 group-hover:w-2 h-[2px] bg-cyan-400 transition-all duration-300"></span>
               About Us
             </NuxtLink></li>
-            <li><NuxtLink to="/about" class="text-zinc-400 hover:text-cyan-400 transition-colors flex items-center gap-2 group">
+            <li><NuxtLink to="/story" class="text-zinc-400 hover:text-cyan-400 transition-colors flex items-center gap-2 group">
               <span class="w-0 group-hover:w-2 h-[2px] bg-cyan-400 transition-all duration-300"></span>
               Our Story
             </NuxtLink></li>
@@ -111,19 +111,19 @@ const currentYear = new Date().getFullYear()
             Support
           </h4>
           <ul class="space-y-3 text-sm mb-6">
-            <li><NuxtLink to="/" class="text-zinc-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
+            <li><NuxtLink to="/support/help" class="text-zinc-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
               <span class="w-0 group-hover:w-2 h-[2px] bg-blue-400 transition-all duration-300"></span>
               Help Center
             </NuxtLink></li>
-            <li><NuxtLink to="/" class="text-zinc-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
+            <li><NuxtLink to="/support/shipping" class="text-zinc-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
               <span class="w-0 group-hover:w-2 h-[2px] bg-blue-400 transition-all duration-300"></span>
               Shipping Info
             </NuxtLink></li>
-            <li><NuxtLink to="/" class="text-zinc-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
+            <li><NuxtLink to="/support/returns" class="text-zinc-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
               <span class="w-0 group-hover:w-2 h-[2px] bg-blue-400 transition-all duration-300"></span>
               Returns
             </NuxtLink></li>
-            <li><NuxtLink to="/" class="text-zinc-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
+            <li><NuxtLink to="/support/warranty" class="text-zinc-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
               <span class="w-0 group-hover:w-2 h-[2px] bg-blue-400 transition-all duration-300"></span>
               Warranty
             </NuxtLink></li>
