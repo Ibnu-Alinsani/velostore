@@ -12,6 +12,7 @@ export const ICON_MAP = {
     // UI Elements
     search: 'heroicons:magnifying-glass',
     close: 'heroicons:x-mark',
+    help: 'heroicons:question-mark-circle',
     plus: 'heroicons:plus',
     camera: 'heroicons:camera',
     menu: 'heroicons:bars-3',
@@ -23,6 +24,7 @@ export const ICON_MAP = {
     phone: 'heroicons:phone',
     location: 'heroicons:map-pin',
     users: 'heroicons:users',
+    truck: 'heroicons:truck',
 
     // Bike Categories
     bike: 'heroicons:cube',

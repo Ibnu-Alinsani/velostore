@@ -5,21 +5,16 @@ import BaseButton from '~/components/atoms/BaseButton.vue'
 import CartBadge from '~/components/molecules/CartBadge.vue'
 import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
-defineEmits(['book-ride'])
+const emit = defineEmits(['book-ride', 'open-search'])
 
 const scrolled = ref(false)
-const isSearchOpen = ref(false)
-const searchQuery = ref('')
 
 const handleScroll = () => {
   scrolled.value = window.scrollY > 20
 }
 
 const toggleSearch = () => {
-  isSearchOpen.value = !isSearchOpen.value
-  if (isSearchOpen.value) {
-    // Optional: Focus search input
-  }
+  emit('open-search')
 }
 
 onMounted(() => {
@@ -66,7 +61,7 @@ onUnmounted(() => {
             class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 transition-all duration-300 group relative"
           >
             <BaseIcon 
-              :name="isSearchOpen ? 'close' : 'search'" 
+              name="search" 
               class="text-zinc-400 group-hover:text-white transition-colors" 
             />
           </button>
@@ -90,31 +85,6 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <!-- Slide-down Search Bar -->
-    <Transition
-      enter-active-class="transition duration-300 ease-out"
-      enter-from-class="transform -translate-y-full opacity-0"
-      enter-to-class="transform translate-y-0 opacity-100"
-      leave-active-class="transition duration-200 ease-in"
-      leave-from-class="transform translate-y-0 opacity-100"
-      leave-to-class="transform -translate-y-full opacity-0"
-    >
-      <div v-if="isSearchOpen" class="absolute top-full left-0 right-0 bg-zinc-900 border-b border-white/10 p-4 shadow-2xl">
-        <div class="max-w-3xl mx-auto flex items-center gap-4">
-          <div class="relative flex-1">
-            <BaseIcon name="search" size="sm" class="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" />
-            <input 
-              v-model="searchQuery"
-              type="text" 
-              placeholder="Search for your dream bike..." 
-              class="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500/50 transition-colors"
-              @keyup.enter="isSearchOpen = false"
-            />
-          </div>
-          <BaseButton variant="primary" size="sm" @click="isSearchOpen = false" class="!px-6">Search</BaseButton>
-        </div>
-      </div>
-    </Transition>
 
     <!-- Bottom Accent Line -->
     <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>

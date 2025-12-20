@@ -5,6 +5,7 @@ import TheFooter from '~/components/organisms/TheFooter.vue'
 import TheToast from '~/components/molecules/TheToast.vue'
 import InteractiveBackground from '~/components/organisms/InteractiveBackground.vue'
 import TestRideModal from '~/components/organisms/TestRideModal.vue'
+import SpotlightSearch from '~/components/organisms/SpotlightSearch.vue'
 
 // Mouse Tracking for Global Spotlight
 const spotX = ref(0)
@@ -14,6 +15,11 @@ const mouseY = ref(0)
 let animationFrameId: number | null = null
 
 const isTestRideModalOpen = ref(false)
+const isSpotlightOpen = ref(false)
+
+const handleToggleSpotlight = () => {
+  isSpotlightOpen.value = !isSpotlightOpen.value
+}
 
 const handleMouseMove = (e: MouseEvent) => {
   mouseX.value = e.clientX
@@ -32,6 +38,7 @@ const updateSpotlight = () => {
 
 onMounted(() => {
   window.addEventListener('mousemove', handleMouseMove)
+  window.addEventListener('toggle-spotlight', handleToggleSpotlight)
   mouseX.value = window.innerWidth / 2
   mouseY.value = window.innerHeight / 2
   spotX.value = window.innerWidth / 2
@@ -42,6 +49,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('mousemove', handleMouseMove)
+  window.removeEventListener('toggle-spotlight', handleToggleSpotlight)
   if (animationFrameId) cancelAnimationFrame(animationFrameId)
 })
 </script>
@@ -61,7 +69,10 @@ onUnmounted(() => {
     ></div>
 
     <div class="relative z-10 flex flex-col min-h-screen">
-      <TheNavbar @book-ride="isTestRideModalOpen = true" />
+      <TheNavbar 
+        @book-ride="isTestRideModalOpen = true" 
+        @open-search="isSpotlightOpen = true"
+      />
       
       <main class="flex-grow" :class="{ 'pt-20': $route.path !== '/' }">
         <slot />
@@ -71,6 +82,12 @@ onUnmounted(() => {
     </div>
 
     <TheToast />
+
+    <!-- Global Spotlight Search (Command Palette) -->
+    <SpotlightSearch 
+      :is-open="isSpotlightOpen" 
+      @close="isSpotlightOpen = false" 
+    />
 
     <!-- Global Test Ride Modal -->
     <TestRideModal 
