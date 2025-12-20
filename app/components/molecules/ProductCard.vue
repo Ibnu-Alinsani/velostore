@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useCartStore } from '~/stores/cart'
+import { useToast } from '~/composables/useToast'
 import BaseBadge from '~/components/atoms/BaseBadge.vue'
+import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
 interface Props {
   id: string | number
@@ -10,7 +13,20 @@ interface Props {
   performance: 1 | 2 | 3  // Performance rating
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
+const cartStore = useCartStore()
+const { showToast } = useToast()
+
+const quickAdd = () => {
+  cartStore.addItem({
+    id: Number(props.id),
+    name: props.title,
+    price: props.price,
+    image: props.image,
+    category: props.category
+  } as any)
+  showToast(`Added ${props.title} to cart!`, 'success')
+}
 </script>
 
 <template>
@@ -56,9 +72,7 @@ defineProps<Props>()
 
         <!-- Quick View Indicator -->
         <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:rotate-90">
-          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-          </svg>
+          <BaseIcon name="arrowRight" size="md" class="text-white" />
         </div>
       </div>
 
@@ -89,13 +103,26 @@ defineProps<Props>()
 
         <!-- CTA Section -->
         <div class="flex items-center justify-between pt-4 border-t border-white/5">
-          <span class="text-sm text-zinc-400 group-hover:text-blue-400 transition-colors duration-300">
-            View Details
-          </span>
-          <div class="w-8 h-8 rounded-full bg-blue-500/10 group-hover:bg-blue-500 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-            <svg class="w-4 h-4 text-blue-400 group-hover:text-white transition-colors group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-zinc-400 group-hover:text-blue-400 transition-colors duration-300">
+              View Details
+            </span>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <!-- Quick Add Button -->
+            <button 
+              @click.stop.prevent="quickAdd"
+              class="w-8 h-8 rounded-full bg-white/5 hover:bg-blue-500 flex items-center justify-center transition-all duration-300 group/cart"
+              title="Add to cart"
+            >
+              <BaseIcon name="cart" size="xs" class="text-zinc-400 group-hover/cart:text-white transition-colors" />
+            </button>
+
+            <!-- Details Arrow -->
+            <div class="w-8 h-8 rounded-full bg-blue-500/10 group-hover:bg-blue-500 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+              <BaseIcon name="arrowRight" size="xs" class="text-blue-400 group-hover:text-white transition-colors group-hover:translate-x-0.5" />
+            </div>
           </div>
         </div>
       </div>

@@ -3,27 +3,28 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import TheNavbar from '~/components/organisms/TheNavbar.vue'
 import TheFooter from '~/components/organisms/TheFooter.vue'
 import TheToast from '~/components/molecules/TheToast.vue'
-import InteractiveBackground from '~/components/organisms/InteractiveBackground.vue' // Import
+import InteractiveBackground from '~/components/organisms/InteractiveBackground.vue'
+import TestRideModal from '~/components/organisms/TestRideModal.vue'
 
-// Mouse Tracking for Global Spotlight (Keep this for the ambient glow)
+// Mouse Tracking for Global Spotlight
 const spotX = ref(0)
 const spotY = ref(0)
 const mouseX = ref(0)
 const mouseY = ref(0)
 let animationFrameId: number | null = null
 
+const isTestRideModalOpen = ref(false)
+
 const handleMouseMove = (e: MouseEvent) => {
   mouseX.value = e.clientX
   mouseY.value = e.clientY
 }
 
-// Smooth Lerp Function
 const lerp = (start: number, end: number, factor: number) => {
   return start + (end - start) * factor
 }
 
 const updateSpotlight = () => {
-  // Lerp factor 0.1 for nice smooth delay
   spotX.value = lerp(spotX.value, mouseX.value, 0.15)
   spotY.value = lerp(spotY.value, mouseY.value, 0.15)
   animationFrameId = requestAnimationFrame(updateSpotlight)
@@ -31,7 +32,6 @@ const updateSpotlight = () => {
 
 onMounted(() => {
   window.addEventListener('mousemove', handleMouseMove)
-  // Init start position
   mouseX.value = window.innerWidth / 2
   mouseY.value = window.innerHeight / 2
   spotX.value = window.innerWidth / 2
@@ -49,10 +49,10 @@ onUnmounted(() => {
 <template>
   <div class="min-h-screen flex flex-col bg-zinc-950 font-sans text-zinc-100 relative selection:bg-blue-500/30">
     
-    <!-- Canvas Particles (Tech Constellation) -->
+    <!-- Canvas Particles -->
     <InteractiveBackground />
 
-    <!-- Global Ambient Spotlight (Lerped Glow) -->
+    <!-- Global Ambient Spotlight -->
     <div 
       class="fixed inset-0 pointer-events-none z-0 transition-opacity duration-700 ease-in-out mix-blend-screen"
       :style="{
@@ -61,7 +61,7 @@ onUnmounted(() => {
     ></div>
 
     <div class="relative z-10 flex flex-col min-h-screen">
-      <TheNavbar />
+      <TheNavbar @book-ride="isTestRideModalOpen = true" />
       
       <main class="flex-grow" :class="{ 'pt-20': $route.path !== '/' }">
         <slot />
@@ -71,5 +71,11 @@ onUnmounted(() => {
     </div>
 
     <TheToast />
+
+    <!-- Global Test Ride Modal -->
+    <TestRideModal 
+      :is-open="isTestRideModalOpen" 
+      @close="isTestRideModalOpen = false" 
+    />
   </div>
 </template>

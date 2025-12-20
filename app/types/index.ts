@@ -50,3 +50,33 @@ export interface FormValidationRules {
 export interface FormErrors {
     [key: string]: string
 }
+
+export interface Bike {
+    id: number
+    name: string
+    price: string
+    description: string
+    image: string
+    category: string
+    performance: 1 | 2 | 3
+    detailImages: {
+        frame: string
+        gears: string
+        brakes: string
+        cockpit: string
+    }
+    specs: {
+        frame: string
+        gears: string
+        brakes: string
+        weight: string
+    }
+}
+
+export interface CartItem {
+    id: number
+    name: string
+    price: string
+    image: string
+    quantity: number
+}

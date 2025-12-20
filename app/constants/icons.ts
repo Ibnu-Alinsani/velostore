@@ -7,6 +7,7 @@ export const ICON_MAP = {
     chevronDown: 'heroicons:chevron-down',
     arrowRight: 'heroicons:arrow-right',
     arrowLeft: 'heroicons:arrow-left',
+    arrowDown: 'heroicons:chevron-down',
 
     // UI Elements
     search: 'heroicons:magnifying-glass',
@@ -24,7 +25,7 @@ export const ICON_MAP = {
     // Bike Categories
     bike: 'heroicons:cube',
     lightning: 'heroicons:bolt',
-    mountain: 'heroicons:mountain',
+    mountain: 'heroicons:map',
 
     // Stats & Features
     clock: 'heroicons:clock',

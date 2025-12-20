@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { ICON_MAP, type IconName } from '~/constants/icons'
 
 interface Props {
@@ -17,7 +18,7 @@ const sizeClasses = {
   xl: 'w-8 h-8'
 }
 
-const iconName = computed(() => ICON_MAP[props.name])
+const iconName = computed(() => ICON_MAP[props.name] || 'heroicons:question-mark-circle')
 </script>
 
 <template>

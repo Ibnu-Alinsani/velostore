@@ -1,24 +1,4 @@
-export interface Bike {
-    id: number
-    name: string
-    price: string
-    category: 'Road' | 'Mountain' | 'City' | 'Electric'
-    image: string
-    description: string
-    performance: 1 | 2 | 3  // Performance rating: 1=Entry, 2=Mid, 3=Premium
-    detailImages: {
-        frame: string
-        gears: string
-        brakes: string
-        cockpit: string
-    }
-    specs: {
-        frame: string
-        gears: string
-        brakes: string
-        weight: string
-    }
-}
+import { type Bike } from '~/types'
 
 export type SortOption = 'featured' | 'price-low' | 'price-high' | 'name'
 

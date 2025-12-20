@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import type { IconName } from '~/constants/icons'
+import BaseIcon from '~/components/atoms/BaseIcon.vue'
+
 interface Props {
   title: string
   description: string
   value: string
-  icon: string
+  icon: IconName
   link?: string
 }
 
@@ -18,9 +21,7 @@ defineProps<Props>()
   >
     <div class="flex items-start gap-4">
       <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="icon"></path>
-        </svg>
+        <BaseIcon :name="icon" size="lg" class="text-blue-400" />
       </div>
       <div class="flex-1">
         <h3 class="text-lg font-bold text-white mb-1">{{ title }}</h3>

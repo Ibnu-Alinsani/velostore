@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useForm } from '~/composables/useForm'
 import { useToast } from '~/composables/useToast'
-import { ICONS } from '~/constants/icons'
 import PageHero from '~/components/organisms/PageHero.vue'
 import ContactCard from '~/components/molecules/ContactCard.vue'
+import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
 const { showToast } = useToast()
 
@@ -25,28 +25,28 @@ const contactMethods = [
     title: 'Email Us',
     description: 'Get in touch via email',
     value: 'hello@velostore.com',
-    icon: ICONS.email,
+    icon: 'email',
     link: 'mailto:hello@velostore.com'
   },
   {
     title: 'Call Us',
     description: 'Mon-Fri 9AM-6PM',
     value: '+1 (555) 123-4567',
-    icon: ICONS.phone,
+    icon: 'phone',
     link: 'tel:+15551234567'
   },
   {
     title: 'Visit Us',
     description: 'Come see our showroom',
     value: '123 Cycling Blvd, Bike City, BC 90210',
-    icon: ICONS.location,
+    icon: 'location',
     link: 'https://maps.google.com'
   },
   {
     title: 'Social Media',
     description: 'Follow our journey',
     value: '@velostore',
-    icon: ICONS.users,
+    icon: 'users',
     link: '#'
   }
 ]
@@ -84,9 +84,7 @@ const contactMethods = [
           <!-- Business Hours -->
           <div class="p-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20">
             <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-              <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="ICONS.clock"></path>
-              </svg>
+              <BaseIcon name="clock" size="md" class="text-blue-400" />
               Business Hours
             </h3>
             <div class="space-y-2 text-sm">
@@ -169,12 +167,8 @@ const contactMethods = [
               >
                 <span v-if="!isSubmitting">Send Message</span>
                 <span v-else>Sending...</span>
-                <svg v-if="!isSubmitting" class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="ICONS.arrowRight"></path>
-                </svg>
-                <svg v-else class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="ICONS.refresh"></path>
-                </svg>
+                <BaseIcon v-if="!isSubmitting" name="arrowRight" size="md" class="group-hover:translate-x-1 transition-transform" />
+                <BaseIcon v-else name="refresh" size="md" class="animate-spin" />
               </button>
             </form>
           </div>
@@ -195,9 +189,7 @@ const contactMethods = [
         <div class="aspect-[21/9] rounded-3xl overflow-hidden border border-white/10 bg-zinc-900">
           <div class="w-full h-full flex items-center justify-center">
             <div class="text-center">
-              <svg class="w-16 h-16 mx-auto mb-4 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="ICONS.location"></path>
-              </svg>
+              <BaseIcon name="location" class="w-16 h-16 mx-auto mb-4 text-zinc-700" />
               <p class="text-zinc-500">123 Cycling Blvd, Bike City, BC 90210</p>
               <a href="https://maps.google.com" target="_blank" class="inline-block mt-4 text-blue-400 hover:text-blue-300 transition-colors">
                 Open in Google Maps →
