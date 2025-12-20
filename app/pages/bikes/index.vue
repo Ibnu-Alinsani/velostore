@@ -1,38 +1,25 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useBikes } from '~/composables/useBikes'
+import { useBikes, type SortOption } from '~/composables/useBikes'
+import { ICONS } from '~/constants/icons'
 import ProductCard from '~/components/molecules/ProductCard.vue'
 
-const { bikes } = useBikes()
+const { bikes, filterBikes, sortBikes } = useBikes()
 
 const searchQuery = ref('')
 const activeCategory = ref('All')
-const sortBy = ref('featured') // featured, price-low, price-high, name
+const sortBy = ref<SortOption>('featured')
 
 const categories = [
-  { id: 'All', label: 'All Bikes', icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
-  { id: 'Road', label: 'Road', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
-  { id: 'Mountain', label: 'Mountain', icon: 'M5 3l3.057-3L11 2.5 7.943 5.5 11 8.5 7.943 11.5 11 14.5 7.943 17.5 11 21l-3.057-2.5L5 21l2.5-3.5L5 14l2.5-3.5L5 7l2.5-3.5L5 3z' },
-  { id: 'Electric', label: 'Electric', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
+  { id: 'All', label: 'All Bikes', icon: ICONS.bike },
+  { id: 'Road', label: 'Road', icon: ICONS.lightning },
+  { id: 'Mountain', label: 'Mountain', icon: ICONS.mountain },
+  { id: 'Electric', label: 'Electric', icon: ICONS.lightning },
 ]
 
 const filteredBikes = computed(() => {
-  let result = bikes.value.filter(bike => {
-    const matchesSearch = bike.name.toLowerCase().includes(searchQuery.value.toLowerCase())
-    const matchesCategory = activeCategory.value === 'All' || bike.category === activeCategory.value
-    return matchesSearch && matchesCategory
-  })
-
-  // Sort
-  if (sortBy.value === 'price-low') {
-    result.sort((a, b) => parseFloat(a.price.replace(/[$,]/g, '')) - parseFloat(b.price.replace(/[$,]/g, '')))
-  } else if (sortBy.value === 'price-high') {
-    result.sort((a, b) => parseFloat(b.price.replace(/[$,]/g, '')) - parseFloat(a.price.replace(/[$,]/g, '')))
-  } else if (sortBy.value === 'name') {
-    result.sort((a, b) => a.name.localeCompare(b.name))
-  }
-
-  return result
+  const filtered = filterBikes(searchQuery.value, activeCategory.value)
+  return sortBikes(filtered, sortBy.value)
 })
 </script>
 

@@ -20,6 +20,8 @@ export interface Bike {
     }
 }
 
+export type SortOption = 'featured' | 'price-low' | 'price-high' | 'name'
+
 export const useBikes = () => {
     const bikes = useState<Bike[]>('bikes', () => [
         {
@@ -112,8 +114,34 @@ export const useBikes = () => {
         return bikes.value.find(b => b.id === Number(id))
     }
 
+    // Utility: Filter bikes by search query and category
+    const filterBikes = (searchQuery: string, category: string) => {
+        return bikes.value.filter(bike => {
+            const matchesSearch = bike.name.toLowerCase().includes(searchQuery.toLowerCase())
+            const matchesCategory = category === 'All' || bike.category === category
+            return matchesSearch && matchesCategory
+        })
+    }
+
+    // Utility: Sort bikes
+    const sortBikes = (bikesToSort: Bike[], sortBy: SortOption) => {
+        const sorted = [...bikesToSort]
+
+        if (sortBy === 'price-low') {
+            sorted.sort((a, b) => parseFloat(a.price.replace(/[$,]/g, '')) - parseFloat(b.price.replace(/[$,]/g, '')))
+        } else if (sortBy === 'price-high') {
+            sorted.sort((a, b) => parseFloat(b.price.replace(/[$,]/g, '')) - parseFloat(a.price.replace(/[$,]/g, '')))
+        } else if (sortBy === 'name') {
+            sorted.sort((a, b) => a.name.localeCompare(b.name))
+        }
+
+        return sorted
+    }
+
     return {
         bikes,
-        getBikeById
+        getBikeById,
+        filterBikes,
+        sortBikes
     }
 }

@@ -1,18 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const email = ref('')
-const subscribed = ref(false)
-
-const handleSubscribe = () => {
-  if (email.value) {
-    subscribed.value = true
-    setTimeout(() => {
-      email.value = ''
-      subscribed.value = false
-    }, 3000)
-  }
-}
+import Newsletter from '~/components/molecules/Newsletter.vue'
+import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
 const currentYear = new Date().getFullYear()
 </script>
@@ -42,39 +30,15 @@ const currentYear = new Date().getFullYear()
             Premium bicycles engineered for performance. Experience the perfect fusion of cutting-edge technology and timeless design.
           </p>
 
-          <!-- Newsletter -->
+          <!-- Newsletter Component -->
           <div class="mb-8">
-            <h4 class="text-white font-semibold mb-3 flex items-center gap-2">
-              <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
-              Stay Updated
-            </h4>
-            <form @submit.prevent="handleSubscribe" class="flex gap-2">
-              <input
-                v-model="email"
-                type="email"
-                placeholder="Enter your email"
-                class="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
-                required
-              />
-              <button
-                type="submit"
-                class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25"
-                :class="subscribed ? 'bg-green-500 hover:bg-green-500' : ''"
-              >
-                {{ subscribed ? '✓' : '→' }}
-              </button>
-            </form>
-            <p v-if="subscribed" class="text-green-400 text-sm mt-2">Thanks for subscribing!</p>
+            <Newsletter />
           </div>
 
           <!-- Trust Badges -->
           <div class="flex flex-wrap gap-4 text-xs text-zinc-500">
             <div class="flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
+              <BaseIcon name="check" size="sm" class="text-blue-400" />
               <span>Free Shipping</span>
             </div>
             <div class="flex items-center gap-1.5">

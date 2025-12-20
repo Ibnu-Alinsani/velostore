@@ -1,31 +1,35 @@
 <script setup lang="ts">
+import { ICONS } from '~/constants/icons'
+import PageHero from '~/components/organisms/PageHero.vue'
+import SectionHeader from '~/components/molecules/SectionHeader.vue'
+
 const stats = [
-  { value: '10+', label: 'Years Experience', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' },
-  { value: '50K+', label: 'Happy Riders', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
-  { value: '100+', label: 'Bike Models', icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
-  { value: '25+', label: 'Countries', icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z' }
+  { value: '10+', label: 'Years Experience', icon: ICONS.clock },
+  { value: '50K+', label: 'Happy Riders', icon: ICONS.users },
+  { value: '100+', label: 'Bike Models', icon: ICONS.bike },
+  { value: '25+', label: 'Countries', icon: ICONS.globe }
 ]
 
 const values = [
   {
     title: 'Innovation',
     description: 'Pushing the boundaries of bicycle technology with cutting-edge materials and design.',
-    icon: 'M13 10V3L4 14h7v7l9-11h-7z'
+    icon: ICONS.lightning
   },
   {
     title: 'Quality',
     description: 'Every bike is crafted with precision and tested to exceed industry standards.',
-    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
+    icon: ICONS.shield
   },
   {
     title: 'Performance',
     description: 'Engineered for speed, efficiency, and the ultimate riding experience.',
-    icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6'
+    icon: ICONS.trendingUp
   },
   {
     title: 'Sustainability',
     description: 'Committed to eco-friendly manufacturing and promoting green transportation.',
-    icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+    icon: ICONS.globe
   }
 ]
 
@@ -54,55 +58,17 @@ const team = [
 <template>
   <div class="min-h-screen">
     <!-- Hero Section -->
-    <div class="relative bg-gradient-to-b from-zinc-900 to-zinc-950 border-b border-white/5 overflow-hidden">
-      <!-- Background Elements -->
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-blue-500/5 rounded-full blur-[150px] pointer-events-none"></div>
-      <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
-
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <!-- Breadcrumb -->
-        <div class="flex items-center gap-2 text-sm text-zinc-500 mb-8">
-          <NuxtLink to="/" class="hover:text-blue-400 transition-colors">Home</NuxtLink>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-          </svg>
-          <span class="text-white">About Us</span>
-        </div>
-
-        <!-- Hero Content -->
-        <div class="max-w-4xl">
-          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6">
-            <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-            <span class="text-sm font-semibold text-blue-400 tracking-wider uppercase">Our Story</span>
-          </div>
-
-          <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tighter leading-none">
-            Engineered for
-            <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Excellence</span>
-          </h1>
-
-          <p class="text-xl md:text-2xl text-zinc-400 leading-relaxed mb-8">
-            We're not just building bikes. We're crafting the future of cycling with precision engineering, 
-            innovative design, and an unwavering commitment to performance.
-          </p>
-
-          <!-- Stats -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div v-for="stat in stats" :key="stat.label" class="text-center">
-              <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
-                <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="stat.icon"></path>
-                </svg>
-              </div>
-              <p class="text-3xl font-black text-white mb-1">{{ stat.value }}</p>
-              <p class="text-sm text-zinc-500">{{ stat.label }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"></div>
-    </div>
+    <PageHero
+      title="Engineered for"
+      title-gradient="Excellence"
+      badge="Our Story"
+      subtitle="We're not just building bikes. We're crafting the future of cycling with precision engineering, innovative design, and an unwavering commitment to performance."
+      :breadcrumbs="[
+        { label: 'Home', to: '/' },
+        { label: 'About Us' }
+      ]"
+      :stats="stats"
+    />
 
     <!-- Mission Section -->
     <div class="relative py-24 bg-zinc-950">
@@ -128,10 +94,12 @@ const team = [
 
           <!-- Content Side -->
           <div class="order-1 lg:order-2">
-            <h2 class="text-4xl md:text-5xl font-black text-white mb-6 tracking-tighter">
-              Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Mission</span>
-            </h2>
-            <p class="text-lg text-zinc-400 leading-relaxed mb-6">
+            <SectionHeader
+              title="Our"
+              title-gradient="Mission"
+              align="left"
+            />
+            <p class="text-lg text-zinc-400 leading-relaxed mb-6 mt-6">
               At VeloStore, we believe that cycling is more than just transportation—it's a lifestyle, a passion, and a commitment to a healthier planet. Our mission is to create bicycles that inspire riders to push their limits and explore new horizons.
             </p>
             <p class="text-lg text-zinc-400 leading-relaxed">
@@ -145,14 +113,12 @@ const team = [
     <!-- Values Section -->
     <div class="relative py-24 bg-gradient-to-b from-zinc-950 to-zinc-900">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tighter">
-            Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Values</span>
-          </h2>
-          <p class="text-xl text-zinc-400 max-w-2xl mx-auto">
-            The principles that drive everything we do
-          </p>
-        </div>
+        <SectionHeader
+          title="Our"
+          title-gradient="Values"
+          subtitle="The principles that drive everything we do"
+          class="mb-16"
+        />
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div 
@@ -182,14 +148,12 @@ const team = [
     <!-- Team Section -->
     <div class="relative py-24 bg-zinc-950">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tighter">
-            Meet the <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Team</span>
-          </h2>
-          <p class="text-xl text-zinc-400 max-w-2xl mx-auto">
-            The passionate people behind VeloStore
-          </p>
-        </div>
+        <SectionHeader
+          title="Meet the"
+          title-gradient="Team"
+          subtitle="The passionate people behind VeloStore"
+          class="mb-16"
+        />
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div 
@@ -239,12 +203,12 @@ const team = [
           >
             Browse Bikes
             <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="ICONS.arrowRight"></path>
             </svg>
           </NuxtLink>
           
           <NuxtLink 
-            to="/"
+            to="/contact"
             class="inline-flex items-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white font-semibold rounded-full transition-all duration-300"
           >
             Contact Us
