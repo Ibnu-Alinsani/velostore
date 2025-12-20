@@ -1,15 +1,13 @@
 <script setup lang="ts">
-import { ICONS, type IconName } from '~/constants/icons'
+import { ICON_MAP, type IconName } from '~/constants/icons'
 
 interface Props {
   name: IconName
   size?: 'sm' | 'md' | 'lg' | 'xl'
-  strokeWidth?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  size: 'md',
-  strokeWidth: 2
+  size: 'md'
 })
 
 const sizeClasses = {
@@ -18,20 +16,10 @@ const sizeClasses = {
   lg: 'w-6 h-6',
   xl: 'w-8 h-8'
 }
+
+const iconName = computed(() => ICON_MAP[props.name])
 </script>
 
 <template>
-  <svg 
-    :class="sizeClasses[size]" 
-    fill="none" 
-    stroke="currentColor" 
-    viewBox="0 0 24 24"
-  >
-    <path 
-      stroke-linecap="round" 
-      stroke-linejoin="round" 
-      :stroke-width="strokeWidth" 
-      :d="ICONS[name]"
-    />
-  </svg>
+  <Icon :name="iconName" :class="sizeClasses[size]" />
 </template>
