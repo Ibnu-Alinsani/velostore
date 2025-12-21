@@ -94,32 +94,32 @@ const formatPrice = (value: number) => {
                <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
                  <BaseIcon name="location" class="text-blue-400" />
                </div>
-               <h3 class="text-2xl font-black text-white tracking-tighter uppercase">Shipping Details</h3>
+               <h2 class="text-2xl font-black text-white tracking-tighter uppercase">Shipping Details</h2>
              </div>
 
              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                <div class="space-y-2">
-                 <label class="text-xs font-bold text-zinc-500 uppercase tracking-widest">First Name</label>
+                 <label class="text-xs font-bold text-zinc-400 uppercase tracking-widest">First Name</label>
                  <input v-model="formData.firstName" type="text" placeholder="John" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-blue-500 transition-all font-medium" />
                </div>
                <div class="space-y-2">
-                 <label class="text-xs font-bold text-zinc-500 uppercase tracking-widest">Last Name</label>
+                 <label class="text-xs font-bold text-zinc-400 uppercase tracking-widest">Last Name</label>
                  <input v-model="formData.lastName" type="text" placeholder="Doe" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-blue-500 transition-all font-medium" />
                </div>
                <div class="md:col-span-2 space-y-2">
-                 <label class="text-xs font-bold text-zinc-500 uppercase tracking-widest">Email Address</label>
+                 <label class="text-xs font-bold text-zinc-400 uppercase tracking-widest">Email Address</label>
                  <input v-model="formData.email" type="email" placeholder="john@example.com" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-blue-500 transition-all font-medium" />
                </div>
                <div class="md:col-span-2 space-y-2">
-                 <label class="text-xs font-bold text-zinc-500 uppercase tracking-widest">Street Address</label>
+                 <label class="text-xs font-bold text-zinc-400 uppercase tracking-widest">Street Address</label>
                  <input v-model="formData.address" type="text" placeholder="123 Racing St" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-blue-500 transition-all font-medium" />
                </div>
                <div class="space-y-2">
-                 <label class="text-xs font-bold text-zinc-500 uppercase tracking-widest">City</label>
+                 <label class="text-xs font-bold text-zinc-400 uppercase tracking-widest">City</label>
                  <input v-model="formData.city" type="text" placeholder="Velodrome" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-blue-500 transition-all font-medium" />
                </div>
                <div class="space-y-2">
-                 <label class="text-xs font-bold text-zinc-500 uppercase tracking-widest">Postal Code</label>
+                 <label class="text-xs font-bold text-zinc-400 uppercase tracking-widest">Postal Code</label>
                  <input v-model="formData.postalCode" type="text" placeholder="90210" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-blue-500 transition-all font-medium" />
                </div>
              </div>
@@ -143,7 +143,7 @@ const formatPrice = (value: number) => {
                 <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
                   <BaseIcon name="cart" class="text-blue-400" />
                 </div>
-                <h3 class="text-2xl font-black text-white tracking-tighter uppercase">Review Selection</h3>
+                <h2 class="text-2xl font-black text-white tracking-tighter uppercase">Review Selection</h2>
               </div>
 
               <div class="divide-y divide-white/5">
@@ -152,15 +152,15 @@ const formatPrice = (value: number) => {
                     <img :src="item.image" :alt="item.name" class="w-full h-full object-cover" />
                   </div>
                   <div class="flex-1">
-                    <h4 class="text-white font-bold">{{ item.name }}</h4>
-                    <p class="text-zinc-500 text-sm">Qty: {{ item.quantity }}</p>
+                    <h3 class="text-white font-bold">{{ item.name }}</h3>
+                    <p class="text-zinc-400 text-sm">Qty: {{ item.quantity }}</p>
                   </div>
                   <div class="text-white font-bold">{{ item.price }}</div>
                 </div>
               </div>
 
               <div class="mt-12 flex justify-between items-center">
-                <button @click="prevStep" class="text-zinc-500 hover:text-white transition-colors font-medium">
+                <button @click="prevStep" class="text-zinc-400 hover:text-white transition-colors font-medium">
                   Go Back
                 </button>
                 <form @submit.prevent="handleSubmit(onPlaceOrder)">
@@ -184,7 +184,7 @@ const formatPrice = (value: number) => {
         <!-- Order Summary Sidebar -->
         <div class="lg:col-span-1">
           <div class="sticky top-24 p-8 rounded-3xl bg-zinc-950 border border-white/10">
-            <h3 class="text-xl font-black text-white mb-6 tracking-tighter uppercase">Summary</h3>
+            <h2 class="text-xl font-black text-white mb-6 tracking-tighter uppercase">Summary</h2>
             <div class="space-y-4 mb-6">
               <div class="flex justify-between text-zinc-400 text-sm">
                 <span>Items Subtotal</span>
@@ -213,7 +213,7 @@ const formatPrice = (value: number) => {
                 <BaseIcon name="shield" size="xs" />
                 Purchase Protection
               </div>
-              <p class="text-[10px] text-zinc-500 leading-relaxed uppercase font-medium tracking-tight">
+              <p class="text-[10px] text-zinc-400 leading-relaxed uppercase font-medium tracking-tight">
                 Your order is secured and insured up to $50,000 via VeloStore Protection program.
               </p>
             </div>

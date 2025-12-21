@@ -27,7 +27,7 @@
         </h1>
         
         <!-- Meta Info -->
-        <div class="flex items-center justify-center gap-6 text-sm text-zinc-500">
+        <div class="flex items-center justify-center gap-6 text-sm text-zinc-400">
           <span>5 min read</span>
           <div class="w-1 h-1 bg-zinc-700 rounded-full"></div>
           <span>Innovation Series</span>
@@ -53,7 +53,7 @@
               <div class="h-[2px] w-12 bg-gradient-to-r from-blue-500 to-cyan-500"></div>
               <h2 class="text-sm font-black uppercase tracking-wider text-blue-400">The Technology</h2>
             </div>
-            <h3 class="text-3xl md:text-4xl font-black text-white">{{ article.content.techTitle }}</h3>
+            <h2 class="text-3xl md:text-4xl font-black text-white">{{ article.content.techTitle }}</h2>
             <p class="text-lg text-zinc-400 leading-relaxed">
               {{ article.content.techDescription }}
             </p>
@@ -100,7 +100,7 @@
                   <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
                 </svg>
               </div>
-              <h4 class="text-lg font-bold text-white mb-2">{{ benefit.title }}</h4>
+              <h3 class="text-lg font-bold text-white mb-2">{{ benefit.title }}</h3>
               <p class="text-sm text-zinc-400">{{ benefit.desc }}</p>
             </div>
           </div>
@@ -110,7 +110,7 @@
         <div class="relative p-12 rounded-3xl bg-gradient-to-br from-blue-600/20 via-cyan-600/10 to-blue-600/5 border border-blue-500/30 overflow-hidden">
           <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
           <div class="relative z-10 max-w-2xl">
-            <h3 class="text-3xl font-black text-white mb-4">Ready to Experience Innovation?</h3>
+            <h2 class="text-3xl font-black text-white mb-4">Ready to Experience Innovation?</h2>
             <p class="text-lg text-zinc-300 mb-8">Explore our full collection of bikes featuring this groundbreaking technology.</p>
             <NuxtLink 
               to="/bikes"

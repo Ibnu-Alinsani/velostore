@@ -115,8 +115,8 @@ const milestones = [
               <!-- Content Card -->
               <div class="p-8 rounded-3xl bg-zinc-950 border border-white/5 hover:border-blue-500/30 transition-all duration-300">
                 <BaseIcon :name="milestone.icon as any" size="md" class="text-blue-500 mb-4" />
-                <h3 class="text-xl font-bold text-white mb-3 tracking-tighter">{{ milestone.title }}</h3>
-                <p class="text-zinc-500 text-sm leading-relaxed">{{ milestone.description }}</p>
+                <h2 class="text-xl font-bold text-white mb-3 tracking-tighter">{{ milestone.title }}</h2>
+                <p class="text-zinc-400 text-sm leading-relaxed">{{ milestone.description }}</p>
               </div>
 
               <!-- Connecting Line for Desktop -->

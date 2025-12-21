@@ -61,11 +61,11 @@ const steps = [
              <div class="grid grid-cols-2 gap-8">
                 <div class="text-center">
                    <div class="text-4xl font-black text-white mb-2 tracking-tighter">100%</div>
-                   <div class="text-zinc-500 text-sm uppercase tracking-widest font-bold">Money Back</div>
+                   <div class="text-zinc-400 text-sm uppercase tracking-widest font-bold">Money Back</div>
                 </div>
                 <div class="text-center">
                    <div class="text-4xl font-black text-white mb-2 tracking-tighter">48H</div>
-                   <div class="text-zinc-500 text-sm uppercase tracking-widest font-bold">Processing</div>
+                   <div class="text-zinc-400 text-sm uppercase tracking-widest font-bold">Processing</div>
                 </div>
              </div>
           </div>

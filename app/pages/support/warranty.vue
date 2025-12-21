@@ -106,7 +106,7 @@ const coverages = [
               <div class="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-blue-500/30 transition-all flex gap-8">
                  <div class="text-center">
                     <div class="text-3xl font-black text-blue-400 mb-1 tracking-tighter">{{ item.period }}</div>
-                    <div class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest">Period</div>
+                    <div class="text-zinc-400 text-[10px] uppercase font-bold tracking-widest">Period</div>
                  </div>
                  <div class="flex-1">
                     <h3 class="text-xl font-bold text-white mb-2">{{ item.title }}</h3>

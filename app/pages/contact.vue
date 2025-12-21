@@ -83,10 +83,10 @@ const contactMethods = [
 
           <!-- Business Hours -->
           <div class="p-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20">
-            <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+            <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
               <BaseIcon name="clock" size="md" class="text-blue-400" />
               Business Hours
-            </h3>
+            </h2>
             <div class="space-y-2 text-sm">
               <div class="flex justify-between">
                 <span class="text-zinc-400">Monday - Friday</span>
@@ -98,7 +98,7 @@ const contactMethods = [
               </div>
               <div class="flex justify-between">
                 <span class="text-zinc-400">Sunday</span>
-                <span class="text-zinc-500">Closed</span>
+                <span class="text-zinc-400">Closed</span>
               </div>
             </div>
           </div>
@@ -190,7 +190,7 @@ const contactMethods = [
           <div class="w-full h-full flex items-center justify-center">
             <div class="text-center">
               <BaseIcon name="location" class="w-16 h-16 mx-auto mb-4 text-zinc-700" />
-              <p class="text-zinc-500">123 Cycling Blvd, Bike City, BC 90210</p>
+              <p class="text-zinc-400">123 Cycling Blvd, Bike City, BC 90210</p>
               <a href="https://maps.google.com" target="_blank" class="inline-block mt-4 text-blue-400 hover:text-blue-300 transition-colors">
                 Open in Google Maps →
               </a>

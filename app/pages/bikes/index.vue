@@ -56,7 +56,7 @@ const filteredBikes = computed(() => {
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <!-- Breadcrumb -->
-          <div class="flex items-center gap-2 text-sm text-zinc-500 mb-6 font-medium">
+          <div class="flex items-center gap-2 text-sm text-zinc-400 mb-6 font-medium">
             <NuxtLink to="/" class="hover:text-blue-400 transition-colors">Home</NuxtLink>
             <BaseIcon name="arrowRight" size="xs" />
             <span class="text-white">All Bikes</span>
@@ -84,7 +84,7 @@ const filteredBikes = computed(() => {
                 <span class="text-xl font-black text-blue-400">{{ bikes.length }}</span>
               </div>
               <div>
-                <p class="text-zinc-500 text-xs uppercase tracking-wider">Total Models</p>
+                <p class="text-zinc-400 text-xs uppercase tracking-wider">Total Models</p>
                 <p class="text-white font-semibold">Available Now</p>
               </div>
             </div>
@@ -93,7 +93,7 @@ const filteredBikes = computed(() => {
                 <BaseIcon name="check" size="md" class="text-cyan-400" />
               </div>
               <div>
-                <p class="text-zinc-500 text-xs uppercase tracking-wider">Quality</p>
+                <p class="text-zinc-400 text-xs uppercase tracking-wider">Quality</p>
                 <p class="text-white font-semibold">Premium Grade</p>
               </div>
             </div>
@@ -102,7 +102,7 @@ const filteredBikes = computed(() => {
                 <BaseIcon name="clock" size="md" class="text-blue-400" />
               </div>
               <div>
-                <p class="text-zinc-500 text-xs uppercase tracking-wider">Delivery</p>
+                <p class="text-zinc-400 text-xs uppercase tracking-wider">Delivery</p>
                 <p class="text-white font-semibold">Fast Shipping</p>
               </div>
             </div>
@@ -218,7 +218,7 @@ const filteredBikes = computed(() => {
               <BaseIcon name="search" size="xl" class="text-zinc-700" />
             </div>
 
-            <h3 class="text-2xl font-bold text-white mb-2 tracking-tighter uppercase">No bikes found</h3>
+            <h2 class="text-2xl font-bold text-white mb-2 tracking-tighter uppercase">No bikes found</h2>
             <p class="text-zinc-400 mb-8 leading-relaxed">
               We couldn't find any bikes matching your search criteria. Try adjusting your filters or search term.
             </p>

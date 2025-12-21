@@ -133,7 +133,7 @@ const team = [
                   <BaseIcon :name="value.icon" size="lg" class="text-blue-400" />
                 </div>
 
-                <h3 class="text-2xl font-bold text-white mb-3 tracking-tighter">{{ value.title }}</h3>
+                <h2 class="text-2xl font-bold text-white mb-3 tracking-tighter">{{ value.title }}</h2>
                 <p class="text-zinc-400 leading-relaxed">{{ value.description }}</p>
 
                 <!-- Hover Accent -->
@@ -172,7 +172,7 @@ const team = [
                 
                 <!-- Name Overlay -->
                 <div class="absolute bottom-6 left-6 right-6">
-                  <h3 class="text-2xl font-bold text-white mb-1 tracking-tighter">{{ member.name }}</h3>
+                  <h2 class="text-2xl font-bold text-white mb-1 tracking-tighter">{{ member.name }}</h2>
                   <p class="text-blue-400 font-semibold text-sm uppercase tracking-wider">{{ member.role }}</p>
                 </div>
               </div>

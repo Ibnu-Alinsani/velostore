@@ -158,7 +158,7 @@ const currentImage = computed(() => {
                 <!-- Price Tag -->
                 <div class="flex items-baseline gap-3 mb-6">
                   <span class="text-4xl font-black text-white">{{ bike.price }}</span>
-                  <span class="text-sm text-zinc-500 uppercase tracking-wider">MSRP</span>
+                  <span class="text-sm text-zinc-400 uppercase tracking-wider">MSRP</span>
                 </div>
 
                 <!-- Description -->
@@ -183,7 +183,7 @@ const currentImage = computed(() => {
                       <BaseIcon name="lightning" size="sm" class="text-blue-400" />
                     </div>
                     <span class="text-xs uppercase tracking-wider transition-colors"
-                      :class="activeView === 'frame' ? 'text-blue-400' : 'text-zinc-500'">Frame</span>
+                      :class="activeView === 'frame' ? 'text-blue-400' : 'text-zinc-400'">Frame</span>
                   </div>
                   <p class="text-sm font-semibold text-white">{{ bike.specs.frame }}</p>
                   <span v-if="activeView === 'frame'" class="text-xs text-blue-400 mt-2 block">← Viewing detail</span>
@@ -203,7 +203,7 @@ const currentImage = computed(() => {
                       <BaseIcon name="settings" size="sm" class="text-cyan-400" />
                     </div>
                     <span class="text-xs uppercase tracking-wider transition-colors"
-                      :class="activeView === 'gears' ? 'text-cyan-400' : 'text-zinc-500'">Gears</span>
+                      :class="activeView === 'gears' ? 'text-cyan-400' : 'text-zinc-400'">Gears</span>
                   </div>
                   <p class="text-sm font-semibold text-white">{{ bike.specs.gears }}</p>
                   <span v-if="activeView === 'gears'" class="text-xs text-cyan-400 mt-2 block">← Viewing detail</span>
@@ -223,7 +223,7 @@ const currentImage = computed(() => {
                       <BaseIcon name="shield" size="sm" class="text-blue-400" />
                     </div>
                     <span class="text-xs uppercase tracking-wider transition-colors"
-                      :class="activeView === 'brakes' ? 'text-blue-400' : 'text-zinc-500'">Brakes</span>
+                      :class="activeView === 'brakes' ? 'text-blue-400' : 'text-zinc-400'">Brakes</span>
                   </div>
                   <p class="text-sm font-semibold text-white">{{ bike.specs.brakes }}</p>
                   <span v-if="activeView === 'brakes'" class="text-xs text-blue-400 mt-2 block">← Viewing detail</span>
@@ -243,7 +243,7 @@ const currentImage = computed(() => {
                       <BaseIcon name="scale" size="sm" class="text-cyan-400" />
                     </div>
                     <span class="text-xs uppercase tracking-wider transition-colors"
-                      :class="activeView === 'cockpit' ? 'text-cyan-400' : 'text-zinc-500'">Weight</span>
+                      :class="activeView === 'cockpit' ? 'text-cyan-400' : 'text-zinc-400'">Weight</span>
                   </div>
                   <p class="text-sm font-semibold text-white">{{ bike.specs.weight }}</p>
                   <span v-if="activeView === 'cockpit'" class="text-xs text-cyan-400 mt-2 block">← Viewing cockpit</span>
@@ -277,7 +277,7 @@ const currentImage = computed(() => {
               </div>
 
               <!-- Trust Badges -->
-              <div class="flex flex-wrap items-center gap-6 text-sm text-zinc-500">
+              <div class="flex flex-wrap items-center gap-6 text-sm text-zinc-400">
                 <div class="flex items-center gap-2">
                   <BaseIcon name="check" size="sm" class="text-blue-400" />
                   <span>Free Shipping</span>
@@ -307,9 +307,9 @@ const currentImage = computed(() => {
             <span class="text-sm font-semibold text-blue-400 tracking-wider uppercase">More Options</span>
           </div>
           
-          <h3 class="text-4xl lg:text-5xl font-black text-white mb-4 tracking-tighter">
+          <h2 class="text-4xl lg:text-5xl font-black text-white mb-4 tracking-tighter">
             You might also <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">like</span>
-          </h3>
+          </h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">

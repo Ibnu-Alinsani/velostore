@@ -51,7 +51,7 @@ const formatPrice = (value: number) => {
             </NuxtLink>
             <button 
               @click="cartStore.clearCart"
-              class="text-zinc-500 hover:text-red-400 transition-colors text-sm font-medium"
+              class="text-zinc-400 hover:text-red-400 transition-colors text-sm font-medium"
             >
               Clear Cart
             </button>
@@ -61,7 +61,7 @@ const formatPrice = (value: number) => {
         <!-- Summary -->
         <div class="lg:col-span-1">
           <div class="sticky top-24 p-8 rounded-3xl bg-zinc-900 border border-white/10 shadow-2xl">
-            <h3 class="text-2xl font-black text-white mb-6 uppercase tracking-tighter">Order Summary</h3>
+            <h2 class="text-2xl font-black text-white mb-6 uppercase tracking-tighter">Order Summary</h2>
             
             <div class="space-y-4 mb-8">
               <div class="flex justify-between text-zinc-400">
@@ -99,10 +99,10 @@ const formatPrice = (value: number) => {
             <div class="mt-6 flex items-center justify-center gap-4">
               <div class="flex -space-x-2">
                 <div class="w-8 h-8 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center">
-                  <BaseIcon name="shield" size="sm" class="text-zinc-500" />
+                  <BaseIcon name="shield" size="sm" class="text-zinc-400" />
                 </div>
               </div>
-              <p class="text-xs text-zinc-500">Secure checkout powered by VeloPay</p>
+              <p class="text-xs text-zinc-400">Secure checkout powered by VeloPay</p>
             </div>
           </div>
         </div>
