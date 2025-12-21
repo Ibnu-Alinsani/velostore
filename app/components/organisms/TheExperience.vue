@@ -8,6 +8,7 @@
     >
       <NuxtImg 
         src="/cyclist_atmospheric_road.webp"
+        alt="Atmospheric cyclist on scenic road - the VeloStore experience"
         class="w-full h-full object-cover"
         loading="lazy"
       />

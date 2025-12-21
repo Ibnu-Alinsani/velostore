@@ -105,6 +105,7 @@
           <div class="relative w-full h-full flex items-center justify-center">
             <NuxtImg 
               src="/bike_silhouette_transparent.png"
+              alt="VeloStore premium bicycle silhouette showcasing engineering excellence"
               class="w-full h-full object-contain opacity-75 hover:opacity-90 transition-opacity duration-700 filter drop-shadow-[0_0_60px_rgba(59,130,246,0.3)] scale-[1.4]"
               loading="lazy"
             />

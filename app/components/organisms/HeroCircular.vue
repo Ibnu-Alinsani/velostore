@@ -318,7 +318,8 @@ const radius = 350
                      <div v-else class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20"></div>
 
                      <NuxtImg 
-                      :src="item.image" 
+                      :src="item.image"
+                      :alt="`${item.name} - premium ${item.category} bicycle`"
                       class="w-full h-full object-cover relative z-10 transition-transform duration-500"
                       :class="activeIndex === index ? '' : 'group-hover:scale-110'"
                     />

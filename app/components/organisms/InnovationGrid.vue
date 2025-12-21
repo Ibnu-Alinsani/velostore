@@ -69,7 +69,8 @@ onMounted(() => {
             <!-- Background Image -->
             <NuxtImg 
               v-if="item.image"
-              :src="item.image" 
+              :src="item.image"
+              :alt="`${item.title} - cycling innovation technology`"
               class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 group-hover:scale-110 transition-all duration-1000"
             />
             
