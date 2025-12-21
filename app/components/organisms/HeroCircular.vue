@@ -6,7 +6,7 @@ import BaseText from '~/components/atoms/BaseText.vue'
 import BaseBadge from '~/components/atoms/BaseBadge.vue'
 
 const { bikes } = useBikes()
-const items = computed(() => bikes.value) 
+const items = computed(() => bikes.value.filter(bike => bike.featured))
 
 // Refs
 const containerRef = ref<HTMLElement | null>(null)

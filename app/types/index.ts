@@ -101,6 +101,14 @@ export interface Bike {
     readonly specs: BikeSpecs
     /** List of key features */
     readonly features: ReadonlyArray<string>
+    /** Whether bike is featured in hero circular */
+    readonly featured?: boolean
+    /** Badge text for featured bikes */
+    readonly featuredBadge?: string
+    /** Reason why bike is featured */
+    readonly featuredReason?: string
+    /** Number of sales/riders */
+    readonly salesCount?: number
 }
 
 // ============================================================================
