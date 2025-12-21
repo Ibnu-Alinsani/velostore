@@ -27,15 +27,15 @@
             style="transition-delay: 0.2s;"
           >
             <div>
-              <h2 class="text-2xl md:text-3xl font-black tracking-tight text-zinc-600 uppercase mb-4">
+              <p class="text-2xl md:text-3xl font-black tracking-tight text-zinc-600 uppercase mb-4">
                 Meet
-              </h2>
-              <h1 class="text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95]">
+              </p>
+              <h2 class="text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95]">
                 <span class="block text-white">Velo</span>
                 <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600 animate-gradient-x -mt-1">
                   Store
                 </span>
-              </h1>
+              </h2>
             </div>
             
             <!-- Accent Line -->

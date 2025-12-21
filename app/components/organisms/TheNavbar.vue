@@ -58,6 +58,7 @@ onUnmounted(() => {
           <!-- Search -->
           <button 
             @click="toggleSearch"
+            aria-label="Open search"
             class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 transition-all duration-300 group relative"
           >
             <BaseIcon 

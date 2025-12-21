@@ -112,8 +112,8 @@ const quickAdd = () => {
             <!-- Quick Add Button -->
             <button 
               @click.stop.prevent="quickAdd"
+              aria-label="Add to cart"
               class="w-8 h-8 rounded-full bg-white/5 hover:bg-blue-500 flex items-center justify-center transition-all duration-300 group/cart"
-              title="Add to cart"
             >
               <BaseIcon name="cart" size="sm" class="text-zinc-400 group-hover/cart:text-white transition-colors" />
             </button>
