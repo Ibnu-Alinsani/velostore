@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SectionBadge from '~/components/atoms/SectionBadge.vue'
 import { ref, onMounted } from 'vue'
 
 // Use centralized innovation data
@@ -24,10 +25,7 @@ onMounted(() => {
       <!-- Enhanced Header -->
       <div class="innovation-header mb-20">
         <!-- Badge -->
-        <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm mb-6">
-          <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-          <span class="text-[9px] font-black uppercase tracking-[0.35em] text-zinc-500">Core Tech</span>
-        </div>
+        <SectionBadge label="Core Tech" variant="dark" color="blue" size="sm" class="mb-6" />
 
         <!-- Title -->
         <h2 class="text-4xl md:text-5xl font-black text-white tracking-tighter mb-6">

@@ -76,7 +76,7 @@ onMounted(() => {
               'opacity-0 -translate-x-12': !visible && index === 0,
               'opacity-100 scale-100': visible && index === 1,
               'opacity-0 scale-95': !visible && index === 1,
-              'opacity-100 translate-x-0': visible && index === 2,
+              'opacity-100 -translate-x-0': visible && index === 2,
               'opacity-0 translate-x-12': !visible && index === 2
             }"
             :style="{ transitionDelay: `${0.3 + index * 0.15}s` }"

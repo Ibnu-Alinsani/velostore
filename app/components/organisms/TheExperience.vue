@@ -29,10 +29,7 @@
         class="experience-header flex justify-center transition-all duration-1000 ease-out"
         :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
       >
-        <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm">
-          <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-          <span class="text-[9px] font-black uppercase tracking-[0.35em] text-zinc-500">The Experience</span>
-        </div>
+        <SectionBadge label="The Experience" variant="dark" color="blue" size="sm" />
       </div>
 
       <!-- Main Message -->
@@ -146,6 +143,7 @@
 </template>
 
 <script setup lang="ts">
+import SectionBadge from '~/components/atoms/SectionBadge.vue'
 import { ref, onMounted } from 'vue'
 
 const visible = ref(false)
