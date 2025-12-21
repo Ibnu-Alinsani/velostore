@@ -12,9 +12,9 @@ const links = [
     name: 'Bikes', 
     path: '/bikes',
     dropdown: [
-      { name: 'Road', desc: 'Engineered for speed', path: '/bikes?category=Road', icon: 'lightning' },
-      { name: 'Mountain', desc: 'Conquer any trail', path: '/bikes?category=Mountain', icon: 'mountain' },
-      { name: 'Electric', desc: 'Silent power', path: '/bikes?category=Electric', icon: 'lightning' }
+      { name: 'Road', desc: 'Engineered for speed', path: '/bikes?category=road', icon: 'lightning' },
+      { name: 'Mountain', desc: 'Conquer any trail', path: '/bikes?category=mountain', icon: 'mountain' },
+      { name: 'Electric', desc: 'Silent power', path: '/bikes?category=electric', icon: 'lightning' }
     ]
   },
   { name: 'About', path: '/about' },

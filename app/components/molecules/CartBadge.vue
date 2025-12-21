@@ -7,7 +7,8 @@ const cartStore = useCartStore()
 
 <template>
   <NuxtLink 
-    to="/cart" 
+    to="/cart"
+    aria-label="Shopping cart"
     class="relative p-2 text-zinc-400 hover:text-white transition-colors group"
   >
     <div class="relative">
