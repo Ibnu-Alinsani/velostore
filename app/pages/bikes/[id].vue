@@ -22,10 +22,23 @@ const relatedBikes = computed(() => bikes.value.filter(b => b.id !== bike.value?
 useHead(() => {
   if (!bike.value) return {}
   
+  const productSchema = useProductSchema({
+    name: bike.value.name,
+    description: bike.value.description,
+    image: bike.value.image,
+    price: bike.value.price,
+    category: bike.value.category,
+    brand: 'VeloStore',
+    sku: `VELO-${bike.value.id}`,
+    inStock: true,
+    rating: 4.8,
+    reviewCount: 127
+  })
+  
   return {
     title: `${bike.value.name} - Premium ${bike.value.category} Bike | VeloStore`,
     meta: [
-      { name: 'description', content: `${bike.value.description} Featuring ${bike.value.specs.frame} frame, ${bike.value.specs.weight} weight. ${bike.value.price}. Free shipping.` },
+      { name: 'description', content: `${bike.value.description} Featuring ${bike.value.specs.frame} frame, ${bike.value.specs.weight} weight. $${bike.value.price}. Free shipping.` },
       { property: 'og:title', content: `${bike.value.name} | VeloStore` },
       { property: 'og:description', content: bike.value.description },
       { property: 'og:image', content: bike.value.image },
@@ -33,39 +46,7 @@ useHead(() => {
       { property: 'product:price:amount', content: String(bike.value.price) },
       { property: 'product:price:currency', content: 'USD' }
     ],
-    script: [
-      {
-        type: 'application/ld+json',
-        children: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: bike.value.name,
-          description: bike.value.description,
-          image: bike.value.image,
-          brand: {
-            '@type': 'Brand',
-            name: 'VeloStore'
-          },
-          category: bike.value.category,
-          offers: {
-            '@type': 'Offer',
-            price: bike.value.price,
-            priceCurrency: 'USD',
-            availability: 'https://schema.org/InStock',
-            url: `https://velostore.vercel.app/bikes/${bike.value.id}`,
-            seller: {
-              '@type': 'Organization',
-              name: 'VeloStore'
-            }
-          },
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: '4.8',
-            reviewCount: '127'
-          }
-        })
-      }
-    ]
+    script: [useSchemaScript(productSchema)]
   }
 })
 
