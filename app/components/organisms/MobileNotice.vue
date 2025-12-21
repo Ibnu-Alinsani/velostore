@@ -43,6 +43,7 @@ const dismissBanner = () => {
 }
 
 const openFeedback = () => {
+  dismissBanner()
   navigateTo('/feedback')
 }
 
