@@ -6,17 +6,19 @@ const items = [
     title: 'Carbon Master',
     tag: 'Advanced Engineering',
     desc: 'Toray T800 high-modulus carbon fiber optimized for ultimate stiffness-to-weight ratio.',
-    size: 'large', // 2x2 grid area
+    size: 'large',
     image: '/carbon_fiber_closeup.webp',
-    accent: 'blue'
+    accent: 'blue',
+    slug: 'carbon-master'
   },
   {
     title: 'Aero Dynamics',
     tag: 'Fluid Motion',
     desc: 'Tunnel-tested geometry reducing drag by 14% at competitive speeds.',
-    size: 'tall', // 1x2 grid area
+    size: 'tall',
     image: '/aero_wind_tunnel.webp',
-    accent: 'cyan'
+    accent: 'cyan',
+    slug: 'aero-dynamics'
   },
   {
     title: 'Smart Shift',
@@ -24,7 +26,8 @@ const items = [
     desc: 'Precision electronic shifting with real-time feedback.',
     size: 'small',
     image: '/smart_shift.webp',
-    accent: 'blue'
+    accent: 'blue',
+    slug: 'smart-shift'
   },
   {
     title: 'Active Link',
@@ -32,7 +35,8 @@ const items = [
     desc: 'Integrated micro-suspension for ultra-smooth touring.',
     size: 'small',
     image: '/active_link.webp',
-    accent: 'cyan'
+    accent: 'cyan',
+    slug: 'active-link'
   }
 ]
 
@@ -82,7 +86,8 @@ onMounted(() => {
         <div class="absolute -bottom-8 right-1/4 w-5 h-5 border border-cyan-500/15 rotate-12 rounded-sm"></div>
         <div class="absolute -bottom-4 left-1/3 w-1 h-1 bg-blue-400/50 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
         
-        <div 
+        <NuxtLink 
+          :to="`/innovation/${item.slug}`"
           v-for="(item, index) in items" 
           :key="index"
           class="relative group transition-all duration-1000 ease-out"
@@ -158,7 +163,7 @@ onMounted(() => {
               <div class="w-8 h-[1px] bg-blue-400 -mt-4"></div>
             </div>
           </div>
-        </div>
+        </NuxtLink>
 
       </div>
     </div>
