@@ -7,7 +7,7 @@ export default defineNuxtConfig({
 
   // SEO Configuration
   site: {
-    url: 'https://velostore-m9fooflwf-ibnualinsanis-projects.vercel.app/',
+    url: 'https://velostore.vercel.app/',
     name: 'VeloStore',
     description: 'VeloStore showcases premium cycling products with cutting-edge innovation storytelling. Discover high-end road, mountain, gravel, and electric bicycles with detailed technical insights.',
     defaultLocale: 'en',
@@ -57,7 +57,7 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'canonical', href: 'https://velostore-m9fooflwf-ibnualinsanis-projects.vercel.app/' }
+        { rel: 'canonical', href: 'https://velostore.vercel.app/' }
       ]
     }
   }
