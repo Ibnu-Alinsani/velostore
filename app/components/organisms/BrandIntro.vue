@@ -65,12 +65,11 @@
           <!-- Stats: Sequential Reveal -->
           <div class="brand-intro-stats flex items-start gap-6 pt-4">
             <div 
-              class="space-y-2 transition-all duration-800 ease-out"
+              class="transition-all duration-800 ease-out"
               :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
               style="transition-delay: 0.4s;"
             >
-              <div class="text-4xl font-black text-white tabular-nums">40<span class="text-blue-400">+</span></div>
-              <div class="text-[10px] uppercase tracking-wider text-zinc-600 font-bold">Years Legacy</div>
+              <StatDisplay value="40+" label="Years Legacy" size="lg" />
             </div>
             <div 
               class="w-[1px] h-12 bg-zinc-800 transition-all duration-800 ease-out"
@@ -78,12 +77,11 @@
               style="transition-delay: 0.5s;"
             ></div>
             <div 
-              class="space-y-2 transition-all duration-800 ease-out"
+              class="transition-all duration-800 ease-out"
               :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
               style="transition-delay: 0.6s;"
             >
-              <div class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 tabular-nums">50K<span class="text-cyan-300">+</span></div>
-              <div class="text-[10px] uppercase tracking-wider text-zinc-600 font-bold">Global Riders</div>
+              <StatDisplay value="50K+" label="Global Riders" size="lg" gradient />
             </div>
             <div 
               class="w-[1px] h-12 bg-zinc-800 transition-all duration-800 ease-out"
@@ -91,12 +89,11 @@
               style="transition-delay: 0.65s;"
             ></div>
             <div 
-              class="space-y-2 transition-all duration-800 ease-out"
+              class="transition-all duration-800 ease-out"
               :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
               style="transition-delay: 0.7s;"
             >
-              <div class="text-4xl font-black text-white tabular-nums">100<span class="text-blue-400">%</span></div>
-              <div class="text-[10px] uppercase tracking-wider text-zinc-600 font-bold">Handcrafted</div>
+              <StatDisplay value="100%" label="Handcrafted" size="lg" />
             </div>
           </div>
 
@@ -208,6 +205,8 @@
 </template>
 
 <script setup lang="ts">
+import SectionBadge from '~/components/atoms/SectionBadge.vue'
+import StatDisplay from '~/components/atoms/StatDisplay.vue'
 import { ref, onMounted } from 'vue'
 
 const visible = ref(false)

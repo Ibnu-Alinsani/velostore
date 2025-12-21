@@ -9,10 +9,12 @@
           class="flex justify-center transition-all duration-1000 ease-out"
           :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'"
         >
-          <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 backdrop-blur-md">
-            <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-            <span class="text-[9px] font-black uppercase tracking-[0.35em] text-blue-400">Your Journey Begins</span>
-          </div>
+          <SectionBadge 
+            label="Your Journey Begins" 
+            variant="gradient" 
+            color="blue"
+            size="sm"
+          />
         </div>
 
         <!-- Title - Scale Up -->
@@ -119,6 +121,7 @@
 </template>
 
 <script setup lang="ts">
+import SectionBadge from '~/components/atoms/SectionBadge.vue'
 import { ref, onMounted } from 'vue'
 
 const visible = ref(false)

@@ -52,7 +52,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   size: 'md',
   gradient: false,
-  labelColor: 'muted'
+  labelColor: 'darker'
 })
 
 /**
@@ -61,7 +61,7 @@ const props = withDefaults(defineProps<Props>(), {
 const VALUE_SIZE_CLASSES: Record<ComponentSize, string> = {
   'sm': 'text-xl',
   'md': 'text-2xl',
-  'lg': 'text-4xl'
+  'lg': 'text-4xl tabular-nums'
 } as const
 
 /**
@@ -70,7 +70,7 @@ const VALUE_SIZE_CLASSES: Record<ComponentSize, string> = {
 const LABEL_SIZE_CLASSES: Record<ComponentSize, string> = {
   'sm': 'text-[10px]',
   'md': 'text-xs',
-  'lg': 'text-xs'
+  'lg': 'text-[10px]'
 } as const
 
 /**
@@ -88,6 +88,7 @@ const valueClasses = computed(() => [
  */
 const labelClasses = computed(() => [
   LABEL_SIZE_CLASSES[props.size],
+  'font-bold',
   props.labelColor === 'muted' 
     ? 'text-zinc-500 hover:text-zinc-400' 
     : 'text-zinc-600 hover:text-zinc-500'

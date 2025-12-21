@@ -185,7 +185,7 @@ export const useInnovationData = () => {
      * ```
      */
     const getArticle = (slug: string): InnovationArticle => {
-        return articles[slug] ?? articles[DEFAULT_ARTICLE_SLUG]
+        return articles[slug] ?? articles[DEFAULT_ARTICLE_SLUG]!
     }
 
     /**

@@ -1,44 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-const items = [
-  {
-    title: 'Carbon Master',
-    tag: 'Advanced Engineering',
-    desc: 'Toray T800 high-modulus carbon fiber optimized for ultimate stiffness-to-weight ratio.',
-    size: 'large',
-    image: '/carbon_fiber_closeup.webp',
-    accent: 'blue',
-    slug: 'carbon-master'
-  },
-  {
-    title: 'Aero Dynamics',
-    tag: 'Fluid Motion',
-    desc: 'Tunnel-tested geometry reducing drag by 14% at competitive speeds.',
-    size: 'tall',
-    image: '/aero_wind_tunnel.webp',
-    accent: 'cyan',
-    slug: 'aero-dynamics'
-  },
-  {
-    title: 'Smart Shift',
-    tag: 'Digital Control',
-    desc: 'Precision electronic shifting with real-time feedback.',
-    size: 'small',
-    image: '/smart_shift.webp',
-    accent: 'blue',
-    slug: 'smart-shift'
-  },
-  {
-    title: 'Active Link',
-    tag: 'Pure Comfort',
-    desc: 'Integrated micro-suspension for ultra-smooth touring.',
-    size: 'small',
-    image: '/active_link.webp',
-    accent: 'cyan',
-    slug: 'active-link'
-  }
-]
+// Use centralized innovation data
+const { innovations: items } = useInnovationData()
 
 const visible = ref(false)
 onMounted(() => {

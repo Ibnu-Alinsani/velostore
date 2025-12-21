@@ -1,3 +1,25 @@
+<script setup lang="ts">
+import SectionBadge from '~/components/atoms/SectionBadge.vue'
+import StatDisplay from '~/components/atoms/StatDisplay.vue'
+import { ref, onMounted } from 'vue'
+
+const visible = ref(false)
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        visible.value = true
+      }
+    })
+  })
+  
+  const element = document.querySelector('.collection-content')
+  if (element) {
+    observer.observe(element)
+  }
+})
+</script>
+
 <template>
   <section class="relative py-32 px-4 sm:px-6 lg:px-8 bg-zinc-950 overflow-hidden">
     <div class="max-w-7xl mx-auto">
@@ -104,11 +126,15 @@
         <div class="collection-content space-y-8">
           <!-- Badge - Fade In -->
           <div 
-            class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm transition-all duration-1000 ease-out"
+            class="transition-all duration-1000 ease-out"
             :class="visible ? 'opacity-100' : 'opacity-0'"
           >
-            <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-            <span class="text-[9px] font-black uppercase tracking-[0.35em] text-zinc-500">Full Collection</span>
+            <SectionBadge 
+              label="Full Collection" 
+              variant="dark"
+              color="blue"
+              size="sm"
+            />
           </div>
 
           <!-- Title & Description - Scale Up -->
@@ -133,20 +159,11 @@
             :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
             style="transition-delay: 0.2s;"
           >
-            <div>
-              <div class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">4</div>
-              <div class="text-xs text-zinc-500 uppercase tracking-wider">Categories</div>
-            </div>
+            <StatDisplay value="4" label="Categories" size="md" gradient />
             <div class="w-[1px] h-8 bg-zinc-800"></div>
-            <div>
-              <div class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">4.7K+</div>
-              <div class="text-xs text-zinc-500 uppercase tracking-wider">Riders</div>
-            </div>
+            <StatDisplay value="4.7K+" label="Riders" size="md" gradient />
             <div class="w-[1px] h-8 bg-zinc-800"></div>
-            <div>
-              <div class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">40Y+</div>
-              <div class="text-xs text-zinc-500 uppercase tracking-wider">Heritage</div>
-            </div>
+            <StatDisplay value="40Y+" label="Heritage" size="md" gradient />
           </div>
 
           <!-- CTA Button - Final Slide Up -->
@@ -197,21 +214,6 @@
   </section>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
-
-const visible = ref(false)
-onMounted(() => {
-  const observer = new IntersectionObserver((entries) => {
-    if (entries && entries[0] && entries[0].isIntersecting) {
-      visible.value = true
-    }
-  }, { threshold: 0.1 })
-  
-  const el = document.querySelector('.collection-content')
-  if (el) observer.observe(el)
-})
-</script>
 
 <style scoped>
 @keyframes gradient-x {
