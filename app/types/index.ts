@@ -71,6 +71,11 @@ export interface Bike {
         brakes: string
         weight: string
     }
+    // Featured collection metadata
+    featured?: boolean
+    featuredReason?: string
+    salesCount?: number
+    featuredBadge?: string
 }
 
 export interface CartItem {

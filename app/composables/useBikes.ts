@@ -12,6 +12,10 @@ export const useBikes = () => {
             image: 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&q=80&w=1000',
             description: 'Built for speed and aerodynamics. The carbon fiber frame ensures minimal weight without compromising stiffness.',
             performance: 3,
+            featured: true,
+            featuredReason: 'The pinnacle of aerodynamic engineering',
+            salesCount: 1247,
+            featuredBadge: "Editor's Choice",
             detailImages: {
                 frame: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&q=80&w=1000',
                 gears: 'https://images.unsplash.com/photo-1559264730-1533e0fea7c0?auto=format&fit=crop&q=80&w=1000',
@@ -33,6 +37,10 @@ export const useBikes = () => {
             image: 'https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?auto=format&fit=crop&q=80&w=1000',
             description: 'Conquer any trail with full suspension and aggressive geometry designed for technical descents.',
             performance: 3,
+            featured: true,
+            featuredReason: 'Unmatched trail dominance',
+            salesCount: 892,
+            featuredBadge: 'Most Versatile',
             detailImages: {
                 frame: 'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&q=80&w=1000',
                 gears: 'https://images.unsplash.com/photo-1617043786394-f977fa12eddf?auto=format&fit=crop&q=80&w=1000',
@@ -54,6 +62,10 @@ export const useBikes = () => {
             image: 'https://images.unsplash.com/photo-1529422643029-d4585747aaf2?auto=format&fit=crop&q=80&w=1000',
             description: 'The perfect commuter. Silent motor, long range battery, and integrated lights for city riding.',
             performance: 2,
+            featured: true,
+            featuredReason: 'The future of urban mobility',
+            salesCount: 1534,
+            featuredBadge: 'Best Commuter',
             detailImages: {
                 frame: 'https://images.unsplash.com/photo-1571068316344-75bc76f77890?auto=format&fit=crop&q=80&w=1000',
                 gears: 'https://images.unsplash.com/photo-1617043786394-f977fa12eddf?auto=format&fit=crop&q=80&w=1000',
@@ -75,6 +87,10 @@ export const useBikes = () => {
             image: 'https://images.unsplash.com/photo-1505705694340-019e1e335916?auto=format&fit=crop&q=80&w=1000',
             description: 'A versatile machine ready for both tarmac and dirt paths. Wide tire clearance and mounting points for bags.',
             performance: 2,
+            featured: true,
+            featuredReason: 'Where adventure meets refinement',
+            salesCount: 1103,
+            featuredBadge: 'Most Loved',
             detailImages: {
                 frame: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&q=80&w=1000',
                 gears: 'https://images.unsplash.com/photo-1559264730-1533e0fea7c0?auto=format&fit=crop&q=80&w=1000',

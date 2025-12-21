@@ -7,6 +7,7 @@ import InnovationGrid from '~/components/organisms/InnovationGrid.vue'
 import TheExperience from '~/components/organisms/TheExperience.vue'
 import ProductTeaser from '~/components/organisms/ProductTeaser.vue'
 import HeroCircular from '~/components/organisms/HeroCircular.vue'
+import CollectionCTA from '~/components/organisms/CollectionCTA.vue'
 </script>
 
 <template>
@@ -34,5 +35,8 @@ import HeroCircular from '~/components/organisms/HeroCircular.vue'
 
     <!-- 8. Interactive Product Showcase -->
     <HeroCircular />
+
+    <!-- 9. Collection CTA -->
+    <CollectionCTA />
   </div>
 </template>

@@ -9,7 +9,7 @@
         <div class="space-y-12 z-10">
           
           <!-- Top Badge -->
-          <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm">
+          <div class="brand-intro-badge inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm">
             <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.8)]"></div>
             <span class="text-[9px] font-black uppercase tracking-[0.35em] text-zinc-500">Milano</span>
             <div class="h-3 w-[1px] bg-zinc-700/50"></div>
@@ -17,7 +17,7 @@
           </div>
 
           <!-- Main Title -->
-          <div class="space-y-6">
+          <div class="brand-intro-title space-y-6">
             <div>
               <h2 class="text-2xl md:text-3xl font-black tracking-tight text-zinc-600 uppercase mb-4">
                 Meet
@@ -38,7 +38,7 @@
           </div>
 
           <!-- Description -->
-          <div class="space-y-5 max-w-xl">
+          <div class="brand-intro-desc space-y-5 max-w-xl">
             <p class="text-lg md:text-xl text-zinc-300 leading-relaxed font-medium">
               Four decades of obsession. <span class="text-white font-bold">Milano's finest</span> marrying 
               <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 font-bold">Italian soul</span> 
@@ -51,7 +51,7 @@
           </div>
 
           <!-- Stats -->
-          <div class="flex items-start gap-6 pt-4">
+          <div class="brand-intro-stats flex items-start gap-6 pt-4">
             <div class="space-y-2">
               <div class="text-4xl font-black text-white tabular-nums">40<span class="text-blue-400">+</span></div>
               <div class="text-[10px] uppercase tracking-wider text-zinc-600 font-bold">Years Legacy</div>
@@ -165,7 +165,7 @@
     </div>
 
     <!-- Background Elements -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <div class="brand-intro-bg absolute inset-0 pointer-events-none overflow-hidden">
       <!-- Radial Gradient -->
       <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[100px]"></div>
       
