@@ -21,6 +21,11 @@ const searchQuery = ref('')
 const activeCategory = ref(route.query.category?.toString() || 'All')
 const sortBy = ref<SortOption>('featured')
 
+// Load More pagination
+const ITEMS_PER_PAGE = 9
+const displayedCount = ref(ITEMS_PER_PAGE)
+const isLoadingMore = ref(false)
+
 const categories = [
   { id: 'All', label: 'All Bikes', icon: 'bike' },
   { id: 'Road', label: 'Road', icon: 'lightning' },
@@ -35,12 +40,36 @@ watch(() => route.query.category, (newCategory) => {
   } else {
     activeCategory.value = 'All'
   }
+  // Reset displayed count when category changes
+  displayedCount.value = ITEMS_PER_PAGE
 }, { immediate: true })
 
-const filteredBikes = computed(() => {
+// Reset when search/sort changes
+watch([searchQuery, sortBy], () => {
+  displayedCount.value = ITEMS_PER_PAGE
+})
+
+const allFilteredBikes = computed(() => {
   const filtered = filterBikes(searchQuery.value, activeCategory.value)
   return sortBikes(filtered, sortBy.value)
 })
+
+// Only show limited items
+const filteredBikes = computed(() => {
+  return allFilteredBikes.value.slice(0, displayedCount.value)
+})
+
+const hasMore = computed(() => {
+  return displayedCount.value < allFilteredBikes.value.length
+})
+
+const loadMore = async () => {
+  isLoadingMore.value = true
+  // Simulate network delay for better UX (even though data is client-side)
+  await new Promise(resolve => setTimeout(resolve, 500))
+  displayedCount.value += ITEMS_PER_PAGE
+  isLoadingMore.value = false
+}
 </script>
 
 <template>
@@ -209,6 +238,37 @@ const filteredBikes = computed(() => {
             class="transform transition-all duration-500"
           />
         </TransitionGroup>
+
+        <!-- Load More Button -->
+        <div v-if="hasMore" class="mt-16 text-center">
+          <button
+            @click="loadMore"
+            :disabled="isLoadingMore"
+            class="group inline-flex items-center gap-3 px-12 py-6 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/50 text-white font-bold rounded-2xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+          >
+            <span v-if="!isLoadingMore">Load More Bikes</span>
+            <span v-else>Loading...</span>
+            <BaseIcon 
+              v-if="!isLoadingMore"
+              name="arrowDown" 
+              size="sm" 
+              class="group-hover:translate-y-1 transition-transform" 
+            />
+            <svg 
+              v-else
+              class="animate-spin h-5 w-5" 
+              xmlns="http://www.w3.org/2000/svg" 
+              fill="none" 
+              viewBox="0 0 24 24"
+            >
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </button>
+          <p class="text-zinc-500 text-sm mt-4">
+            Showing {{ filteredBikes.length }} of {{ allFilteredBikes.length }} bikes
+          </p>
+        </div>
 
         <!-- Empty State -->
         <div v-if="filteredBikes.length === 0" class="py-24 text-center">
