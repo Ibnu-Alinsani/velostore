@@ -7,10 +7,7 @@
         class="why-header text-center mb-20 transition-all duration-1000 ease-out"
         :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
       >
-        <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm mb-6">
-          <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-          <span class="text-[9px] font-black uppercase tracking-[0.35em] text-zinc-500">Why Choose</span>
-        </div>
+        <SectionBadge label="Why Choose" variant="dark" color="blue" size="sm" class="mb-6" />
         
         <h2 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-6">
           Why the <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 animate-gradient-x">Elite</span> Choose Us
@@ -152,6 +149,7 @@
 </template>
 
 <script setup lang="ts">
+import SectionBadge from '~/components/atoms/SectionBadge.vue'
 import { ref, onMounted } from 'vue'
 
 const visible = ref(false)

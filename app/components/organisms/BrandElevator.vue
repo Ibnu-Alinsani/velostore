@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SectionBadge from '~/components/atoms/SectionBadge.vue'
 import { ref, onMounted } from 'vue'
 
 const stats = [
@@ -31,10 +32,7 @@ onMounted(() => {
           :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'"
         >
           <!-- Enhanced Badge -->
-          <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm">
-            <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-            <span class="text-[9px] font-black uppercase tracking-[0.35em] text-zinc-500">Our DNA</span>
-          </div>
+          <SectionBadge label="Our DNA" variant="dark" color="blue" />
 
           <!-- Enhanced Title -->
           <div class="space-y-4">
@@ -78,7 +76,7 @@ onMounted(() => {
               'opacity-0 -translate-x-12': !visible && index === 0,
               'opacity-100 scale-100': visible && index === 1,
               'opacity-0 scale-95': !visible && index === 1,
-              'opacity-100 translate-x-0': visible && index === 2,
+              'opacity-100 -translate-x-0': visible && index === 2,
               'opacity-0 translate-x-12': !visible && index === 2
             }"
             :style="{ transitionDelay: `${0.3 + index * 0.15}s` }"
