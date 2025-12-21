@@ -2,7 +2,7 @@
 import PageHero from '~/components/organisms/PageHero.vue'
 
 useHead({
-  title: 'Cookie Policy | VeloStore',
+  title: 'Cookie Policy',
   meta: [
     { name: 'description', content: 'VeloStore Cookie Policy - How we use cookies and similar technologies on our website.' }
   ]

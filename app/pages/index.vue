@@ -7,6 +7,7 @@ import InnovationGrid from '~/components/organisms/InnovationGrid.vue'
 import TheExperience from '~/components/organisms/TheExperience.vue'
 import ProductTeaser from '~/components/organisms/ProductTeaser.vue'
 import HeroCircular from '~/components/organisms/HeroCircular.vue'
+import Testimonials from '~/components/organisms/Testimonials.vue'
 import CollectionCTA from '~/components/organisms/CollectionCTA.vue'
 
 useHead({
@@ -48,7 +49,10 @@ useHead({
     <!-- 8. Interactive Product Showcase -->
     <HeroCircular />
 
-    <!-- 9. Collection CTA -->
+    <!-- 9. Social Proof -->
+    <Testimonials />
+
+    <!-- 10. Collection CTA -->
     <CollectionCTA />
   </div>
 </template>

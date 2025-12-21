@@ -2,7 +2,7 @@
 import PageHero from '~/components/organisms/PageHero.vue'
 
 useHead({
-  title: 'Privacy Policy | VeloStore',
+  title: 'Privacy Policy',
   meta: [
     { name: 'description', content: 'VeloStore Privacy Policy - How we collect, use, and protect your personal information.' }
   ]

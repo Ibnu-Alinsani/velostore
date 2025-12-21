@@ -2,7 +2,7 @@
 import PageHero from '~/components/organisms/PageHero.vue'
 
 useHead({
-  title: 'Terms of Service | VeloStore',
+  title: 'Terms of Service',
   meta: [
     { name: 'description', content: 'VeloStore Terms of Service - Legal terms and conditions for using our website and services.' }
   ]

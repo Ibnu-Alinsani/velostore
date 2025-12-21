@@ -21,10 +21,30 @@ interface Props {
   stats?: Stat[]
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   breadcrumbs: () => [],
   stats: () => []
 })
+
+// Generate breadcrumb schema for SEO
+const breadcrumbSchema = computed(() => {
+  if (!props.breadcrumbs || props.breadcrumbs.length === 0) return null
+  
+  const baseUrl = 'https://velostore.vercel.app'
+  const schemaItems = props.breadcrumbs.map(crumb => ({
+    name: crumb.label,
+    url: crumb.to ? `${baseUrl}${crumb.to}` : ''
+  })).filter(item => item.url) // Only include items with URLs
+  
+  return schemaItems.length > 0 ? useBreadcrumbSchema(schemaItems) : null
+})
+
+// Add breadcrumb schema to head if exists
+if (breadcrumbSchema.value) {
+  useHead({
+    script: [useSchemaScript(breadcrumbSchema.value)]
+  })
+}
 </script>
 
 <template>
