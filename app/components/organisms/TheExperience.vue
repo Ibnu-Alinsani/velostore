@@ -2,10 +2,13 @@
   <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950">
     
     <!-- Background Image with Parallax Effect -->
-    <div class="absolute inset-0 z-0">
+    <div 
+      class="absolute inset-0 z-0 transition-all duration-[2000ms] ease-out"
+      :class="visible ? 'opacity-30 scale-100' : 'opacity-0 scale-110'"
+    >
       <NuxtImg 
         src="/cyclist_atmospheric_road.webp"
-        class="w-full h-full object-cover opacity-30"
+        class="w-full h-full object-cover"
         loading="lazy"
       />
       <!-- Gradient Overlays matching surrounding sections -->
@@ -22,7 +25,10 @@
     <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
       
       <!-- Enhanced Eyebrow Badge -->
-      <div class="experience-header flex justify-center">
+      <div 
+        class="experience-header flex justify-center transition-all duration-1000 ease-out"
+        :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+      >
         <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm">
           <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
           <span class="text-[9px] font-black uppercase tracking-[0.35em] text-zinc-500">The Experience</span>
@@ -30,7 +36,11 @@
       </div>
 
       <!-- Main Message -->
-      <div class="experience-title space-y-8">
+      <div 
+        class="experience-title space-y-8 transition-all duration-1000 ease-out"
+        :class="visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'"
+        style="transition-delay: 0.1s;"
+      >
         <h2 class="text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.1]">
           Feel the <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500">Wind</span>.<br />
           Own the <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-300 to-cyan-500">Road</span>.
@@ -51,7 +61,11 @@
         <div class="absolute -top-3 right-1/3 w-1 h-1 bg-cyan-400/50 rounded-full animate-ping"></div>
         
         <!-- Element 1: Velocity -->
-        <div class="experience-element space-y-3 group relative">
+        <div 
+          class="experience-element space-y-3 group relative transition-all duration-1000 ease-out"
+          :class="visible ? 'opacity-100 -translate-x-0' : 'opacity-0 -translate-x-12'"
+          style="transition-delay: 0.2s;"
+        >
           <!-- Premium Icon Container -->
           <div class="relative w-16 h-16 mx-auto mb-4">
             <!-- Radial glow -->
@@ -69,7 +83,11 @@
         </div>
 
         <!-- Element 2: Freedom -->
-        <div class="experience-element space-y-3 group relative">
+        <div 
+          class="experience-element space-y-3 group relative transition-all duration-1000 ease-out"
+          :class="visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'"
+          style="transition-delay: 0.3s;"
+        >
           <!-- Premium Icon Container -->
           <div class="relative w-16 h-16 mx-auto mb-4">
             <!-- Radial glow -->
@@ -87,7 +105,11 @@
         </div>
 
         <!-- Element 3: Euphoria -->
-        <div class="experience-element space-y-3 group relative">
+        <div 
+          class="experience-element space-y-3 group relative transition-all duration-1000 ease-out"
+          :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'"
+          style="transition-delay: 0.4s;"
+        >
           <!-- Premium Icon Container -->
           <div class="relative w-16 h-16 mx-auto mb-4">
             <!-- Radial glow -->
@@ -124,5 +146,17 @@
 </template>
 
 <script setup lang="ts">
-// Atmospheric lifestyle section - pure emotion
+import { ref, onMounted } from 'vue'
+
+const visible = ref(false)
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    if (entries && entries[0] && entries[0].isIntersecting) {
+      visible.value = true
+    }
+  }, { threshold: 0.1 })
+  
+  const el = document.querySelector('.experience-header')
+  if (el) observer.observe(el)
+})
 </script>

@@ -9,8 +9,11 @@
         <div class="relative">
           <!-- Staggered Category Grid with Varied Sizes -->
           <div class="grid grid-cols-3 gap-3 auto-rows-fr">
-            <!-- Card 1: Road (Large - spans 2 cols) -->
-            <div class="collection-card col-span-2 group relative p-8 rounded-2xl bg-gradient-to-br from-blue-500/10 to-transparent border border-blue-500/20 backdrop-blur-sm hover:border-blue-500/40 hover:-translate-y-1 transition-all duration-500">
+            <!-- Card 1: Road - Scale Up -->
+            <div 
+              class="collection-card col-span-2 group relative p-8 rounded-2xl bg-gradient-to-br from-blue-500/10 to-transparent border border-blue-500/20 backdrop-blur-sm hover:border-blue-500/40 hover:-translate-y-1 transition-all duration-1000 ease-out"
+              :class="visible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'"
+            >
               <div class="absolute top-4 right-4 w-10 h-10 opacity-20">
                 <div class="absolute top-0 right-0 w-6 h-[1px] bg-gradient-to-l from-blue-500/60 to-transparent"></div>
                 <div class="absolute top-0 right-0 w-[1px] h-6 bg-gradient-to-b from-blue-500/60 to-transparent"></div>
@@ -28,8 +31,12 @@
               </div>
             </div>
 
-            <!-- Card 2: Mountain (Small) -->
-            <div class="collection-card group relative p-6 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-transparent border border-cyan-500/20 backdrop-blur-sm hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-500">
+            <!-- Card 2: MTB - Slide from Left -->
+            <div 
+              class="collection-card group relative p-6 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-transparent border border-cyan-500/20 backdrop-blur-sm hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-1000 ease-out"
+              :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'"
+              style="transition-delay: 0.1s;"
+            >
               <div class="absolute top-3 right-3 w-8 h-8 opacity-20">
                 <div class="absolute top-0 right-0 w-5 h-[1px] bg-gradient-to-l from-cyan-500/60 to-transparent"></div>
                 <div class="absolute top-0 right-0 w-[1px] h-5 bg-gradient-to-b from-cyan-500/60 to-transparent"></div>
@@ -43,8 +50,12 @@
               <p class="text-[10px] text-zinc-500">Trail ready</p>
             </div>
 
-            <!-- Card 3: Electric (Small) -->
-            <div class="collection-card group relative p-6 rounded-2xl bg-gradient-to-br from-blue-400/10 to-transparent border border-blue-400/20 backdrop-blur-sm hover:border-blue-400/40 hover:-translate-y-1 transition-all duration-500">
+            <!-- Card 3: E-Bike - Slide from Right -->
+            <div 
+              class="collection-card group relative p-6 rounded-2xl bg-gradient-to-br from-blue-400/10 to-transparent border border-blue-400/20 backdrop-blur-sm hover:border-blue-400/40 hover:-translate-y-1 transition-all duration-1000 ease-out"
+              :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'"
+              style="transition-delay: 0.1s;"
+            >
               <div class="absolute top-3 right-3 w-8 h-8 opacity-20">
                 <div class="absolute top-0 right-0 w-5 h-[1px] bg-gradient-to-l from-blue-400/60 to-transparent"></div>
                 <div class="absolute top-0 right-0 w-[1px] h-5 bg-gradient-to-b from-blue-400/60 to-transparent"></div>
@@ -58,8 +69,12 @@
               <p class="text-[10px] text-zinc-500">Urban power</p>
             </div>
 
-            <!-- Card 4: Gravel (Large - spans 2 cols) -->
-            <div class="collection-card col-span-2 group relative p-8 rounded-2xl bg-gradient-to-br from-cyan-400/10 to-transparent border border-cyan-400/20 backdrop-blur-sm hover:border-cyan-400/40 hover:-translate-y-1 transition-all duration-500">
+            <!-- Card 4: Gravel - Slide Up -->
+            <div 
+              class="collection-card col-span-2 group relative p-8 rounded-2xl bg-gradient-to-br from-cyan-400/10 to-transparent border border-cyan-400/20 backdrop-blur-sm hover:border-cyan-400/40 hover:-translate-y-1 transition-all duration-1000 ease-out"
+              :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+              style="transition-delay: 0.2s;"
+            >
               <div class="absolute top-4 right-4 w-10 h-10 opacity-20">
                 <div class="absolute top-0 right-0 w-6 h-[1px] bg-gradient-to-l from-cyan-400/60 to-transparent"></div>
                 <div class="absolute top-0 right-0 w-[1px] h-6 bg-gradient-to-b from-cyan-400/60 to-transparent"></div>
@@ -87,14 +102,21 @@
 
         <!-- Right: Content & CTA -->
         <div class="collection-content space-y-8">
-          <!-- Badge -->
-          <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm">
+          <!-- Badge - Fade In -->
+          <div 
+            class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm transition-all duration-1000 ease-out"
+            :class="visible ? 'opacity-100' : 'opacity-0'"
+          >
             <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
             <span class="text-[9px] font-black uppercase tracking-[0.35em] text-zinc-500">Full Collection</span>
           </div>
 
-          <!-- Title -->
-          <div>
+          <!-- Title & Description - Scale Up -->
+          <div 
+            class="transition-all duration-1000 ease-out"
+            :class="visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'"
+            style="transition-delay: 0.1s;"
+          >
             <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight mb-4 leading-tight">
               Discover Your
               <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 animate-gradient-x">Next Adventure</span>
@@ -105,8 +127,12 @@
             </p>
           </div>
 
-          <!-- Stats Row -->
-          <div class="flex items-center gap-8">
+          <!-- Stats Row - Sequential Slide Up -->
+          <div 
+            class="flex items-center gap-8 transition-all duration-1000 ease-out"
+            :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
+            style="transition-delay: 0.2s;"
+          >
             <div>
               <div class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">4</div>
               <div class="text-xs text-zinc-500 uppercase tracking-wider">Categories</div>
@@ -123,8 +149,12 @@
             </div>
           </div>
 
-          <!-- CTA Button with Connected Shine Effect -->
-          <div class="group/cta flex items-center gap-4">
+          <!-- CTA Button - Final Slide Up -->
+          <div 
+            class="group/cta flex items-center gap-4 transition-all duration-1000 ease-out"
+            :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+            style="transition-delay: 0.3s;"
+          >
             <NuxtLink 
               to="/bikes" 
               class="relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 transition-all duration-500 shadow-[0_0_30px_rgba(59,130,246,0.3)] hover:shadow-[0_0_50px_rgba(59,130,246,0.5)] hover:scale-105 overflow-hidden"
@@ -168,7 +198,19 @@
 </template>
 
 <script setup lang="ts">
-// Collection CTA section with horizontal split layout
+import { ref, onMounted } from 'vue'
+
+const visible = ref(false)
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    if (entries && entries[0] && entries[0].isIntersecting) {
+      visible.value = true
+    }
+  }, { threshold: 0.1 })
+  
+  const el = document.querySelector('.collection-content')
+  if (el) observer.observe(el)
+})
 </script>
 
 <style scoped>

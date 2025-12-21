@@ -3,7 +3,10 @@
     <div class="max-w-7xl mx-auto">
       
       <!-- Section Header -->
-      <div class="why-header text-center mb-20">
+      <div 
+        class="why-header text-center mb-20 transition-all duration-1000 ease-out"
+        :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+      >
         <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm mb-6">
           <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
           <span class="text-[9px] font-black uppercase tracking-[0.35em] text-zinc-500">Why Choose</span>
@@ -21,10 +24,14 @@
       </div>
 
       <!-- Asymmetric Bento Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 auto-rows-fr">
+      <div class="why-velostore-section grid grid-cols-1 lg:grid-cols-3 gap-6 auto-rows-fr">
         
-        <!-- Card 1: Heritage (Large - spans 2 rows on desktop) -->
-        <div class="why-card lg:row-span-2 group relative">
+        <!-- Card 1: Heritage (Large) - Slide from Left -->
+        <div 
+          class="why-card lg:row-span-2 group relative transition-all duration-1000 ease-out"
+          :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'"
+          style="transition-delay: 0.1s;"
+        >
           <div class="h-full relative p-10 rounded-3xl bg-gradient-to-br from-blue-500/10 via-zinc-900/50 to-zinc-900/30 border border-blue-500/20 backdrop-blur-xl hover:border-blue-500/40 transition-all duration-500 hover:shadow-[0_0_60px_rgba(59,130,246,0.2)] overflow-hidden">
             
             <!-- Large Icon -->
@@ -58,8 +65,12 @@
           </div>
         </div>
 
-        <!-- Card 2: Engineering (Medium) -->
-        <div class="why-card lg:col-span-2 group relative">
+        <!-- Card 2: Engineering - Scale Up -->
+        <div 
+          class="why-card lg:col-span-2 group relative transition-all duration-1000 ease-out"
+          :class="visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'"
+          style="transition-delay: 0.2s;"
+        >
           <div class="h-full relative p-8 rounded-3xl bg-gradient-to-br from-cyan-500/10 via-zinc-900/50 to-zinc-900/30 border border-cyan-500/20 backdrop-blur-xl hover:border-cyan-500/40 transition-all duration-500 hover:shadow-[0_0_60px_rgba(6,182,212,0.2)] overflow-hidden">
             
             <div class="flex items-start gap-6">
@@ -89,8 +100,12 @@
           </div>
         </div>
 
-        <!-- Card 3: Precision (Medium) -->
-        <div class="why-card lg:col-span-2 group relative">
+        <!-- Card 3: Precision - Slide from Right -->
+        <div 
+          class="why-card lg:col-span-2 group relative transition-all duration-1000 ease-out"
+          :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'"
+          style="transition-delay: 0.3s;"
+        >
           <div class="h-full relative p-8 rounded-3xl bg-gradient-to-br from-blue-400/10 via-zinc-900/50 to-zinc-900/30 border border-blue-400/20 backdrop-blur-xl hover:border-blue-400/40 transition-all duration-500 hover:shadow-[0_0_60px_rgba(96,165,250,0.2)] overflow-hidden">
             
             <div class="flex items-start gap-6">
@@ -137,7 +152,20 @@
 </template>
 
 <script setup lang="ts">
-// Unique asymmetric bento grid design
+import { ref, onMounted } from 'vue'
+
+const visible = ref(false)
+
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    if (entries && entries[0] && entries[0].isIntersecting) {
+      visible.value = true
+    }
+  }, { threshold: 0.1 })
+  
+  const el = document.querySelector('.why-velostore-section')
+  if (el) observer.observe(el)
+})
 </script>
 
 <style scoped>

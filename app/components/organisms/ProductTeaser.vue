@@ -2,29 +2,46 @@
   <section class="relative py-32 px-4 sm:px-6 lg:px-8 bg-zinc-950 overflow-hidden">
     <div class="max-w-4xl mx-auto text-center space-y-16">
       
-      <!-- Dramatic Teaser Text -->
+      <!-- Dramatic Teaser Text - Varied Animations -->
       <div class="teaser-content space-y-8">
-        <!-- Premium Badge -->
-        <div class="flex justify-center">
+        <!-- Premium Badge - Slide from Left -->
+        <div 
+          class="flex justify-center transition-all duration-1000 ease-out"
+          :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'"
+        >
           <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/30 backdrop-blur-md">
             <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
             <span class="text-[9px] font-black uppercase tracking-[0.35em] text-blue-400">Your Journey Begins</span>
           </div>
         </div>
 
-        <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1]">
+        <!-- Title - Scale Up -->
+        <h2 
+          class="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] transition-all duration-1000 ease-out"
+          :class="visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'"
+          style="transition-delay: 0.1s;"
+        >
           Ready to Find <br class="hidden md:block" />
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 animate-gradient">Your Perfect Ride</span>?
         </h2>
         
-        <p class="text-base md:text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+        <!-- Description - Slide from Right -->
+        <p 
+          class="text-base md:text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed transition-all duration-1000 ease-out"
+          :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'"
+          style="transition-delay: 0.2s;"
+        >
           Explore our meticulously crafted collection. Each bike is a masterpiece of engineering, 
           <span class="text-zinc-300">waiting to transform your journey</span>.
         </p>
       </div>
 
-      <!-- Enhanced Bike Silhouette Reveal -->
-      <div class="relative h-32 flex items-center justify-center">
+      <!-- Enhanced Bike Silhouette - Heavy Scale Up -->
+      <div 
+        class="relative h-32 flex items-center justify-center transition-all duration-1200 ease-out"
+        :class="visible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'"
+        style="transition-delay: 0.3s;"
+      >
         <!-- Glowing Line -->
         <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[2px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
         
@@ -52,8 +69,12 @@
         </div>
       </div>
 
-      <!-- Animated Scroll Indicator -->
-      <div class="flex flex-col items-center gap-6">
+      <!-- Animated Scroll Indicator - Strong Downward Pull -->
+      <div 
+        class="flex flex-col items-center gap-6 transition-all duration-1200 ease-out"
+        :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'"
+        style="transition-delay: 0.4s;"
+      >
         <!-- Pulsing Arrow -->
         <div class="relative">
           <div class="absolute inset-0 animate-ping opacity-30">
@@ -98,7 +119,19 @@
 </template>
 
 <script setup lang="ts">
-// Enhanced teaser with dramatic visual elements
+import { ref, onMounted } from 'vue'
+
+const visible = ref(false)
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    if (entries && entries[0] && entries[0].isIntersecting) {
+      visible.value = true
+    }
+  }, { threshold: 0.1 })
+  
+  const el = document.querySelector('.teaser-content')
+  if (el) observer.observe(el)
+})
 </script>
 
 <style scoped>

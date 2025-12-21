@@ -63,10 +63,7 @@ onMounted(() => {
         </div>
 
         <!-- Right: Performance Stats -->
-        <div 
-          class="lg:col-span-2 grid md:grid-cols-3 gap-6 transition-all duration-1000 delay-300 transform relative"
-          :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'"
-        >
+        <div class="lg:col-span-2 grid md:grid-cols-3 gap-6 relative">
           <!-- Decorative Ornaments -->
           <div class="absolute -top-6 left-1/4 w-6 h-6 border border-blue-500/15 rotate-45 rounded-sm"></div>
           <div class="absolute -top-3 right-1/3 w-1 h-1 bg-cyan-400/50 rounded-full animate-ping"></div>
@@ -75,7 +72,16 @@ onMounted(() => {
           <div 
             v-for="(stat, index) in stats" 
             :key="index"
-            class="group relative"
+            class="group relative transition-all duration-1000 ease-out"
+            :class="{
+              'opacity-100 translate-x-0': visible && index === 0,
+              'opacity-0 -translate-x-12': !visible && index === 0,
+              'opacity-100 scale-100': visible && index === 1,
+              'opacity-0 scale-95': !visible && index === 1,
+              'opacity-100 translate-x-0': visible && index === 2,
+              'opacity-0 translate-x-12': !visible && index === 2
+            }"
+            :style="{ transitionDelay: `${0.3 + index * 0.15}s` }"
           >
             <!-- Premium Card -->
             <div class="relative p-8 rounded-[32px] bg-gradient-to-br from-zinc-900/50 to-zinc-900/30 border border-white/10 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:-translate-y-3 hover:border-blue-500/40 hover:shadow-[0_0_60px_rgba(59,130,246,0.15)]">

@@ -85,11 +85,14 @@ onMounted(() => {
         <div 
           v-for="(item, index) in items" 
           :key="index"
-          class="relative group"
+          class="relative group transition-all duration-1000 ease-out"
           :class="[
             item.size === 'large' ? 'md:col-span-2 md:row-span-2' : '',
             item.size === 'tall' ? 'lg:row-span-2' : '',
-            visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            index === 0 ? (visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95') : '',
+            index === 1 ? (visible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12') : '',
+            index === 2 ? (visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8') : '',
+            index === 3 ? (visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12') : ''
           ]"
           :style="{ transitionDelay: `${index * 150}ms` }"
         >

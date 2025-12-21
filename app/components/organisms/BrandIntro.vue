@@ -8,16 +8,24 @@
         <!-- Left: Clean Typography & Content -->
         <div class="space-y-12 z-10">
           
-          <!-- Top Badge -->
-          <div class="brand-intro-badge inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm">
+          <!-- Top Badge: Slide from Left -->
+          <div 
+            class="brand-intro-badge inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm transition-all duration-1000 ease-out"
+            :class="visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'"
+            style="transition-delay: 0.1s;"
+          >
             <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.8)]"></div>
             <span class="text-[9px] font-black uppercase tracking-[0.35em] text-zinc-500">Milano</span>
             <div class="h-3 w-[1px] bg-zinc-700/50"></div>
             <span class="text-[9px] font-black uppercase tracking-[0.35em] text-zinc-600">Est. 1984</span>
           </div>
 
-          <!-- Main Title -->
-          <div class="brand-intro-title space-y-6">
+          <!-- Main Title: Fade + Scale -->
+          <div 
+            class="brand-intro-title space-y-6 transition-all duration-1000 ease-out"
+            :class="visible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'"
+            style="transition-delay: 0.2s;"
+          >
             <div>
               <h2 class="text-2xl md:text-3xl font-black tracking-tight text-zinc-600 uppercase mb-4">
                 Meet
@@ -38,7 +46,11 @@
           </div>
 
           <!-- Description -->
-          <div class="brand-intro-desc space-y-5 max-w-xl">
+          <div 
+            class="brand-intro-desc space-y-5 max-w-xl transition-all duration-1000 ease-out"
+            :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+            style="transition-delay: 0.3s;"
+          >
             <p class="text-lg md:text-xl text-zinc-300 leading-relaxed font-medium">
               Four decades of obsession. <span class="text-white font-bold">Milano's finest</span> marrying 
               <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 font-bold">Italian soul</span> 
@@ -50,19 +62,39 @@
             </p>
           </div>
 
-          <!-- Stats -->
+          <!-- Stats: Sequential Reveal -->
           <div class="brand-intro-stats flex items-start gap-6 pt-4">
-            <div class="space-y-2">
+            <div 
+              class="space-y-2 transition-all duration-800 ease-out"
+              :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
+              style="transition-delay: 0.4s;"
+            >
               <div class="text-4xl font-black text-white tabular-nums">40<span class="text-blue-400">+</span></div>
               <div class="text-[10px] uppercase tracking-wider text-zinc-600 font-bold">Years Legacy</div>
             </div>
-            <div class="w-[1px] h-12 bg-zinc-800"></div>
-            <div class="space-y-2">
+            <div 
+              class="w-[1px] h-12 bg-zinc-800 transition-all duration-800 ease-out"
+              :class="visible ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'"
+              style="transition-delay: 0.5s;"
+            ></div>
+            <div 
+              class="space-y-2 transition-all duration-800 ease-out"
+              :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
+              style="transition-delay: 0.6s;"
+            >
               <div class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 tabular-nums">50K<span class="text-cyan-300">+</span></div>
               <div class="text-[10px] uppercase tracking-wider text-zinc-600 font-bold">Global Riders</div>
             </div>
-            <div class="w-[1px] h-12 bg-zinc-800"></div>
-            <div class="space-y-2">
+            <div 
+              class="w-[1px] h-12 bg-zinc-800 transition-all duration-800 ease-out"
+              :class="visible ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'"
+              style="transition-delay: 0.65s;"
+            ></div>
+            <div 
+              class="space-y-2 transition-all duration-800 ease-out"
+              :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
+              style="transition-delay: 0.7s;"
+            >
               <div class="text-4xl font-black text-white tabular-nums">100<span class="text-blue-400">%</span></div>
               <div class="text-[10px] uppercase tracking-wider text-zinc-600 font-bold">Handcrafted</div>
             </div>
@@ -176,7 +208,23 @@
 </template>
 
 <script setup lang="ts">
-// Premium split hero component
+import { ref, onMounted } from 'vue'
+
+const visible = ref(false)
+
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    if (entries && entries[0] && entries[0].isIntersecting) {
+      visible.value = true
+    }
+  }, { threshold: 0.1 })
+  
+  // Target the left content wrapper
+  const el = document.querySelector('.brand-intro-badge')
+  if (el && el.parentElement) {
+    observer.observe(el.parentElement)
+  }
+})
 </script>
 
 <style scoped>
