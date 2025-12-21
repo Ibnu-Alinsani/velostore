@@ -6,6 +6,13 @@ import BaseIcon from '~/components/atoms/BaseIcon.vue'
 import BaseButton from '~/components/atoms/BaseButton.vue'
 import BikeRegistrationModal from '~/components/organisms/BikeRegistrationModal.vue'
 
+useHead({
+  title: 'Bike Warranty - 5-Year Coverage',
+  meta: [
+    { name: 'description', content: '5-year transferable warranty on all bikes. Covers manufacturing defects in frames and forks. Lifetime crash replacement program. Register your bike today.' }
+  ]
+})
+
 const isRegistrationOpen = ref(false)
 
 const coverages = [

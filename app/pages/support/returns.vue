@@ -3,6 +3,13 @@ import PageHero from '~/components/organisms/PageHero.vue'
 import SectionHeader from '~/components/molecules/SectionHeader.vue'
 import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
+useHead({
+  title: 'Returns & Exchanges - 30-Day Guarantee',
+  meta: [
+    { name: 'description', content: '30-day no questions asked return policy. 100% money back guarantee, 48-hour refund processing. Free pickup and hassle-free returns.' }
+  ]
+})
+
 const steps = [
   { title: 'Initiate Return', description: 'Contact our support team within 30 days of receiving your bike.' },
   { title: 'Pack Safely', description: 'Reuse the original pro-grade packing materials to ensure safe transit.' },

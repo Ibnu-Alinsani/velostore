@@ -3,6 +3,13 @@ import PageHero from '~/components/organisms/PageHero.vue'
 import SectionHeader from '~/components/molecules/SectionHeader.vue'
 import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
+useHead({
+  title: 'Shipping Information - Global Delivery',
+  meta: [
+    { name: 'description', content: 'Free shipping on orders over $500. Standard 5-7 days, Express 2-3 days available. Professional white-glove delivery service worldwide.' }
+  ]
+})
+
 const shippingMethods = [
   {
     title: 'Standard Shipping',

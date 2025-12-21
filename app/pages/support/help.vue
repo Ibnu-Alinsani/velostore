@@ -3,6 +3,13 @@ import PageHero from '~/components/organisms/PageHero.vue'
 import SectionHeader from '~/components/molecules/SectionHeader.vue'
 import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
+useHead({
+  title: 'Help Center - Support & FAQs',
+  meta: [
+    { name: 'description', content: 'Find answers to common questions about orders, shipping, test rides, returns, and warranties. VeloStore help center and customer support.' }
+  ]
+})
+
 const faqs = [
   {
     question: 'How do I track my order?',
