@@ -156,7 +156,7 @@ const currentYear = new Date().getFullYear()
           <p class="text-sm text-zinc-500">
             © {{ currentYear }} <span class="text-white font-semibold">VeloStore</span>. Engineered for excellence.
           </p>
-          <div class="flex gap-6 text-sm text-zinc-500">
+          <div class="flex gap-6 text-sm text-zinc-400">
             <NuxtLink to="/" class="hover:text-blue-400 transition-colors">Privacy Policy</NuxtLink>
             <NuxtLink to="/" class="hover:text-blue-400 transition-colors">Terms of Service</NuxtLink>
             <NuxtLink to="/" class="hover:text-blue-400 transition-colors">Cookies</NuxtLink>

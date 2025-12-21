@@ -49,6 +49,7 @@ const submitNewsletter = async () => {
       <button
         type="submit"
         :disabled="isSubmitting || isSuccess"
+        aria-label="Subscribe to newsletter"
         class="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-500/50 rounded-lg transition-all group"
       >
         <BaseIcon 
