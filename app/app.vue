@@ -6,6 +6,9 @@
     
     <!-- Floating Watermark -->
     <FloatingWatermark />
+    
+    <!-- Mobile Notice Banner -->
+    <MobileNotice />
   </div>
 </template>
 
@@ -13,6 +16,7 @@
 import { onMounted } from 'vue'
 import { useCartStore } from '~/stores/cart'
 import FloatingWatermark from '~/components/atoms/FloatingWatermark.vue'
+import MobileNotice from '~/components/organisms/MobileNotice.vue'
 
 const cartStore = useCartStore()
 
