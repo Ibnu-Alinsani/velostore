@@ -89,8 +89,8 @@ const steps = [
                  <div class="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold mb-6 group-hover:bg-blue-500 group-hover:text-white transition-all">
                     {{ index + 1 }}
                  </div>
-                 <h3 class="text-xl font-bold text-white mb-3">{{ step.title }}</h3>
-                 <p class="text-zinc-500 text-sm leading-relaxed">{{ step.description }}</p>
+                 <h2 class="text-xl font-bold text-white mb-3">{{ step.title }}</h2>
+                 <p class="text-zinc-400 text-sm leading-relaxed">{{ step.description }}</p>
               </div>
            </div>
         </div>

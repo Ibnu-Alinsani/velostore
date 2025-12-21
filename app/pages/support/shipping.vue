@@ -49,14 +49,14 @@ const shippingMethods = [
             class="p-8 rounded-3xl bg-zinc-900 border border-white/5 hover:border-blue-500/30 transition-all group"
           >
             <div class="flex items-center justify-between mb-6">
-              <h3 class="text-xl font-bold text-white tracking-tighter">{{ method.title }}</h3>
+              <h2 class="text-xl font-bold text-white tracking-tighter">{{ method.title }}</h2>
               <span class="text-blue-400 font-bold">{{ method.price }}</span>
             </div>
             <div class="flex items-center gap-2 text-zinc-400 mb-4 text-sm">
               <BaseIcon name="clock" size="sm" />
               <span>{{ method.time }}</span>
             </div>
-            <p class="text-zinc-500 text-sm leading-relaxed">{{ method.description }}</p>
+            <p class="text-zinc-400 text-sm leading-relaxed">{{ method.description }}</p>
           </div>
         </div>
 
@@ -73,21 +73,21 @@ const shippingMethods = [
             <div class="flex gap-8">
               <div class="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0 text-blue-400 font-bold">1</div>
               <div>
-                <h4 class="text-xl font-bold text-white mb-2">Build & Safety Check</h4>
+                <h3 class="text-xl font-bold text-white mb-2">Build & Safety Check</h3>
                 <p class="text-zinc-400 leading-relaxed">Every bike is fully assembled by our master mechanics and undergoes a 50-point safety inspection before being partially disassembled for secure transport.</p>
               </div>
             </div>
             <div class="flex gap-8">
               <div class="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0 text-blue-400 font-bold">2</div>
               <div>
-                <h4 class="text-xl font-bold text-white mb-2">Pro-Grade Packing</h4>
+                <h3 class="text-xl font-bold text-white mb-2">Pro-Grade Packing</h3>
                 <p class="text-zinc-400 leading-relaxed">We use custom-designed, heavy-duty boxes with multi-layer protective foam to shield your bike from any impact during transit.</p>
               </div>
             </div>
             <div class="flex gap-8">
               <div class="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0 text-blue-400 font-bold">3</div>
               <div>
-                <h4 class="text-xl font-bold text-white mb-2">Direct Integration</h4>
+                <h3 class="text-xl font-bold text-white mb-2">Direct Integration</h3>
                 <p class="text-zinc-400 leading-relaxed">Your bike is shipped via our premium courier partners. You'll receive real-time tracking updates from pickup to your doorstep.</p>
               </div>
             </div>

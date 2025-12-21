@@ -60,8 +60,8 @@ const categories = [
             <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               <BaseIcon :name="cat.icon as any" size="md" class="text-blue-400" />
             </div>
-            <h3 class="text-xl font-bold text-white mb-2">{{ cat.title }}</h3>
-            <p class="text-zinc-500 text-sm italic">{{ cat.description }}</p>
+            <h2 class="text-xl font-bold text-white mb-2">{{ cat.title }}</h2>
+            <p class="text-zinc-400 text-sm italic">{{ cat.description }}</p>
           </div>
         </div>
 
@@ -79,7 +79,7 @@ const categories = [
               :key="faq.question"
               class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all"
             >
-              <h4 class="text-lg font-bold text-white mb-2">{{ faq.question }}</h4>
+              <h3 class="text-lg font-bold text-white mb-2">{{ faq.question }}</h3>
               <p class="text-zinc-400 text-sm leading-relaxed">{{ faq.answer }}</p>
             </div>
           </div>
