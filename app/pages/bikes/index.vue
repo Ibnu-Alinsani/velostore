@@ -121,7 +121,7 @@ const filteredBikes = computed(() => {
           <div class="flex flex-col md:flex-row gap-4">
             <!-- Search -->
             <div class="flex-1 relative group">
-              <BaseIcon name="search" size="md" class="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 group-focus-within:text-blue-400 transition-colors" />
+              <BaseIcon name="search" size="md" class="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 group-focus-within:text-blue-400 transition-colors" />
               <input
                 v-model="searchQuery"
                 type="search"
@@ -134,6 +134,7 @@ const filteredBikes = computed(() => {
             <div class="relative">
               <select
                 v-model="sortBy"
+                aria-label="Sort bikes by"
                 class="appearance-none pl-4 pr-12 py-4 bg-white/5 border border-white/10 rounded-2xl text-white focus:outline-none focus:border-blue-500 focus:bg-white/10 transition-all cursor-pointer min-w-[200px] shadow-lg shadow-black/20"
               >
                 <option value="featured" class="bg-zinc-900">Featured</option>

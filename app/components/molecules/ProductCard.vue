@@ -79,9 +79,9 @@ const quickAdd = () => {
       <!-- Content Section -->
       <div class="relative p-6">
         <!-- Title -->
-        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-cyan-400 transition-all duration-300">
+        <div role="heading" aria-level="2" class="text-xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-cyan-400 transition-all duration-300">
           {{ title }}
-        </h3>
+        </div>
 
         <!-- Price Tag with Racing Design -->
         <div class="flex items-center justify-between mb-4">
