@@ -20,7 +20,7 @@ const links = [
   { name: 'About', path: '/about' },
   { 
     name: 'Support', 
-    path: '/support/warranty',
+    path: '/support/help',
     dropdown: [
       { name: 'Help Center', desc: 'Common questions', path: '/support/help', icon: 'help' },
       { name: 'Warranty', desc: 'Register your ride', path: '/support/warranty', icon: 'shield' },
