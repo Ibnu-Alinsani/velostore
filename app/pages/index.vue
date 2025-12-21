@@ -8,6 +8,15 @@ import TheExperience from '~/components/organisms/TheExperience.vue'
 import ProductTeaser from '~/components/organisms/ProductTeaser.vue'
 import HeroCircular from '~/components/organisms/HeroCircular.vue'
 import CollectionCTA from '~/components/organisms/CollectionCTA.vue'
+
+useHead({
+  title: 'VeloStore - Premium Bicycles & Cycling Innovation',
+  meta: [
+    { name: 'description', content: 'Explore premium road, mountain, gravel, and electric bicycles. Learn about cutting-edge cycling technology including carbon fiber construction, aerodynamics, and electronic shifting systems.' },
+    { property: 'og:title', content: 'VeloStore - Premium Bicycles & Cycling Innovation' },
+    { property: 'og:description', content: 'Premium cycling products with innovation storytelling and technical insights' }
+  ]
+})
 </script>
 
 <template>

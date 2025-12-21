@@ -5,6 +5,15 @@ import { useBikes, type SortOption } from '~/composables/useBikes'
 import ProductCard from '~/components/molecules/ProductCard.vue'
 import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
+useHead({
+  title: 'Premium Bicycles | VeloStore - Road, Mountain, Gravel & Electric Bikes',
+  meta: [
+    { name: 'description', content: 'Browse our complete collection of premium bicycles. High-performance road bikes, mountain bikes, gravel bikes, and electric bikes engineered for excellence.' },
+    { property: 'og:title', content: 'Premium Bicycles | VeloStore' },
+    { property: 'og:description', content: 'Complete collection of high-performance bicycles engineered for excellence' }
+  ]
+})
+
 const { bikes, filterBikes, sortBikes } = useBikes()
 const route = useRoute()
 

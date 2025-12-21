@@ -5,7 +5,8 @@
       <!-- Background Image -->
       <NuxtImg 
         v-if="article.image"
-        :src="article.image" 
+        :src="article.image"
+        :alt="`${article.title} - ${article.tag} cycling innovation`"
         class="absolute inset-0 w-full h-full object-cover opacity-20"
       />
       

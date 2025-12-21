@@ -12,6 +12,7 @@
   "dependencies": {
     "@nuxt/icon": "^2.1.1",
     "@nuxt/image": "^2.0.0",
+    "@nuxtjs/seo": "^3.3.0",
     "@pinia/nuxt": "^0.11.3",
     "gsap": "^3.14.2",
     "nuxt": "^4.2.2",

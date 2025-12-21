@@ -80,7 +80,7 @@ const team = [
               <div class="aspect-[4/3] rounded-3xl overflow-hidden relative group shadow-2xl shadow-blue-500/10">
                 <img 
                   src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&q=80&w=1000" 
-                  alt="Bike Manufacturing"
+                  alt="VeloStore bike manufacturing and assembly workshop - precision craftsmanship"
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-60"></div>
