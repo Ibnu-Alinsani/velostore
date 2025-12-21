@@ -39,7 +39,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
+          cache: ${{ steps.detect-package-manager.outputs.manager }}
+        if: steps.detect-package-manager.outputs.manager != 'bun'
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+        if: steps.detect-package-manager.outputs.manager == 'bun'
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
@@ -55,13 +62,13 @@ jobs:
             node_modules
             .nuxt
             .output
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ steps.detect-package-manager.outputs.manager }}-${{ hashFiles('**/package-lock.json', '**/bun.lock', '**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-npm-
+            ${{ runner.os }}-${{ steps.detect-package-manager.outputs.manager }}-
       - name: Install dependencies
-        run: npm ci
+        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Static HTML export with Nuxt
-        run: npm run generate
+        run: ${{ steps.detect-package-manager.outputs.manager }} run generate
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
