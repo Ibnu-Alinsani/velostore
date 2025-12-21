@@ -3,6 +3,13 @@ import PageHero from '~/components/organisms/PageHero.vue'
 import SectionHeader from '~/components/molecules/SectionHeader.vue'
 import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
+useHead({
+  title: 'Our Story - The Journey of VeloStore',
+  meta: [
+    { name: 'description', content: 'Discover how VeloStore began in a Portland garage and evolved into a premium bicycle brand. Learn about our journey, milestones, and commitment to cycling excellence.' }
+  ]
+})
+
 const milestones = [
   {
     year: '2015',

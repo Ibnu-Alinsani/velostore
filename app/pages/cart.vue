@@ -6,6 +6,14 @@ import CartItem from '~/components/molecules/CartItem.vue'
 import BaseButton from '~/components/atoms/BaseButton.vue'
 import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
+useHead({
+  title: 'Shopping Cart',
+  meta: [
+    { name: 'description', content: 'Review your selected bikes and proceed to checkout. Free shipping on orders over $500. Secure payment and fast delivery.' },
+    { name: 'robots', content: 'noindex, nofollow' }
+  ]
+})
+
 const cartStore = useCartStore()
 
 const formatPrice = (value: number) => {

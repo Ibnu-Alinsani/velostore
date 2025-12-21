@@ -5,6 +5,13 @@ import PageHero from '~/components/organisms/PageHero.vue'
 import ContactCard from '~/components/molecules/ContactCard.vue'
 import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
+useHead({
+  title: 'Contact Us - Get in Touch',
+  meta: [
+    { name: 'description', content: 'Contact VeloStore for bike inquiries, support, or visit our showroom. Email, phone, and live chat available. We\'re here to help Mon-Fri 9AM-6PM.' }
+  ]
+})
+
 const { showToast } = useToast()
 
 const { formData, isSubmitting, handleSubmit } = useForm({

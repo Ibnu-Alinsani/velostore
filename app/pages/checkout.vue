@@ -7,6 +7,14 @@ import PageHero from '~/components/organisms/PageHero.vue'
 import BaseButton from '~/components/atoms/BaseButton.vue'
 import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
+useHead({
+  title: 'Checkout | VeloStore',
+  meta: [
+    { name: 'description', content: 'Complete your purchase securely. Enter shipping details and payment information.' },
+    { name: 'robots', content: 'noindex, nofollow' }
+  ]
+})
+
 const cartStore = useCartStore()
 const { showToast } = useToast()
 

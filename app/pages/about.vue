@@ -3,6 +3,13 @@ import PageHero from '~/components/organisms/PageHero.vue'
 import SectionHeader from '~/components/molecules/SectionHeader.vue'
 import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
+useHead({
+  title: 'About Us - Our Story & Mission',
+  meta: [
+    { name: 'description', content: 'Learn about VeloStore\'s mission to deliver premium bicycles engineered for performance. Meet our team and discover our core values of innovation, quality, and sustainability.' }
+  ]
+})
+
 const stats = [
   { value: '10+', label: 'Years Experience', icon: 'clock' },
   { value: '50K+', label: 'Happy Riders', icon: 'users' },
