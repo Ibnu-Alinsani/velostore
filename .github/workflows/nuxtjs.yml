@@ -73,11 +73,12 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            dist
+            node_modules
             .nuxt
-          key: ${{ runner.os }}-nuxt-build-${{ hashFiles('dist') }}
+            .output
+          key: ${{ runner.os }}-${{ steps.detect-package-manager.outputs.manager }}-${{ hashFiles('**/package-lock.json', '**/bun.lock', '**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-nuxt-build-
+            ${{ runner.os }}-${{ steps.detect-package-manager.outputs.manager }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Static HTML export with Nuxt
