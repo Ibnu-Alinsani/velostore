@@ -51,8 +51,8 @@ const coverages = [
                        <BaseIcon name="check" size="sm" class="text-blue-400" />
                     </div>
                     <div>
-                       <h5 class="text-white font-bold text-sm">Transferable</h5>
-                       <p class="text-zinc-500 text-xs">Policy stays with the bike</p>
+                       <div class="text-white font-bold text-sm">Transferable</div>
+                       <p class="text-zinc-400 text-xs">Policy stays with the bike</p>
                     </div>
                  </div>
                  <div class="flex items-start gap-3">
@@ -60,8 +60,8 @@ const coverages = [
                        <BaseIcon name="check" size="sm" class="text-blue-400" />
                     </div>
                     <div>
-                       <h5 class="text-white font-bold text-sm">Global Support</h5>
-                       <p class="text-zinc-500 text-xs">Valid in any service center</p>
+                       <div class="text-white font-bold text-sm">Global Support</div>
+                       <p class="text-zinc-400 text-xs">Valid in any service center</p>
                     </div>
                  </div>
               </div>
@@ -74,8 +74,8 @@ const coverages = [
               
               <div class="relative z-10">
                  <div class="text-blue-400 font-bold tracking-widest uppercase text-xs mb-4">Official Guarantee</div>
-                 <h3 class="text-4xl font-black text-white mb-6 tracking-tighter italic">5-Year Structural Warranty</h3>
-                 <p class="text-zinc-500 text-sm leading-relaxed mb-8">
+                 <h2 class="text-4xl font-black text-white mb-6 tracking-tighter italic">5-Year Structural Warranty</h2>
+                 <p class="text-zinc-400 text-sm leading-relaxed mb-8">
                     Certified engineering integrity for every frame produced in our Portland facility. 
                  </p>
                   <BaseButton 
@@ -110,7 +110,7 @@ const coverages = [
                  </div>
                  <div class="flex-1">
                     <h3 class="text-xl font-bold text-white mb-2">{{ item.title }}</h3>
-                    <p class="text-zinc-500 text-sm leading-relaxed">{{ item.description }}</p>
+                    <p class="text-zinc-400 text-sm leading-relaxed">{{ item.description }}</p>
                  </div>
               </div>
            </div>
