@@ -70,7 +70,7 @@ if (breadcrumbSchema.value) {
             <BaseIcon 
               v-if="index < breadcrumbs.length - 1" 
               name="arrowRight" 
-              size="xs" 
+              size="sm" 
               class="text-zinc-600"
             />
           </template>

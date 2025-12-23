@@ -8,7 +8,7 @@ import BaseButton from '~/components/atoms/BaseButton.vue'
 import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
 useHead({
-  title: 'Checkout | VeloStore',
+  title: 'Checkout',
   meta: [
     { name: 'description', content: 'Complete your purchase securely. Enter shipping details and payment information.' },
     { name: 'robots', content: 'noindex, nofollow' }
@@ -155,15 +155,15 @@ const formatPrice = (value: number) => {
               </div>
 
               <div class="divide-y divide-white/5">
-                <div v-for="item in cartStore.items" :key="item.id" class="py-6 flex gap-6 items-center">
+                <div v-for="item in cartStore.items" :key="item.bike.id" class="py-6 flex gap-6 items-center">
                   <div class="w-20 h-20 rounded-2xl overflow-hidden bg-zinc-800">
-                    <img :src="item.image" :alt="item.name" class="w-full h-full object-cover" />
+                    <img :src="item.bike.image" :alt="item.bike.name" class="w-full h-full object-cover" />
                   </div>
                   <div class="flex-1">
-                    <h3 class="text-white font-bold">{{ item.name }}</h3>
+                    <h3 class="text-white font-bold">{{ item.bike.name }}</h3>
                     <p class="text-zinc-400 text-sm">Qty: {{ item.quantity }}</p>
                   </div>
-                  <div class="text-white font-bold">{{ item.price }}</div>
+                  <div class="text-white font-bold">{{ item.bike.price }}</div>
                 </div>
               </div>
 
@@ -218,7 +218,7 @@ const formatPrice = (value: number) => {
             <!-- Trust Badge -->
             <div class="p-4 rounded-2xl bg-blue-500/5 border border-blue-500/10">
               <div class="flex gap-3 mb-2 font-bold text-blue-400 uppercase tracking-tighter text-xs">
-                <BaseIcon name="shield" size="xs" />
+                <BaseIcon name="shield" size="sm" />
                 Purchase Protection
               </div>
               <p class="text-[10px] text-zinc-400 leading-relaxed uppercase font-medium tracking-tight">

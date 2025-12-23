@@ -44,7 +44,7 @@ const formatPrice = (value: number) => {
         <div class="lg:col-span-2 space-y-6">
           <CartItem 
             v-for="item in cartStore.items" 
-            :key="item.id" 
+            :key="item.bike.id" 
             :item="item" 
           />
           

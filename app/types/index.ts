@@ -70,13 +70,27 @@ export interface BikeSpecs {
     /** Frame material and construction details */
     readonly frame: string
     /** Drivetrain and shifting system */
-    readonly groupset: string
+    readonly groupset?: string
     /** Wheelset specification */
-    readonly wheels: string
+    readonly wheels?: string
     /** Total bike weight (e.g., "6.8kg") */
     readonly weight: string
     /** Available frame sizes */
-    readonly sizes: ReadonlyArray<string>
+    readonly sizes?: ReadonlyArray<string>
+    /** Gear system info */
+    readonly gears?: string
+    /** Brake system info */
+    readonly brakes?: string
+}
+
+/**
+ * Detail images for bike gallery
+ */
+export interface BikeDetailImages {
+    readonly frame?: string
+    readonly gears?: string
+    readonly brakes?: string
+    readonly cockpit?: string
 }
 
 /**
@@ -84,13 +98,13 @@ export interface BikeSpecs {
  */
 export interface Bike {
     /** Unique identifier for the bike */
-    readonly id: BikeId
+    readonly id: BikeId | number
     /** Product name/model */
     readonly name: string
     /** Bike category */
-    readonly category: BikeCategory
-    /** Price in USD (integer cents to avoid floating point issues) */
-    readonly price: number
+    readonly category: BikeCategory | string
+    /** Price as formatted string (e.g., "$3,299") */
+    readonly price: string | number
     /** Marketing description */
     readonly description: string
     /** Primary product image URL */
@@ -100,7 +114,7 @@ export interface Bike {
     /** Technical specifications */
     readonly specs: BikeSpecs
     /** List of key features */
-    readonly features: ReadonlyArray<string>
+    readonly features?: ReadonlyArray<string>
     /** Whether bike is featured in hero circular */
     readonly featured?: boolean
     /** Badge text for featured bikes */
@@ -109,6 +123,10 @@ export interface Bike {
     readonly featuredReason?: string
     /** Number of sales/riders */
     readonly salesCount?: number
+    /** Detail images for gallery */
+    readonly detailImages?: BikeDetailImages
+    /** Performance rating (1-3) */
+    readonly performance?: number
 }
 
 // ============================================================================

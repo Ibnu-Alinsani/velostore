@@ -87,7 +87,7 @@ const loadMore = async () => {
           <!-- Breadcrumb -->
           <div class="flex items-center gap-2 text-sm text-zinc-400 mb-6 font-medium">
             <NuxtLink to="/" class="hover:text-blue-400 transition-colors">Home</NuxtLink>
-            <BaseIcon name="arrowRight" size="xs" />
+            <BaseIcon name="arrowRight" size="sm" />
             <span class="text-white">All Bikes</span>
           </div>
 
