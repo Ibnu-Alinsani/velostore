@@ -6,16 +6,19 @@ interface Props {
   to?: string
   type?: 'button' | 'submit' | 'reset'
   block?: boolean
+  ariaLabel?: string
+  disabled?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   variant: 'primary',
   type: 'button',
-  block: false
+  block: false,
+  disabled: false
 })
 
 const classes = computed(() => {
-  const base = 'inline-flex items-center justify-center px-6 py-3 border text-base font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200'
+  const base = 'inline-flex items-center justify-center px-6 py-3 border text-base font-medium rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 disabled:opacity-50 disabled:cursor-not-allowed'
   
   const variants = {
   primary: 'bg-blue-600 text-white hover:bg-blue-500 border border-transparent shadow-[0_0_15px_rgba(37,99,235,0.3)]',
@@ -31,10 +34,21 @@ const classes = computed(() => {
 </script>
 
 <template>
-  <NuxtLink v-if="to" :to="to" :class="classes">
+  <NuxtLink 
+    v-if="to" 
+    :to="to" 
+    :class="classes"
+    :aria-label="ariaLabel"
+  >
     <slot />
   </NuxtLink>
-  <button v-else :type="type" :class="classes">
+  <button 
+    v-else 
+    :type="type" 
+    :class="classes"
+    :aria-label="ariaLabel"
+    :disabled="disabled"
+  >
     <slot />
   </button>
 </template>
