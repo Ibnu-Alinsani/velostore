@@ -27,10 +27,10 @@ const displayedCount = ref(ITEMS_PER_PAGE)
 const isLoadingMore = ref(false)
 
 const categories = [
-  { id: 'All', label: 'All Bikes', icon: 'bike' },
-  { id: 'Road', label: 'Road', icon: 'lightning' },
-  { id: 'Mountain', label: 'Mountain', icon: 'mountain' },
-  { id: 'Electric', label: 'Electric', icon: 'lightning' },
+  { id: 'All', label: 'All Bikes', icon: 'bike' as const },
+  { id: 'Road', label: 'Road', icon: 'lightning' as const },
+  { id: 'Mountain', label: 'Mountain', icon: 'mountain' as const },
+  { id: 'Electric', label: 'Electric', icon: 'lightning' as const },
 ]
 
 // Sync category with URL

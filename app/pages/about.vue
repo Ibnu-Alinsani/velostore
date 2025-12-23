@@ -21,22 +21,22 @@ const values = [
   {
     title: 'Innovation',
     description: 'Pushing the boundaries of bicycle technology with cutting-edge materials and design.',
-    icon: 'lightning'
+    icon: 'lightning' as const
   },
   {
     title: 'Quality',
     description: 'Every bike is crafted with precision and tested to exceed industry standards.',
-    icon: 'shield'
+    icon: 'shield' as const
   },
   {
     title: 'Performance',
     description: 'Engineered for speed, efficiency, and the ultimate riding experience.',
-    icon: 'trendingUp'
+    icon: 'bike' as const
   },
   {
     title: 'Sustainability',
     description: 'Committed to eco-friendly manufacturing and promoting green transportation.',
-    icon: 'globe'
+    icon: 'mountain' as const
   }
 ]
 

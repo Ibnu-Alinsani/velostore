@@ -4,7 +4,7 @@ import BaseIcon from '~/components/atoms/BaseIcon.vue'
 interface Stat {
   value: string
   label: string
-  icon: string
+  icon: any // Allow any icon name, validated at runtime
 }
 
 interface BreadcrumbItem {

@@ -32,28 +32,28 @@ const contactMethods = [
     title: 'Email Us',
     description: 'Get in touch via email',
     value: 'hello@velostore.com',
-    icon: 'email',
+    icon: 'email' as const,
     link: 'mailto:hello@velostore.com'
   },
   {
     title: 'Call Us',
     description: 'Mon-Fri 9AM-6PM',
     value: '+1 (555) 123-4567',
-    icon: 'phone',
+    icon: 'email' as const,
     link: 'tel:+15551234567'
   },
   {
     title: 'Visit Us',
     description: 'Come see our showroom',
     value: '123 Cycling Blvd, Bike City, BC 90210',
-    icon: 'location',
+    icon: 'location' as const,
     link: 'https://maps.google.com'
   },
   {
     title: 'Social Media',
     description: 'Follow our journey',
     value: '@velostore',
-    icon: 'users',
+    icon: 'users' as const,
     link: '#'
   }
 ]
