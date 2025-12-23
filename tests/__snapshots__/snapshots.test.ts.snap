@@ -1,0 +1,75 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Snapshot Tests > BaseButton Snapshots > should match snapshot for disabled button 1`] = `"<button class="base-button base-button--primary base-button--disabled" disabled="">Disabled</button>"`;
+
+exports[`Snapshot Tests > BaseButton Snapshots > should match snapshot for ghost button 1`] = `"<button class="base-button base-button--ghost">Cancel</button>"`;
+
+exports[`Snapshot Tests > BaseButton Snapshots > should match snapshot for outline button 1`] = `"<button class="base-button base-button--outline">Learn More</button>"`;
+
+exports[`Snapshot Tests > BaseButton Snapshots > should match snapshot for primary button 1`] = `"<button class="base-button base-button--primary">Add to Cart</button>"`;
+
+exports[`Snapshot Tests > BaseButton Snapshots > should match snapshot for secondary button 1`] = `"<button class="base-button base-button--secondary">View Details</button>"`;
+
+exports[`Snapshot Tests > PriceBadge Snapshots > should match snapshot for high value price 1`] = `
+"<div class="price-badge">
+  <!--v-if--><span class="price-badge__current">$12,999</span>
+  <!--v-if-->
+</div>"
+`;
+
+exports[`Snapshot Tests > PriceBadge Snapshots > should match snapshot for regular price 1`] = `
+"<div class="price-badge">
+  <!--v-if--><span class="price-badge__current">$2,999</span>
+  <!--v-if-->
+</div>"
+`;
+
+exports[`Snapshot Tests > PriceBadge Snapshots > should match snapshot for sale price 1`] = `"<div class="price-badge price-badge--sale"><span class="price-badge__original">$2,999</span><span class="price-badge__current">$1,999</span><span class="price-badge__sale-label">SALE</span></div>"`;
+
+exports[`Snapshot Tests > ProductCard Snapshots > should match snapshot for electric bike 1`] = `
+"<article class="product-card" data-testid="product-card">
+  <div class="product-card__image"><span class="product-card__badge">Electric</span></div>
+  <div class="product-card__content">
+    <h2 class="product-card__title">Electric Cruiser</h2>
+    <div class="product-card__footer"><span class="product-card__price">$4,999</span>
+      <div class="product-card__performance"><span class="active"></span><span class=""></span><span class=""></span></div>
+    </div>
+  </div>
+</article>"
+`;
+
+exports[`Snapshot Tests > ProductCard Snapshots > should match snapshot for low performance bike 1`] = `
+"<article class="product-card" data-testid="product-card">
+  <div class="product-card__image"><span class="product-card__badge">Urban</span></div>
+  <div class="product-card__content">
+    <h2 class="product-card__title">Budget Bike</h2>
+    <div class="product-card__footer"><span class="product-card__price">$499</span>
+      <div class="product-card__performance"><span class="active"></span><span class=""></span><span class=""></span></div>
+    </div>
+  </div>
+</article>"
+`;
+
+exports[`Snapshot Tests > ProductCard Snapshots > should match snapshot for mountain bike 1`] = `
+"<article class="product-card" data-testid="product-card">
+  <div class="product-card__image"><span class="product-card__badge">Mountain</span></div>
+  <div class="product-card__content">
+    <h2 class="product-card__title">Mountain Beast X</h2>
+    <div class="product-card__footer"><span class="product-card__price">$3,499</span>
+      <div class="product-card__performance"><span class="active"></span><span class="active"></span><span class=""></span></div>
+    </div>
+  </div>
+</article>"
+`;
+
+exports[`Snapshot Tests > ProductCard Snapshots > should match snapshot for road bike 1`] = `
+"<article class="product-card" data-testid="product-card">
+  <div class="product-card__image"><span class="product-card__badge">Road</span></div>
+  <div class="product-card__content">
+    <h2 class="product-card__title">Aero Road Pro</h2>
+    <div class="product-card__footer"><span class="product-card__price">$2,999</span>
+      <div class="product-card__performance"><span class="active"></span><span class="active"></span><span class="active"></span></div>
+    </div>
+  </div>
+</article>"
+`;
