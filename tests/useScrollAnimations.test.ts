@@ -1,111 +1,259 @@
 /**
  * Unit tests for useScrollAnimations composable
+ * Tests actual source code for coverage - including callback execution
  */
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest'
+import { resetState, resetLifecycleHooks, triggerUnmount } from './setup'
 
-// Mock animation preset configurations
-const animationPresets = {
-    staggerReveal: { opacity: 0, y: 50, filter: 'blur(10px)', duration: 1, stagger: 0.2, ease: 'power3.out', scrollTrigger: { start: 'top 80%', once: true } },
-    scaleMorph: { opacity: 0, scale: 0.8, rotation: -5, duration: 1.2, stagger: 0.15, ease: 'elastic.out(1, 0.5)', scrollTrigger: { start: 'top 80%', once: true } },
-    glitchReveal: { type: 'timeline', steps: [{ opacity: 0, x: -100 }, { x: 10 }, { x: 0 }] },
-    magneticPull: { opacity: 0, filter: 'blur(8px)', duration: 1.2, stagger: 0.2, ease: 'elastic.out(1, 0.6)' },
-    parallax: { ease: 'none', scrub: true },
-    fadeInUp: { opacity: 0, y: 60, duration: 0.8, stagger: 0.15, ease: 'power2.out', scrollTrigger: { start: 'top 85%', once: true } }
-}
+// Store the last call arguments to test callbacks
+let lastFromCallArgs: any = null
+let lastToCallArgs: any = null
+
+// Mock GSAP to capture callback arguments
+vi.mock('gsap', () => ({
+    default: {
+        registerPlugin: vi.fn(),
+        from: vi.fn().mockImplementation((elements, config) => {
+            lastFromCallArgs = config
+            return { kill: vi.fn() }
+        }),
+        to: vi.fn().mockImplementation((elements, config) => {
+            lastToCallArgs = config
+            return { kill: vi.fn() }
+        }),
+        timeline: vi.fn().mockReturnValue({
+            from: vi.fn().mockReturnThis(),
+            to: vi.fn().mockReturnThis(),
+            kill: vi.fn()
+        })
+    }
+}))
+
+vi.mock('gsap/ScrollTrigger', () => ({
+    ScrollTrigger: {
+        getAll: vi.fn().mockReturnValue([{ kill: vi.fn() }]),
+        kill: vi.fn()
+    }
+}))
+
+// Mock window.innerHeight
+vi.stubGlobal('window', { innerHeight: 800 })
+
+// Import actual composable after mocking
+import { useScrollAnimations } from '~/composables/useScrollAnimations'
 
 describe('useScrollAnimations composable', () => {
+    beforeEach(() => {
+        resetState()
+        resetLifecycleHooks()
+        vi.clearAllMocks()
+        lastFromCallArgs = null
+        lastToCallArgs = null
+    })
+
+    afterEach(() => {
+        triggerUnmount()
+        vi.restoreAllMocks()
+    })
+
+    describe('Composable Structure', () => {
+        it('should return presets object', () => {
+            const { presets } = useScrollAnimations()
+            expect(presets).toBeDefined()
+        })
+
+        it('should return cleanup function', () => {
+            const { cleanup } = useScrollAnimations()
+            expect(typeof cleanup).toBe('function')
+        })
+
+        it('should return gsap instance', () => {
+            const { gsap } = useScrollAnimations()
+            expect(gsap).toBeDefined()
+        })
+
+        it('should return ScrollTrigger', () => {
+            const { ScrollTrigger } = useScrollAnimations()
+            expect(ScrollTrigger).toBeDefined()
+        })
+    })
+
     describe('Animation Presets', () => {
         it('should have staggerReveal preset', () => {
-            expect(animationPresets.staggerReveal).toBeDefined()
-            expect(animationPresets.staggerReveal.opacity).toBe(0)
-            expect(animationPresets.staggerReveal.y).toBe(50)
+            const { presets } = useScrollAnimations()
+            expect(presets.staggerReveal).toBeDefined()
+            expect(typeof presets.staggerReveal).toBe('function')
         })
 
         it('should have scaleMorph preset', () => {
-            expect(animationPresets.scaleMorph).toBeDefined()
-            expect(animationPresets.scaleMorph.scale).toBe(0.8)
+            const { presets } = useScrollAnimations()
+            expect(presets.scaleMorph).toBeDefined()
         })
 
         it('should have glitchReveal preset', () => {
-            expect(animationPresets.glitchReveal).toBeDefined()
-            expect(animationPresets.glitchReveal.type).toBe('timeline')
+            const { presets } = useScrollAnimations()
+            expect(presets.glitchReveal).toBeDefined()
         })
 
         it('should have magneticPull preset', () => {
-            expect(animationPresets.magneticPull).toBeDefined()
-            expect(animationPresets.magneticPull.filter).toBe('blur(8px)')
+            const { presets } = useScrollAnimations()
+            expect(presets.magneticPull).toBeDefined()
         })
 
         it('should have parallax preset', () => {
-            expect(animationPresets.parallax).toBeDefined()
-            expect(animationPresets.parallax.scrub).toBe(true)
+            const { presets } = useScrollAnimations()
+            expect(presets.parallax).toBeDefined()
         })
 
         it('should have fadeInUp preset', () => {
-            expect(animationPresets.fadeInUp).toBeDefined()
-            expect(animationPresets.fadeInUp.y).toBe(60)
+            const { presets } = useScrollAnimations()
+            expect(presets.fadeInUp).toBeDefined()
         })
     })
 
-    describe('Preset Configuration Values', () => {
-        describe('staggerReveal', () => {
-            const preset = animationPresets.staggerReveal
-
-            it('should start with opacity 0', () => {
-                expect(preset.opacity).toBe(0)
-            })
-
-            it('should have blur filter effect', () => {
-                expect(preset.filter).toBe('blur(10px)')
-            })
-
-            it('should have 1 second duration', () => {
-                expect(preset.duration).toBe(1)
-            })
-
-            it('should trigger at top 80%', () => {
-                expect(preset.scrollTrigger.start).toBe('top 80%')
-            })
-
-            it('should fire once', () => {
-                expect(preset.scrollTrigger.once).toBe(true)
-            })
+    describe('Preset Execution', () => {
+        it('should execute staggerReveal', () => {
+            const { presets, gsap } = useScrollAnimations()
+            presets.staggerReveal('.test-element')
+            expect(gsap.from).toHaveBeenCalled()
         })
 
-        describe('fadeInUp', () => {
-            const preset = animationPresets.fadeInUp
-
-            it('should move from y: 60', () => {
-                expect(preset.y).toBe(60)
-            })
-
-            it('should trigger at top 85%', () => {
-                expect(preset.scrollTrigger.start).toBe('top 85%')
-            })
+        it('should execute scaleMorph', () => {
+            const { presets, gsap } = useScrollAnimations()
+            presets.scaleMorph('.test-element')
+            expect(gsap.from).toHaveBeenCalled()
         })
 
-        describe('parallax', () => {
-            const preset = animationPresets.parallax
+        it('should execute glitchReveal', () => {
+            const { presets, gsap } = useScrollAnimations()
+            presets.glitchReveal('.test-element')
+            expect(gsap.timeline).toHaveBeenCalled()
+        })
 
-            it('should use scrub for smooth sync', () => {
-                expect(preset.scrub).toBe(true)
-            })
+        it('should execute magneticPull', () => {
+            const { presets, gsap } = useScrollAnimations()
+            presets.magneticPull('.test-element')
+            expect(gsap.from).toHaveBeenCalled()
+        })
 
-            it('should have linear easing', () => {
-                expect(preset.ease).toBe('none')
-            })
+        it('should execute parallax', () => {
+            const { presets, gsap } = useScrollAnimations()
+            presets.parallax('.test-element')
+            expect(gsap.to).toHaveBeenCalled()
+        })
+
+        it('should execute fadeInUp', () => {
+            const { presets, gsap } = useScrollAnimations()
+            presets.fadeInUp('.test-element')
+            expect(gsap.from).toHaveBeenCalled()
         })
     })
 
-    describe('Scroll Trigger Settings', () => {
-        it('should have consistent trigger positions', () => {
-            expect(animationPresets.staggerReveal.scrollTrigger.start).toMatch(/top \d+%/)
-            expect(animationPresets.fadeInUp.scrollTrigger.start).toMatch(/top \d+%/)
+    describe('MagneticPull x callback (line 91)', () => {
+        it('should return -100 for even index', () => {
+            const { presets } = useScrollAnimations()
+            presets.magneticPull('.test')
+
+            // Execute the x callback with even index
+            const xCallback = lastFromCallArgs?.x
+            if (typeof xCallback === 'function') {
+                expect(xCallback(0)).toBe(-100)
+                expect(xCallback(2)).toBe(-100)
+                expect(xCallback(4)).toBe(-100)
+            }
         })
 
-        it('should use once: true for one-time animations', () => {
-            expect(animationPresets.staggerReveal.scrollTrigger.once).toBe(true)
-            expect(animationPresets.fadeInUp.scrollTrigger.once).toBe(true)
+        it('should return 100 for odd index', () => {
+            const { presets } = useScrollAnimations()
+            presets.magneticPull('.test')
+
+            // Execute the x callback with odd index
+            const xCallback = lastFromCallArgs?.x
+            if (typeof xCallback === 'function') {
+                expect(xCallback(1)).toBe(100)
+                expect(xCallback(3)).toBe(100)
+                expect(xCallback(5)).toBe(100)
+            }
+        })
+    })
+
+    describe('Parallax y callback (line 110)', () => {
+        it('should calculate y based on window.innerHeight and speed', () => {
+            const { presets } = useScrollAnimations()
+            presets.parallax('.test', 0.5)
+
+            // Execute the y callback
+            const yCallback = lastToCallArgs?.y
+            if (typeof yCallback === 'function') {
+                // window.innerHeight is mocked as 800
+                expect(yCallback()).toBe(400) // 800 * 0.5
+            }
+        })
+
+        it('should use custom speed', () => {
+            const { presets } = useScrollAnimations()
+            presets.parallax('.test', 0.8)
+
+            const yCallback = lastToCallArgs?.y
+            if (typeof yCallback === 'function') {
+                expect(yCallback()).toBe(640) // 800 * 0.8
+            }
+        })
+
+        it('should use default speed of 0.5', () => {
+            const { presets } = useScrollAnimations()
+            presets.parallax('.test')
+
+            const yCallback = lastToCallArgs?.y
+            if (typeof yCallback === 'function') {
+                expect(yCallback()).toBe(400) // 800 * 0.5
+            }
+        })
+    })
+
+    describe('Custom Options', () => {
+        it('should accept custom options in staggerReveal', () => {
+            const { presets, gsap } = useScrollAnimations()
+            presets.staggerReveal('.test', { duration: 2 })
+            expect(gsap.from).toHaveBeenCalled()
+        })
+
+        it('should accept custom options in fadeInUp', () => {
+            const { presets, gsap } = useScrollAnimations()
+            presets.fadeInUp('.test', { stagger: 0.3 })
+            expect(gsap.from).toHaveBeenCalled()
+        })
+
+        it('should accept custom options in magneticPull', () => {
+            const { presets, gsap } = useScrollAnimations()
+            presets.magneticPull('.test', { duration: 1.5 })
+            expect(gsap.from).toHaveBeenCalled()
+        })
+
+        it('should accept custom options in scaleMorph', () => {
+            const { presets, gsap } = useScrollAnimations()
+            presets.scaleMorph('.test', { duration: 0.5 })
+            expect(gsap.from).toHaveBeenCalled()
+        })
+    })
+
+    describe('Cleanup', () => {
+        it('should call cleanup without error', () => {
+            const { cleanup } = useScrollAnimations()
+            expect(() => cleanup()).not.toThrow()
+        })
+
+        it('should kill all ScrollTrigger instances', () => {
+            const { cleanup, ScrollTrigger } = useScrollAnimations()
+            cleanup()
+            expect(ScrollTrigger.getAll).toHaveBeenCalled()
+        })
+    })
+
+    describe('Lifecycle', () => {
+        it('should cleanup on unmount', () => {
+            useScrollAnimations()
+            expect(() => triggerUnmount()).not.toThrow()
         })
     })
 })

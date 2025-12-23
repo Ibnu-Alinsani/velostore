@@ -1,167 +1,177 @@
 /**
  * Unit tests for useErrorHandler composable
+ * Tests actual source code for coverage
  */
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { resetState } from './setup'
 
-// Mock toast
-const mockShowToast = vi.fn()
-const mockToast = { showToast: mockShowToast }
+// Mock useToast globally since useErrorHandler calls it internally
+vi.stubGlobal('useToast', () => ({
+    showToast: vi.fn()
+}))
+
+// Import actual composable
+import { useErrorHandler, type AppError } from '~/composables/useErrorHandler'
 
 describe('useErrorHandler composable', () => {
     beforeEach(() => {
+        resetState()
         vi.clearAllMocks()
+    })
+
+    afterEach(() => {
+        vi.restoreAllMocks()
     })
 
     describe('handleError', () => {
         it('should handle Error objects', () => {
-            const handleError = (error: Error | unknown) => {
-                let message = 'An unexpected error occurred'
-
-                if (error instanceof Error) {
-                    message = error.message
-                }
-
-                mockToast.showToast(message, 'error')
-                return { message }
-            }
+            const { handleError } = useErrorHandler()
+            const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
 
             const error = new Error('Test error message')
             const result = handleError(error)
 
+            expect(consoleSpy).toHaveBeenCalled()
             expect(result.message).toBe('Test error message')
-            expect(mockShowToast).toHaveBeenCalledWith('Test error message', 'error')
+            consoleSpy.mockRestore()
         })
 
         it('should handle string errors', () => {
-            const handleError = (error: Error | unknown) => {
-                let message = 'An unexpected error occurred'
-
-                if (typeof error === 'string') {
-                    message = error
-                }
-
-                mockToast.showToast(message, 'error')
-                return { message }
-            }
+            const { handleError } = useErrorHandler()
+            const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
 
             const result = handleError('String error')
 
             expect(result.message).toBe('String error')
-            expect(mockShowToast).toHaveBeenCalledWith('String error', 'error')
+            consoleSpy.mockRestore()
         })
 
         it('should handle AppError objects', () => {
-            const handleError = (error: { message?: string } | unknown) => {
-                let message = 'An unexpected error occurred'
+            const { handleError } = useErrorHandler()
+            const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
 
-                if (typeof error === 'object' && error !== null && 'message' in error) {
-                    message = (error as { message: string }).message
-                }
-
-                mockToast.showToast(message, 'error')
-                return { message }
-            }
-
-            const appError = { code: 'TEST_ERROR', message: 'App error message' }
+            const appError: AppError = { code: 'ERR', message: 'App error message' }
             const result = handleError(appError)
 
             expect(result.message).toBe('App error message')
+            consoleSpy.mockRestore()
         })
 
-        it('should use default message for unknown errors', () => {
-            const handleError = (error: unknown) => {
-                let message = 'An unexpected error occurred'
+        it('should handle unknown error types', () => {
+            const { handleError } = useErrorHandler()
+            const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
 
-                if (error instanceof Error) {
-                    message = error.message
-                } else if (typeof error === 'string') {
-                    message = error
-                }
+            const result = handleError({ custom: 'error object' })
 
-                mockToast.showToast(message, 'error')
-                return { message }
-            }
+            expect(result.message).toBe('An unexpected error occurred')
+            consoleSpy.mockRestore()
+        })
+
+        it('should handle null errors', () => {
+            const { handleError } = useErrorHandler()
+            const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
 
             const result = handleError(null)
 
             expect(result.message).toBe('An unexpected error occurred')
+            consoleSpy.mockRestore()
+        })
+
+        it('should include context in result', () => {
+            const { handleError } = useErrorHandler()
+            const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
+
+            const result = handleError(new Error('test'), 'TestContext')
+
+            expect(result.context).toBe('TestContext')
+            consoleSpy.mockRestore()
         })
     })
 
     describe('tryAsync', () => {
-        it('should return data on successful operation', async () => {
-            const tryAsync = async <T>(operation: () => Promise<T>) => {
-                try {
-                    const data = await operation()
-                    return { data, error: null }
-                } catch (e) {
-                    return {
-                        data: null,
-                        error: {
-                            code: 'ASYNC_ERROR',
-                            message: e instanceof Error ? e.message : 'Unknown error'
-                        }
-                    }
-                }
-            }
+        it('should return data on successful async operation', async () => {
+            const { tryAsync } = useErrorHandler()
 
-            const result = await tryAsync(() => Promise.resolve({ id: 1, name: 'Test' }))
+            const result = await tryAsync(async () => {
+                return { data: 'success' }
+            })
 
-            expect(result.data).toEqual({ id: 1, name: 'Test' })
+            expect(result.data).toEqual({ data: 'success' })
             expect(result.error).toBeNull()
         })
 
-        it('should return error on failed operation', async () => {
-            const tryAsync = async <T>(operation: () => Promise<T>) => {
-                try {
-                    const data = await operation()
-                    return { data, error: null }
-                } catch (e) {
-                    return {
-                        data: null,
-                        error: {
-                            code: 'ASYNC_ERROR',
-                            message: e instanceof Error ? e.message : 'Unknown error'
-                        }
-                    }
-                }
-            }
+        it('should return error on failed async operation', async () => {
+            const { tryAsync } = useErrorHandler()
+            const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
 
-            const result = await tryAsync(() => Promise.reject(new Error('Async failed')))
+            const result = await tryAsync(async () => {
+                throw new Error('Async error')
+            })
 
             expect(result.data).toBeNull()
-            expect(result.error).toBeDefined()
+            expect(result.error).not.toBeNull()
             expect(result.error?.code).toBe('ASYNC_ERROR')
-            expect(result.error?.message).toBe('Async failed')
+            consoleSpy.mockRestore()
+        })
+
+        it('should include context in async errors', async () => {
+            const { tryAsync } = useErrorHandler()
+            const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
+
+            await tryAsync(async () => {
+                throw new Error('Error')
+            }, 'AsyncContext')
+
+            expect(consoleSpy).toHaveBeenCalled()
+            consoleSpy.mockRestore()
+        })
+
+        it('should handle non-Error exceptions in tryAsync (line 55 branch)', async () => {
+            const { tryAsync } = useErrorHandler()
+            const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
+
+            // Throw a string instead of Error to test the else branch
+            const result = await tryAsync(async () => {
+                throw 'String exception'
+            })
+
+            expect(result.data).toBeNull()
+            expect(result.error).not.toBeNull()
+            expect(result.error?.message).toBe('Unknown error')
+            consoleSpy.mockRestore()
+        })
+
+        it('should handle object exceptions in tryAsync', async () => {
+            const { tryAsync } = useErrorHandler()
+            const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => { })
+
+            const result = await tryAsync(async () => {
+                throw { code: 'CUSTOM', message: 'Custom error' }
+            })
+
+            expect(result.data).toBeNull()
+            expect(result.error).not.toBeNull()
+            expect(result.error?.message).toBe('Unknown error')
+            consoleSpy.mockRestore()
         })
     })
 
     describe('createError', () => {
         it('should create AppError with code and message', () => {
-            const createError = (code: string, message: string, details?: unknown) => ({
-                code,
-                message,
-                details
-            })
+            const { createError } = useErrorHandler()
 
-            const error = createError('VALIDATION_ERROR', 'Invalid input')
+            const error = createError('ERR_CODE', 'Error message')
 
-            expect(error.code).toBe('VALIDATION_ERROR')
-            expect(error.message).toBe('Invalid input')
-            expect(error.details).toBeUndefined()
+            expect(error.code).toBe('ERR_CODE')
+            expect(error.message).toBe('Error message')
         })
 
-        it('should create AppError with details', () => {
-            const createError = (code: string, message: string, details?: unknown) => ({
-                code,
-                message,
-                details
-            })
+        it('should include details', () => {
+            const { createError } = useErrorHandler()
 
-            const error = createError('API_ERROR', 'Request failed', { status: 500 })
+            const error = createError('ERR', 'Message', { extra: 'data' })
 
-            expect(error.code).toBe('API_ERROR')
-            expect(error.details).toEqual({ status: 500 })
+            expect(error.details).toEqual({ extra: 'data' })
         })
     })
 })

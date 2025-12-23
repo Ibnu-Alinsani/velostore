@@ -1,149 +1,157 @@
 /**
  * Unit tests for useSearch composable
+ * Tests actual source code for coverage
  */
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { resetState } from './setup'
 
-// Mock SearchResult interface
-interface SearchResult {
-    id: string | number
-    title: string
-    description?: string
-    category: 'Product' | 'Support' | 'Company'
-    to: string
-    icon: string
-}
+// Mock useBikes since useSearch depends on it
+vi.mock('~/composables/useBikes', () => ({
+    useBikes: () => ({
+        bikes: {
+            value: [
+                { id: 1, name: 'Aero Road Pro', category: 'Road', price: '$2,999' },
+                { id: 2, name: 'Mountain Beast X', category: 'Mountain', price: '$3,499' },
+                { id: 3, name: 'Electric Cruiser', category: 'Electric', price: '$4,999' },
+                { id: 4, name: 'Gravel Explorer', category: 'Gravel', price: '$2,499' }
+            ]
+        }
+    })
+}))
 
-// Mock bike data
-const mockBikes = [
-    { id: 1, name: 'Aero Road Pro', category: 'Road', price: '$2,999' },
-    { id: 2, name: 'Mountain Beast X', category: 'Mountain', price: '$3,499' },
-    { id: 3, name: 'Electric Cruiser', category: 'Electric', price: '$4,999' },
-    { id: 4, name: 'Gravel Explorer', category: 'Gravel', price: '$2,499' }
-]
-
-// Mock static pages
-const staticPages: SearchResult[] = [
-    { id: 'story', title: 'Our Story', description: 'The heritage behind VeloStore.', category: 'Company', to: '/story', icon: 'users' },
-    { id: 'help', title: 'Help Center', description: 'FAQs and support hub.', category: 'Support', to: '/support/help', icon: 'help' },
-    { id: 'shipping', title: 'Shipping & Delivery', description: 'Global shipping info.', category: 'Support', to: '/support/shipping', icon: 'truck' },
-    { id: 'contact', title: 'Contact Us', description: 'Get in touch.', category: 'Support', to: '/contact', icon: 'email' }
-]
-
-// Mock search function
-const createSearchComposable = (bikes = mockBikes) => {
-    const search = (query: string): SearchResult[] => {
-        if (!query.trim()) return []
-
-        const q = query.toLowerCase()
-
-        const bikeResults: SearchResult[] = bikes
-            .filter(b => b.name.toLowerCase().includes(q) || b.category.toLowerCase().includes(q))
-            .map(b => ({
-                id: `bike-${b.id}`,
-                title: b.name,
-                description: `${b.category} Bike - ${b.price}`,
-                category: 'Product' as const,
-                to: `/bikes/${b.id}`,
-                icon: 'bike'
-            }))
-
-        const pageResults = staticPages.filter(p =>
-            p.title.toLowerCase().includes(q) ||
-            p.description?.toLowerCase().includes(q)
-        )
-
-        return [...bikeResults, ...pageResults]
-    }
-
-    return { search }
-}
+// Import actual composable after mocking
+import { useSearch } from '~/composables/useSearch'
 
 describe('useSearch composable', () => {
-    let searchComposable: ReturnType<typeof createSearchComposable>
-
     beforeEach(() => {
-        searchComposable = createSearchComposable()
+        resetState()
+        vi.clearAllMocks()
     })
 
     describe('Empty Query Handling', () => {
         it('should return empty array for empty query', () => {
-            expect(searchComposable.search('')).toHaveLength(0)
+            const { search } = useSearch()
+            expect(search('')).toHaveLength(0)
         })
 
         it('should return empty array for whitespace query', () => {
-            expect(searchComposable.search('   ')).toHaveLength(0)
+            const { search } = useSearch()
+            expect(search('   ')).toHaveLength(0)
+        })
+
+        it('should return empty array for tab only', () => {
+            const { search } = useSearch()
+            expect(search('\t')).toHaveLength(0)
         })
     })
 
     describe('Bike Search', () => {
         it('should find bikes by name', () => {
-            const result = searchComposable.search('Aero')
+            const { search } = useSearch()
+            const result = search('Aero')
             expect(result.some(r => r.title === 'Aero Road Pro')).toBe(true)
         })
 
         it('should find bikes by category', () => {
-            const result = searchComposable.search('Mountain')
+            const { search } = useSearch()
+            const result = search('Mountain')
             expect(result.some(r => r.title === 'Mountain Beast X')).toBe(true)
         })
 
         it('should be case insensitive', () => {
-            const result1 = searchComposable.search('ROAD')
-            const result2 = searchComposable.search('road')
+            const { search } = useSearch()
+            const result1 = search('ROAD')
+            const result2 = search('road')
             expect(result1.length).toBe(result2.length)
         })
 
         it('should return product category for bike results', () => {
-            const result = searchComposable.search('Aero')
+            const { search } = useSearch()
+            const result = search('Aero')
             const bikeResult = result.find(r => r.title === 'Aero Road Pro')
             expect(bikeResult?.category).toBe('Product')
         })
 
+        it('should include price in description', () => {
+            const { search } = useSearch()
+            const result = search('Aero')
+            const bikeResult = result.find(r => r.title === 'Aero Road Pro')
+            expect(bikeResult?.description).toContain('$2,999')
+        })
+
         it('should generate correct link for bikes', () => {
-            const result = searchComposable.search('Aero')
+            const { search } = useSearch()
+            const result = search('Aero')
             const bikeResult = result.find(r => r.title === 'Aero Road Pro')
             expect(bikeResult?.to).toBe('/bikes/1')
+        })
+
+        it('should use bike icon for product results', () => {
+            const { search } = useSearch()
+            const result = search('Aero')
+            const bikeResult = result.find(r => r.title === 'Aero Road Pro')
+            expect(bikeResult?.icon).toBe('bike')
         })
     })
 
     describe('Static Page Search', () => {
         it('should find pages by title', () => {
-            const result = searchComposable.search('Story')
+            const { search } = useSearch()
+            const result = search('Story')
             expect(result.some(r => r.title === 'Our Story')).toBe(true)
         })
 
         it('should find pages by description', () => {
-            const result = searchComposable.search('shipping')
+            const { search } = useSearch()
+            const result = search('shipping')
             expect(result.some(r => r.title === 'Shipping & Delivery')).toBe(true)
         })
 
-        it('should return correct category for pages', () => {
-            const result = searchComposable.search('Story')
+        it('should return correct category for company pages', () => {
+            const { search } = useSearch()
+            const result = search('Story')
             const pageResult = result.find(r => r.title === 'Our Story')
             expect(pageResult?.category).toBe('Company')
         })
-    })
 
-    describe('No Results', () => {
-        it('should return empty array for non-matching query', () => {
-            expect(searchComposable.search('xyznonexistent123')).toHaveLength(0)
+        it('should find support pages', () => {
+            const { search } = useSearch()
+            const result = search('Help')
+            expect(result.some(r => r.title === 'Help Center')).toBe(true)
         })
     })
 
     describe('Partial Matches', () => {
         it('should find partial matches in name', () => {
-            const result = searchComposable.search('Cru')
+            const { search } = useSearch()
+            const result = search('Cru')
             expect(result.some(r => r.title === 'Electric Cruiser')).toBe(true)
+        })
+
+        it('should find partial matches in description', () => {
+            const { search } = useSearch()
+            const result = search('heritage')
+            expect(result.some(r => r.title === 'Our Story')).toBe(true)
+        })
+    })
+
+    describe('No Results', () => {
+        it('should return empty array for non-matching query', () => {
+            const { search } = useSearch()
+            expect(search('xyznonexistent123')).toHaveLength(0)
         })
     })
 
     describe('Edge Cases', () => {
         it('should handle single character search', () => {
-            const result = searchComposable.search('a')
+            const { search } = useSearch()
+            const result = search('a')
             expect(result.length).toBeGreaterThan(0)
         })
 
         it('should handle special characters', () => {
-            const result = searchComposable.search('&')
+            const { search } = useSearch()
+            const result = search('&')
             expect(result.some(r => r.title === 'Shipping & Delivery')).toBe(true)
         })
     })
