@@ -26,7 +26,7 @@ useHead(() => {
     name: bike.value.name,
     description: bike.value.description,
     image: bike.value.image,
-    price: bike.value.price,
+    price: String(bike.value.price),
     category: bike.value.category,
     brand: 'VeloStore',
     sku: `VELO-${bike.value.id}`,
@@ -79,7 +79,7 @@ const galleryTabs: { id: GalleryView, label: string, icon: any }[] = [
 const currentImage = computed(() => {
   if (!bike.value) return ''
   if (activeView.value === 'full') return bike.value.image
-  return bike.value.detailImages[activeView.value]
+  return bike.value.detailImages?.[activeView.value] ?? bike.value.image
 })
 </script>
 
@@ -162,7 +162,7 @@ const currentImage = computed(() => {
                         v-for="i in 3" 
                         :key="i"
                         class="w-1.5 h-6 rounded-full"
-                        :class="i <= bike.performance ? 'bg-blue-500' : 'bg-zinc-700'"
+                        :class="i <= (bike.performance ?? 1) ? 'bg-blue-500' : 'bg-zinc-700'"
                       ></div>
                     </div>
                   </div>
@@ -350,10 +350,10 @@ const currentImage = computed(() => {
             :key="rb.id"
             :id="rb.id"
             :title="rb.name"
-            :price="rb.price"
+            :price="String(rb.price)"
             :image="rb.image"
-            :category="rb.category"
-            :performance="rb.performance"
+            :category="String(rb.category)"
+            :performance="(rb.performance ?? 1) as 1 | 2 | 3"
             class="transform transition-all duration-500 hover:-translate-y-2"
           />
         </div>
