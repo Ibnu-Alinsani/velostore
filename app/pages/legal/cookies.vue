@@ -158,9 +158,9 @@ useHead({
 
 <style scoped>
 .prose ul {
-  @apply pl-4;
+  padding-left: 1rem;
 }
 .prose strong {
-  @apply font-semibold;
+  font-weight: 600;
 }
 </style>

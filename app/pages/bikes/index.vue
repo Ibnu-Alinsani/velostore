@@ -230,10 +230,10 @@ const loadMore = async () => {
             :key="bike.id"
             :id="bike.id"
             :title="bike.name"
-            :price="bike.price"
+            :price="String(bike.price)"
             :image="bike.image"
-            :category="bike.category"
-            :performance="bike.performance"
+            :category="String(bike.category)"
+            :performance="(bike.performance ?? 1) as 1 | 2 | 3"
             :style="{ '--delay': `${index * 50}ms` }"
             class="transform transition-all duration-500"
           />
