@@ -155,15 +155,15 @@ const formatPrice = (value: number) => {
               </div>
 
               <div class="divide-y divide-white/5">
-                <div v-for="item in cartStore.items" :key="item.bike.id" class="py-6 flex gap-6 items-center">
+                <div v-for="item in cartStore.items" :key="item.id" class="py-6 flex gap-6 items-center">
                   <div class="w-20 h-20 rounded-2xl overflow-hidden bg-zinc-800">
-                    <img :src="item.bike.image" :alt="item.bike.name" class="w-full h-full object-cover" />
+                    <img :src="item.image" :alt="item.name" class="w-full h-full object-cover" />
                   </div>
                   <div class="flex-1">
-                    <h3 class="text-white font-bold">{{ item.bike.name }}</h3>
+                    <h3 class="text-white font-bold">{{ item.name }}</h3>
                     <p class="text-zinc-400 text-sm">Qty: {{ item.quantity }}</p>
                   </div>
-                  <div class="text-white font-bold">{{ item.bike.price }}</div>
+                  <div class="text-white font-bold">{{ item.price }}</div>
                 </div>
               </div>
 

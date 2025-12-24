@@ -51,13 +51,14 @@ const { bikes } = useBikes()
           :key="bike.id"
           :id="bike.id"
           :title="bike.name"
-          :price="bike.price"
+          :price="String(bike.price)"
           :image="bike.image"
           :category="bike.category"
-          :performance="bike.performance"
+          :performance="(bike.performance as 1 | 2 | 3) || 2"
           class="transform transition-all duration-500 hover:-translate-y-2"
         />
       </div>
+
 
       <!-- CTA Section -->
       <div class="text-center">

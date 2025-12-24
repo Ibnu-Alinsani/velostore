@@ -7,6 +7,8 @@ import InteractiveBackground from '~/components/organisms/InteractiveBackground.
 import TestRideModal from '~/components/organisms/TestRideModal.vue'
 import SpotlightSearch from '~/components/organisms/SpotlightSearch.vue'
 
+const route = useRoute()
+
 // Mouse Tracking for Global Spotlight
 const spotX = ref(0)
 const spotY = ref(0)
@@ -16,6 +18,7 @@ let animationFrameId: number | null = null
 
 const isTestRideModalOpen = ref(false)
 const isSpotlightOpen = ref(false)
+
 
 const handleToggleSpotlight = () => {
   isSpotlightOpen.value = !isSpotlightOpen.value
@@ -74,9 +77,10 @@ onUnmounted(() => {
         @open-search="isSpotlightOpen = true"
       />
       
-      <main class="flex-grow" :class="{ 'pt-20': $route.path !== '/' }">
+      <main class="flex-grow" :class="{ 'pt-20': route.path !== '/' }">
         <slot />
       </main>
+
       
       <TheFooter />
     </div>

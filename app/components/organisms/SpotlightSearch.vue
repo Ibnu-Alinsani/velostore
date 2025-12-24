@@ -81,10 +81,11 @@ const groupedResults = computed(() => {
   const groups: Record<string, SearchResult[]> = {}
   results.value.forEach((res: SearchResult) => {
     if (!groups[res.category]) groups[res.category] = []
-    groups[res.category].push(res)
+    groups[res.category]!.push(res)
   })
   return groups
 })
+
 
 const isSelected = (id: string | number) => {
   return results.value[selectedIndex.value]?.id === id

@@ -54,7 +54,7 @@
 const vIntersect = {
   mounted: (el: HTMLElement, binding: { value: { class: string } }) => {
     const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
+      if (entries[0]?.isIntersecting) {
         el.classList.add(...binding.value.class.split(' '))
       }
     }, { threshold: 0.1 })

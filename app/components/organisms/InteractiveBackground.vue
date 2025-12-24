@@ -114,15 +114,18 @@ const draw = () => {
     if (p.x > width + 100) p.x = -100
     if (p.x < -100) p.x = width + 100
     
-    // Draw Line
-    ctx.beginPath()
-    ctx.moveTo(p.x, p.y)
-    ctx.lineTo(p.x - p.len, p.y) // Trail behind
-    ctx.strokeStyle = p.color
-    ctx.lineWidth = p.width
-    ctx.lineCap = 'round'
-    ctx.stroke()
+    // Draw Line - with null check for ctx
+    if (ctx) {
+      ctx.beginPath()
+      ctx.moveTo(p.x, p.y)
+      ctx.lineTo(p.x - p.len, p.y) // Trail behind
+      ctx.strokeStyle = p.color
+      ctx.lineWidth = p.width
+      ctx.lineCap = 'round'
+      ctx.stroke()
+    }
   })
+
   
   animationFrameId = requestAnimationFrame(draw)
 }

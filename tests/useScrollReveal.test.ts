@@ -10,13 +10,15 @@ let intersectionCallback: IntersectionObserverCallback | null = null
 let observedElements: Element[] = []
 
 // Mock IntersectionObserver to capture callback
-class MockIntersectionObserver {
+class MockIntersectionObserver implements IntersectionObserver {
     callback: IntersectionObserverCallback
-    options: IntersectionObserverInit
+    root: Element | Document | null = null
+    rootMargin: string = ''
+    thresholds: readonly number[] = []
 
     constructor(callback: IntersectionObserverCallback, options?: IntersectionObserverInit) {
         this.callback = callback
-        this.options = options || {}
+        this.rootMargin = options?.rootMargin || ''
         intersectionCallback = callback
     }
 
@@ -31,7 +33,12 @@ class MockIntersectionObserver {
     disconnect() {
         observedElements = []
     }
+
+    takeRecords(): IntersectionObserverEntry[] {
+        return []
+    }
 }
+
 
 vi.stubGlobal('IntersectionObserver', MockIntersectionObserver)
 

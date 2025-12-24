@@ -141,6 +141,7 @@ const radius = 350
         <!-- Content Side -->
         <div class="lg:pl-10 relative z-20 pt-10 lg:pt-0">
           <transition 
+            v-if="activeItem"
             mode="out-in"
             enter-active-class="transition duration-500 ease-out transform"
             enter-from-class="opacity-0 translate-y-8 blur-sm"
@@ -150,6 +151,7 @@ const radius = 350
             leave-to-class="opacity-0 -translate-y-8 blur-sm"
           >
             <div :key="activeItem.id" class="relative isolate">
+
               <!-- Watermark -->
               <div class="absolute -top-10 -left-10 text-[6rem] md:text-[8rem] lg:text-[10rem] font-black text-white/5 leading-none select-none -z-10 overflow-hidden pointer-events-none">
                 {{ activeItem.category }}

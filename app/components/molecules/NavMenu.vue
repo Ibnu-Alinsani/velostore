@@ -2,6 +2,8 @@
 import { ref, computed } from 'vue'
 import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
+const route = useRoute()
+
 const activeDropdown = ref<string | null>(null)
 const hoveredIndex = ref<number | null>(null)
 const navRef = ref<HTMLElement | null>(null)
@@ -86,7 +88,7 @@ const handleMouseLeave = () => {
       <NuxtLink 
         :to="link.path"
         class="relative px-8 py-3 text-sm font-bold tracking-tight transition-all duration-300"
-        :class="hoveredIndex === index || $route.path.startsWith(link.path) ? 'text-white' : 'text-zinc-400'"
+        :class="hoveredIndex === index || route.path.startsWith(link.path) ? 'text-white' : 'text-zinc-400'"
       >
         <span class="flex items-center gap-2">
           {{ link.name }}

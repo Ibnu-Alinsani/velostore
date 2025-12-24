@@ -98,13 +98,13 @@ export interface BikeDetailImages {
  */
 export interface Bike {
     /** Unique identifier for the bike */
-    readonly id: BikeId | number
+    readonly id: number
     /** Product name/model */
     readonly name: string
     /** Bike category */
     readonly category: BikeCategory | string
     /** Price as formatted string (e.g., "$3,299") */
-    readonly price: string | number
+    readonly price: string
     /** Marketing description */
     readonly description: string
     /** Primary product image URL */
@@ -137,11 +137,18 @@ export interface Bike {
  * Shopping cart line item
  */
 export interface CartItem {
-    /** Product in the cart */
-    readonly bike: Bike
+    /** Product ID */
+    readonly id: number
+    /** Product name */
+    readonly name: string
+    /** Price as formatted string */
+    readonly price: string
+    /** Product image URL */
+    readonly image: string
     /** Quantity ordered (positive integer) */
-    readonly quantity: number
+    quantity: number
 }
+
 
 // ============================================================================
 // Innovation Related Types
