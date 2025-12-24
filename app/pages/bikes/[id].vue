@@ -81,6 +81,20 @@ const currentImage = computed(() => {
   if (activeView.value === 'full') return bike.value.image
   return bike.value.detailImages?.[activeView.value] ?? bike.value.image
 })
+
+// Handle quick action (add to cart) for related products
+const handleQuickAction = (id: string | number) => {
+  const rb = relatedBikes.value.find(b => b.id === id)
+  if (rb) {
+    cartStore.addItem({
+      id: Number(rb.id),
+      name: rb.name,
+      price: String(rb.price),
+      image: rb.image
+    })
+    showToast(`Added ${rb.name} to cart!`, 'success')
+  }
+}
 </script>
 
 <template>
@@ -143,10 +157,11 @@ const currentImage = computed(() => {
 
                 <!-- Category Badge -->
                 <div class="absolute top-6 left-6 z-10">
-                  <BaseBadge color="blue" class="backdrop-blur-md bg-blue-500/20 border border-blue-500/30 text-base px-4 py-2">
+                  <BaseBadge color="primary" class="backdrop-blur-md bg-blue-500/20 border border-blue-500/30 text-base px-4 py-2">
                     {{ bike.category }}
                   </BaseBadge>
                 </div>
+
 
                 <!-- View Label -->
                 <div class="absolute top-6 right-6 bg-zinc-900/80 backdrop-blur-md border border-white/10 rounded-xl px-3 py-2">
@@ -353,8 +368,8 @@ const currentImage = computed(() => {
             :price="String(rb.price)"
             :image="rb.image"
             :category="String(rb.category)"
-            :performance="(rb.performance ?? 1) as 1 | 2 | 3"
-            class="transform transition-all duration-500 hover:-translate-y-2"
+            :rating="rb.performance || 2"
+            @quick-action="handleQuickAction"
           />
         </div>
       </div>

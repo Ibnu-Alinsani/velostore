@@ -1,46 +1,64 @@
 <script setup lang="ts">
 import { useBikes } from '~/composables/useBikes'
+import { useCartStore } from '~/stores/cart'
+import { useToast } from '~/composables/useToast'
 import ProductCard from '~/components/molecules/ProductCard.vue'
 import BaseButton from '~/components/atoms/BaseButton.vue'
 
 const { bikes } = useBikes()
+const cartStore = useCartStore()
+const { showToast } = useToast()
+
+// Handle quick action (add to cart)
+const handleQuickAction = (id: string | number) => {
+  const bike = bikes.value.find(b => b.id === id)
+  if (bike) {
+    cartStore.addItem({
+      id: Number(bike.id),
+      name: bike.name,
+      price: String(bike.price),
+      image: bike.image
+    })
+    showToast(`Added ${bike.name} to cart!`, 'success')
+  }
+}
 </script>
 
 <template>
   <section class="relative py-32 overflow-hidden">
     <!-- Background Accent -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[rgb(var(--color-primary)/0.05)] rounded-full blur-[120px] pointer-events-none"></div>
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
       <!-- Section Header -->
       <div class="text-center mb-20">
         <!-- Racing Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6">
-          <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-          <span class="text-sm font-semibold text-blue-400 tracking-wider uppercase">Premium Collection</span>
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[rgb(var(--color-primary)/0.1)] border border-[rgb(var(--color-primary)/0.2)] mb-6">
+          <div class="w-2 h-2 bg-[rgb(var(--color-primary))] rounded-full animate-pulse"></div>
+          <span class="text-sm font-semibold text-[rgb(var(--color-primary-light))] tracking-wider uppercase">Premium Collection</span>
         </div>
 
         <!-- Title with Racing Accent -->
-        <h2 class="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tighter">
+        <h2 class="text-5xl md:text-6xl lg:text-7xl font-black text-[rgb(var(--color-text))] mb-6 tracking-tighter">
           <span class="relative inline-block">
             Featured
             <!-- Speed Lines Accent -->
             <div class="absolute -left-16 top-1/2 -translate-y-1/2 hidden lg:flex gap-1 opacity-30">
-              <div class="w-8 h-[2px] bg-gradient-to-r from-transparent to-blue-500"></div>
-              <div class="w-6 h-[2px] bg-gradient-to-r from-transparent to-blue-400 -translate-y-1"></div>
-              <div class="w-4 h-[2px] bg-gradient-to-r from-transparent to-blue-300 translate-y-1"></div>
+              <div class="w-8 h-[2px] bg-gradient-to-r from-transparent to-[rgb(var(--color-primary))]"></div>
+              <div class="w-6 h-[2px] bg-gradient-to-r from-transparent to-[rgb(var(--color-primary-light))] -translate-y-1"></div>
+              <div class="w-4 h-[2px] bg-gradient-to-r from-transparent to-[rgb(var(--color-accent))] translate-y-1"></div>
             </div>
           </span>
-          <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500">
+          <span class="block text-transparent bg-clip-text bg-gradient-to-r from-[rgb(var(--color-primary-light))] via-[rgb(var(--color-accent))] to-[rgb(var(--color-primary))]">
             Collection
           </span>
         </h2>
 
-        <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+        <p class="text-lg md:text-xl text-[rgb(var(--color-text-muted))] max-w-2xl mx-auto leading-relaxed">
           Handpicked for the ultimate riding experience. 
           <br />
-          <span class="text-zinc-300">Performance meets precision.</span>
+          <span class="text-[rgb(var(--color-text-secondary))]">Performance meets precision.</span>
         </p>
       </div>
 
@@ -54,8 +72,8 @@ const { bikes } = useBikes()
           :price="String(bike.price)"
           :image="bike.image"
           :category="bike.category"
-          :performance="(bike.performance as 1 | 2 | 3) || 2"
-          class="transform transition-all duration-500 hover:-translate-y-2"
+          :rating="bike.performance || 2"
+          @quick-action="handleQuickAction"
         />
       </div>
 

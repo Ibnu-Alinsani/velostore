@@ -3,7 +3,16 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', '@nuxt/image', '@nuxt/icon', '@pinia/nuxt', '@nuxtjs/seo'],
-  css: ['~/assets/css/tailwind.css'],
+  css: ['~/assets/css/theme.css', '~/assets/css/tailwind.css'],
+
+  // Component auto-import configuration
+  components: {
+    dirs: [
+      { path: '~/components/atoms', pathPrefix: false },
+      { path: '~/components/molecules', pathPrefix: false },
+      { path: '~/components/organisms', pathPrefix: false }
+    ]
+  },
 
   // SEO Configuration
   site: {

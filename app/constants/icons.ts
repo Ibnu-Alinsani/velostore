@@ -42,7 +42,9 @@ export const ICON_MAP = {
     settings: 'heroicons:cog-6-tooth',
     checkCircle: 'heroicons:check-circle',
     scale: 'heroicons:scale',
-    calendar: 'heroicons:calendar'
+    calendar: 'heroicons:calendar',
+    star: 'heroicons:star'
 } as const
+
 
 export type IconName = keyof typeof ICON_MAP

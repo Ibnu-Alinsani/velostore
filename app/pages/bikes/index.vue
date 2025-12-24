@@ -2,6 +2,8 @@
 import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useBikes, type SortOption } from '~/composables/useBikes'
+import { useCartStore } from '~/stores/cart'
+import { useToast } from '~/composables/useToast'
 import ProductCard from '~/components/molecules/ProductCard.vue'
 import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
@@ -16,6 +18,22 @@ useHead({
 
 const { bikes, filterBikes, sortBikes } = useBikes()
 const route = useRoute()
+const cartStore = useCartStore()
+const { showToast } = useToast()
+
+// Handle quick action (add to cart)
+const handleQuickAction = (id: string | number) => {
+  const bike = bikes.value.find(b => b.id === id)
+  if (bike) {
+    cartStore.addItem({
+      id: Number(bike.id),
+      name: bike.name,
+      price: String(bike.price),
+      image: bike.image
+    })
+    showToast(`Added ${bike.name} to cart!`, 'success')
+  }
+}
 
 const searchQuery = ref('')
 const activeCategory = ref(route.query.category?.toString() || 'All')
@@ -233,9 +251,9 @@ const loadMore = async () => {
             :price="String(bike.price)"
             :image="bike.image"
             :category="String(bike.category)"
-            :performance="(bike.performance ?? 1) as 1 | 2 | 3"
+            :rating="bike.performance || 2"
             :style="{ '--delay': `${index * 50}ms` }"
-            class="transform transition-all duration-500"
+            @quick-action="handleQuickAction"
           />
         </TransitionGroup>
 

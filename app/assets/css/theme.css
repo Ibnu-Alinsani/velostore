@@ -1,0 +1,162 @@
+/**
+ * VeloStore Theme System
+ * Centralized CSS Variables for easy customization
+ * 
+ * Usage in Tailwind: bg-[rgb(var(--color-primary))]
+ * Usage in CSS: background: rgb(var(--color-primary));
+ */
+
+:root {
+  /* ============================================
+   * PRIMARY COLOR PALETTE
+   * Change these to customize your brand colors
+   * ============================================ */
+  
+  /* Primary Brand Color (Blue by default) */
+  --color-primary: 59 130 246;           /* Main brand color */
+  --color-primary-light: 96 165 250;     /* Lighter variant */
+  --color-primary-dark: 37 99 235;       /* Darker variant */
+  --color-primary-glow: 59 130 246 / 0.3; /* For shadows/glows */
+  
+  /* Accent Color (Cyan by default) */
+  --color-accent: 6 182 212;             /* Secondary accent */
+  --color-accent-light: 34 211 238;      /* Lighter variant */
+  --color-accent-dark: 8 145 178;        /* Darker variant */
+
+  /* ============================================
+   * BACKGROUND & SURFACE COLORS
+   * Dark theme by default
+   * ============================================ */
+  
+  --color-bg: 9 9 11;                    /* Page background (zinc-950) */
+  --color-surface: 24 24 27;             /* Card/surface background (zinc-900) */
+  --color-surface-light: 39 39 42;       /* Elevated surfaces (zinc-800) */
+  
+  /* ============================================
+   * BORDER COLORS
+   * ============================================ */
+  
+  --color-border: 63 63 70;              /* Default border (zinc-700) */
+  --color-border-light: 82 82 91;        /* Lighter border (zinc-600) */
+  --color-border-dark: 39 39 42;         /* Darker border (zinc-800) */
+
+  /* ============================================
+   * TEXT COLORS
+   * ============================================ */
+  
+  --color-text: 244 244 245;             /* Primary text (zinc-100) */
+  --color-text-secondary: 161 161 170;   /* Secondary text (zinc-400) */
+  --color-text-muted: 113 113 122;       /* Muted text (zinc-500) */
+  --color-text-dark: 82 82 91;           /* Very muted (zinc-600) */
+
+  /* ============================================
+   * SEMANTIC COLORS
+   * ============================================ */
+  
+  --color-success: 34 197 94;            /* Success green */
+  --color-warning: 234 179 8;            /* Warning yellow */
+  --color-error: 239 68 68;              /* Error red */
+  --color-info: 59 130 246;              /* Info blue */
+
+  /* ============================================
+   * COMPONENT-SPECIFIC TOKENS
+   * ============================================ */
+  
+  /* Buttons */
+  --btn-primary-bg: var(--color-primary);
+  --btn-primary-hover: var(--color-primary-light);
+  --btn-primary-text: 255 255 255;
+  
+  /* Inputs */
+  --input-bg: var(--color-surface-light);
+  --input-border: var(--color-border);
+  --input-focus-border: var(--color-primary);
+  
+  /* Cards */
+  --card-bg: var(--color-surface);
+  --card-border: var(--color-border-dark);
+  --card-hover-border: var(--color-primary);
+  
+  /* Badges */
+  --badge-primary-bg: var(--color-primary) / 0.1;
+  --badge-primary-text: var(--color-primary-light);
+  --badge-primary-border: var(--color-primary) / 0.2;
+
+  /* ============================================
+   * ANIMATION & TRANSITIONS
+   * ============================================ */
+  
+  --transition-fast: 150ms;
+  --transition-base: 200ms;
+  --transition-slow: 300ms;
+  --transition-slower: 500ms;
+  
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* ============================================
+   * SPACING & SIZING
+   * ============================================ */
+  
+  --radius-sm: 0.375rem;    /* 6px */
+  --radius-md: 0.5rem;      /* 8px */
+  --radius-lg: 0.75rem;     /* 12px */
+  --radius-xl: 1rem;        /* 16px */
+  --radius-2xl: 1.5rem;     /* 24px */
+  --radius-full: 9999px;
+}
+
+/* ============================================
+ * UTILITY CLASSES
+ * ============================================ */
+
+/* Primary color utilities */
+.bg-primary {
+  background-color: rgb(var(--color-primary));
+}
+.text-primary {
+  color: rgb(var(--color-primary));
+}
+.border-primary {
+  border-color: rgb(var(--color-primary));
+}
+
+/* Accent color utilities */
+.bg-accent {
+  background-color: rgb(var(--color-accent));
+}
+.text-accent {
+  color: rgb(var(--color-accent));
+}
+.border-accent {
+  border-color: rgb(var(--color-accent));
+}
+
+/* Glow effects */
+.glow-primary {
+  box-shadow: 0 0 20px rgb(var(--color-primary-glow));
+}
+.glow-accent {
+  box-shadow: 0 0 20px rgb(var(--color-accent) / 0.3);
+}
+
+/* Gradient utilities */
+.gradient-primary {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--color-primary)) 0%,
+    rgb(var(--color-accent)) 100%
+  );
+}
+.gradient-text-primary {
+  background: linear-gradient(
+    to right,
+    rgb(var(--color-primary-light)),
+    rgb(var(--color-accent))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

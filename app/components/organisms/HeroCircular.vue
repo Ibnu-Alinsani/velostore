@@ -158,7 +158,7 @@ const radius = 350
               </div>
 
               <!-- Featured Badge -->
-              <BaseBadge class="mb-4" color="blue">{{ activeItem.featuredBadge || activeItem.category + ' Series' }}</BaseBadge>
+              <BaseBadge class="mb-4" color="primary">{{ activeItem.featuredBadge || activeItem.category + ' Series' }}</BaseBadge>
               
               <h1 class="text-5xl lg:text-7xl font-black text-white tracking-tighter mb-4 leading-[0.9]">
                 <span class="text-transparent bg-clip-text bg-gradient-to-br from-white to-zinc-600">

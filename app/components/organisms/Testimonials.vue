@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import BaseIcon from '~/components/atoms/BaseIcon.vue'
 
 interface Review {
   name: string

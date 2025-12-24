@@ -1,5 +1,16 @@
 import { defineStore } from 'pinia'
-import type { CartItem, Bike } from '~/types'
+import type { CartItem } from '~/types'
+
+/**
+ * Type for adding items to cart
+ * Simpler than full Bike type - only needs display info
+ */
+interface AddToCartItem {
+    id: number
+    name: string
+    price: string
+    image: string
+}
 
 export const useCartStore = defineStore('cart', {
     state: () => ({
@@ -31,7 +42,11 @@ export const useCartStore = defineStore('cart', {
             if (typeof window !== 'undefined') {
                 const savedCart = localStorage.getItem('velo-cart')
                 if (savedCart) {
-                    this.items = JSON.parse(savedCart)
+                    try {
+                        this.items = JSON.parse(savedCart)
+                    } catch {
+                        this.items = []
+                    }
                 }
             }
         },
@@ -42,17 +57,17 @@ export const useCartStore = defineStore('cart', {
             }
         },
 
-        addItem(bike: Bike) {
-            const existingItem = this.items.find(item => item.id === bike.id)
+        addItem(product: AddToCartItem) {
+            const existingItem = this.items.find(item => item.id === product.id)
 
             if (existingItem) {
                 existingItem.quantity++
             } else {
                 this.items.push({
-                    id: bike.id,
-                    name: bike.name,
-                    price: bike.price,
-                    image: bike.image,
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
                     quantity: 1
                 })
             }
